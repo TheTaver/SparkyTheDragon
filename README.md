@@ -32,6 +32,9 @@ This project is particularly interesting to us because many of us enjoy playing 
 - Inventory system with items and potions for healing, with a stretch goal of adding temporary stat-boosting items
 - Leveling system where characters grow stronger as they gain XP, with the potential for a skill tree as a stretch goal
 - Storyline-driven progression system where players navigate areas and encounters to complete quests
+
+### Input/Output:
+- FTXUI will be used to display the character’s resources (Health, Items, etc.) and get input for player customization or choices
  
  > ## Phase II
  > In addition to completing the "User Interface Specification" and "Class Diagram" sections below, you will need to:
