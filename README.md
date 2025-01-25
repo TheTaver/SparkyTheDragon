@@ -21,6 +21,23 @@
  > * What languages/tools/technologies do you plan to use? (This list may change over the course of the project)
  > * What will be the input/output of your project?
  > * What are the features that the project provides?
+This project is particularly interesting to us because many of us enjoy playing video games, and we thought it would be exciting to combine our knowledge, experiences, and favorite elements from different games to create one of our own.
+
+# Tools:
+- C++
+- STL 
+- Google Test 
+- Git or GitHub
+- CMake 
+- FTXUI library (https://github.com/ArthurSonzogni/FTXUI) 
+
+# Features: 
+- Character creation system with class options, customizable names, and stat distribution
+- Turn-based combat system where character stats influence combat abilities and players choose actions each turn
+- Inventory system with items and potions for healing, with a stretch goal of adding temporary stat-boosting items
+- Leveling system where characters grow stronger as they gain XP, with the potential for a skill tree as a stretch goal
+- Storyline-driven progression system where players navigate areas and encounters to complete quests
+ 
  > This description should be in enough detail that the TA/instructor can determine the complexity of the project and if it is sufficient for the team members to complete in the time allotted. 
  > 
  > You also need to set up an empty project board using GitHub projects (board view with default columns). Make sure you add the board under your project repository. You should also have a Product Backlog and In testing columns added. All columns should be in the right order.
