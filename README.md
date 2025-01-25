@@ -18,7 +18,7 @@
 ## Project Description
 This project is particularly interesting to us because many of us enjoy playing video games, and we thought it would be exciting to combine our knowledge, experiences, and favorite elements from different games to create one of our own.
 
-## Tools:
+### Tools:
 - C++
 - STL 
 - Google Test 
@@ -26,7 +26,7 @@ This project is particularly interesting to us because many of us enjoy playing 
 - CMake 
 - FTXUI library (https://github.com/ArthurSonzogni/FTXUI) 
 
-## Features: 
+### Features: 
 - Character creation system with class options, customizable names, and stat distribution
 - Turn-based combat system where character stats influence combat abilities and players choose actions each turn
 - Inventory system with items and potions for healing, with a stretch goal of adding temporary stat-boosting items
