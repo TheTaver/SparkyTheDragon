@@ -1,19 +1,8 @@
- > As you complete each section you **must** remove the prompt text. Every *turnin* of this project includes points for formatting of this README so keep it clean and keep it up to date. 
- > Prompt text is any lines beginning with "\>"
- > Replace anything between \<...\> with your project specifics and remove angle brackets. For example, you need to name your project and replace the header right below this line with that title (no angle brackets). 
 # Sparky the Dragon
  > Authors: [Roseanne Shildt](https://github.com/roseisanne) [Connor Dickson](https://github.com/TheTaver) [Ayelen Mansilla Soler](https://github.com/a-ms26) [Jared Nepomuceno](http://github.com/Jaredn747)
 
- > You will be forming a group of **FOUR** students and working on an interesting project. The project has 4 phases, each one with specific requirements. A list of proposed project ideas that have been successful in previous quarters is listed in the project specifications document on Canvas. You can select an idea from the list and start thinking about the features you will implement. If you want to propose your own original idea, you will have to contact your instructor to discuss the project and obtain written permission before you submit your project proposal (Phase 1). The project work should be divided almost equally among team members. You can of course help each other, but it needs to be clear who will be responsible for which features. Additionally, you are expected to follow Scrum patterns, specifically the use of a Scrum (Project) board, Sprints, and Scrum meetings.
-
- > ## Expectations
- > * The backend of your project should be implemented in C++. If you wish to choose anoher programming language (e.g. Java, Python), please discuss with your lab TA to obtain permission.
- > * You can incorporate additional technologies/tools but they must be approved (in writing) by the instructor or the TA.
- > * Each member of the group **must** be committing code regularly and make sure their code is correctly attributed to them. We will be checking attributions to determine if there was equal contribution to the project.
- > * **Each member of the group must actively participate in the Github Project board, writing unit tests, and reviewing commited code.**
-> * All project phases are to be submitted to this GitHub repository. You should modify this README file to reflect the different phases of the project. In addition, you should regularly hold sprint meetings with your group. You will need to hold two to three scrum/check-in meetings with your lab TA/reader at different times in addition to the final demo.
-
 ## Project Description
+The player will be able to choose which character’s skill set to use on their quest in turn based combat. The player will go through a series of challenges to stop the dragon from decimating the world.
 This project is particularly interesting to us because many of us enjoy playing video games, and we thought it would be exciting to combine our knowledge, experiences, and favorite elements from different games to create one of our own.
 
 ### Tools:
@@ -30,6 +19,7 @@ This project is particularly interesting to us because many of us enjoy playing 
 - Inventory system with items and potions for healing, with a stretch goal of adding temporary stat-boosting items
 - Leveling system where characters grow stronger as they gain XP, with the potential for a skill tree as a stretch goal
 - Storyline-driven progression system where players navigate areas and encounters to complete quests
+- Save/load file
 
 ### Input/Output:
 - FTXUI will be used to display the character’s resources (Health, Items, etc.) and get input for player customization or choices
