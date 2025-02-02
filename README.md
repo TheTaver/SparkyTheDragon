@@ -1,5 +1,5 @@
 # Sparky the Dragon
- > Authors: [Roseanne Shildt](https://github.com/roseisanne) [Connor Dickson](https://github.com/TheTaver) [Ayelen Mansilla Soler](https://github.com/a-ms26) [Jared Nepomuceno](http://github.com/Jaredn747)
+ Authors: [Roseanne Shildt](https://github.com/roseisanne) [Connor Dickson](https://github.com/TheTaver) [Ayelen Mansilla Soler](https://github.com/a-ms26) [Jared Nepomuceno](http://github.com/Jaredn747)
 
 ## Project Description
 The player will be able to choose which character’s skill set to use on their quest in turn based combat. The player will go through a series of challenges to stop the dragon from decimating the world.
