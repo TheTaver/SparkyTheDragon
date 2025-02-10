@@ -44,21 +44,21 @@ This project is particularly interesting to us because many of us enjoy playing 
 When you start the game, you start at the Main menu where you choose to make a new game / load a game and then from there you go into the game. When you are in the Game, at any point you can quit, so everytime you do you just go to the main menu. In the Game you eventually have to enter combat, so you have a combat screen which ends and goes back to the game when you won your battle. When you die in combat, you go to the game over screen that takes you to the menu. Same thing happens when you win and see the victory screen. 
 
 ### Screen Layouts
-Main menu screen    
-\- Allows the player to continue a save (if one exists), start a new game, or exit the game
-\- Purpose: player can create a new game or load into a game    
-In-game screen
-\- Room description text, item options, buttons for player choices (what choices player can do when given)
-\- Purpose: Text of current room so player knows what room they’re in and what they can do in the room, item options so they know what items they have and how many, box for user to choose an option (user input), output will be new room description or event (process repeats)      
-Battle screen
-\- Descriptive text explaining what you did and what enemy did, options for attacks, shows your characters hp and enemies hp, options to choose different attacks, item options
-\- so that player knows that their move went through and also knows what attacks enemy did, hp displays so that player knows how low they are and how low enemy is, options for attacks so player can choose what attack to use, item options so they can use an item instead of attack     
-Game over screen
-\- Displaying that the game is over, option to quit game
-\- Purpose: Return to main menu after dying      
-Victory screen
-\- Displays you won game, button to quit game or return to main menu
-\- to go back to menu when you completed the game
+Main menu screen             
+\- Allows the player to continue a save (if one exists), start a new game, or exit the game    
+\- Purpose: player can create a new game or load into a game        
+In-game screen     
+\- Room description text, item options, buttons for player choices (what choices player can do when given)     
+\- Purpose: Text of current room so player knows what room they’re in and what they can do in the room, item options so they know what items they have and how many, box for user to choose an option (user input), output will be new room description or event (process repeats)           
+Battle screen     
+\- Descriptive text explaining what you did and what enemy did, options for attacks, shows your characters hp and enemies hp, options to choose different attacks, item options    
+\- so that player knows that their move went through and also knows what attacks enemy did, hp displays so that player knows how low they are and how low enemy is, options for attacks so player can choose what attack to use, item options so they can use an item instead of attack        
+Game over screen     
+\- Displaying that the game is over, option to quit game     
+\- Purpose: Return to main menu after dying         
+Victory screen    
+\- Displays you won game, button to quit game or return to main menu   
+\- to go back to menu when you completed the game   
 
 
 
