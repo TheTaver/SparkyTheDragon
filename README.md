@@ -63,7 +63,6 @@ Victory screen
 
 
 ## Class Diagram
-![uml diagram](https://github.com/user-attachments/assets/665d2a32-7523-43fa-b85b-145f2ec1edd1)
 
  > Include a **class diagram(s)** for your project and a **description** of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper UML notation (as discussed in the course slides).
  
