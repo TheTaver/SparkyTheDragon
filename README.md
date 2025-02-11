@@ -24,22 +24,8 @@ This project is particularly interesting to us because many of us enjoy playing 
 ### Input/Output:
 - FTXUI will be used to display the character’s resources (Health, Items, etc.) and get input for player customization or choices
  
- > ## Phase II
- > In addition to completing the "User Interface Specification" and "Class Diagram" sections below, you will need to:
- > * Create an "Epic" (note) for each feature. Place these epics in the `Product Backlog` column
- > * Complete your first *sprint planning* meeting to plan out the next 7 days of work.
- >   * Break down the "Epics" into smaller actionable user stories (i.e. smaller development tasks). Convert them into issues and assign them to team members. Place these in the `TODO` column (aka Sprint Backlog).
- >   * These cards should represent roughly 7 days worth of development time for your team. Then, once the sprint is over you should be repeating these steps to plan a new sprint, taking you until your second scrum meeting with the reader in phase III.
- > * Each team member needs to submit the Peer Evaluation Form on Canvas for this phase. In this form, you need to fill in the names of all team members, the percentage of work contributed by each member for phase  II, and a description of their contributions. Remember that each team member should submit the form individually.
- > * Schedule two check-ins using Calendly. Both time slots should be during your lab on week 6. Your entire team must be present for both check-ins.
- >   * The first check-in needs to be scheduled with your lab TA. During that meeting, you will discuss your project design/class diagram from phase II.
- >   * The second check-in should be scheduled with a reader. During that meeting you will discuss:
- >     * The tasks you are planning for the first sprint
- >     * How work will be divided between the team members
 ## User Interface Specification
- > Include a navigation diagram for your screens and the layout of each of those screens as desribed below. For all the layouts/diagrams, you can use any tool such as PowerPoint or a drawing program. (Specification requirement is adapted from the User Interface Design Document Template of CMSC 345 at the University of Maryland Global Campus)
-
-### Navigation Diagram
+ ### Navigation Diagram
 ![Diagram drawio](https://github.com/user-attachments/assets/7b2c7ecc-85aa-4469-9f7e-3f0447e8dae9)      
 When you start the game, you start at the Main menu where you choose to make a new game / load a game and then from there you go into the game. When you are in the Game, at any point you can quit, so everytime you do you just go to the main menu. In the Game you eventually have to enter combat, so you have a combat screen which ends and goes back to the game when you won your battle. When you die in combat, you go to the game over screen that takes you to the menu. Same thing happens when you win and see the victory screen. 
 
@@ -63,8 +49,26 @@ Victory screen
 
 
 ## Class Diagram
+![uml diagram](https://github.com/user-attachments/assets/08fcc5f3-8df7-4a0b-8366-957b831b6a09)
 
- > Include a **class diagram(s)** for your project and a **description** of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper UML notation (as discussed in the course slides).
+### Class Descriptions:
+#### View Classes:
+\- Menu Display Class: I/O class for displaying the start and game over menus, returns a string describing the player’s input on that screen (whether to start a new game or continue a save, or quit)
+\- Room Display Class: Displays UI for room description, along with the player’s current stats/items. A function that describes the room and the choice the player can make in that room returns a string description of the choice they made.
+\- Combat Display Class: Describes the current opponent, and the displays the player’s options for actions to take in battle, and gets input for their choices
+
+#### Controller Classes:
+\- Game Controller Class: Manages overall game flow, including saving/loading game data from files, starting and maintaining the main game loop, of transitioning between rooms, updating the player’s position, and starting the events of that room, starting combat, and ending the game
+\- Combat Controller Class: Manage in-combat game loop, tracks combatants’ current hp, ending combat when one dies, gets each combatant’s next attack, and executing the attacks/actions each round
+
+#### Entity Classes:
+\- Character class: Interface for player characters as well as enemy combatants. Has member variables for the character’s stats (Strength, Defense, Agility, Max/Current Health, Level) and a vector of possible moves that the character can perform during combat that differs based on the type of character.
+\- Player Interface: Brawler/Shooter/Duelist: Different options for classes the player can choose from, each with a unique moveset implementation and starting stat distribution. Also has member variables (int vectors) to track the current items the player is carrying and can use, and the maximum amount of each they can carry. CanLevelUp() function returns whether the player has enough xp to level up, in which case the GameController will display the level up menu, and call the LevelUp() function with the stats the player chooses to increase, which will increase those stats. The GetItem() function adds an item to the player’s inventory, returning true if it was successful, or false if it failed (inventory was full, so couldn’t add it). The UseItem() function removes an item from their inventory, if they have more than 0, and the ItemCount() function returns how many of an item type they have.
+\- NPC Interface: Is the base class for all NPCs/Enemies, each of which will have their own implementation of the GetAttack() function. They will also each have member variables for the exp reward and item rewards the player gets from defeating them in battle.
+\- Enemy type Subclasses: Derived from the NPC interface, the GetAttack() function will pick what attack to use in battle, so enemies at different points in the game have different AI for battle decisions.
+\- Attack Class: Member variables for the attack’s base accuracy, name of the attack, number of uses the attack has, and the attack’s base damage. The DoesItHit() function decides whether the attack hits or not, based on the attack’s accuracy, and the agility of the target, with rng seeded by the seed passed to the function. The hit() function takes in the attacker and the target of the attack (and the seed for randomness calculations) and calls the private DoesItHit() function, and if it hits, deals damage scaled by the attacker’s strength to the target. If the attack has a nonzero effect chance, Hit will also call the private ApplyEffect() function, again with the rng seed, which decides whether to apply the effect or not, decreasing one of the target’s stats (determined by the effectStat member variable) if successful.
+\- Room Class: Constructor will require a filename to load the room’s info from. Will contain a room’s description, and a choice that the player can make in that room. Member variable hasCombat will be a boolean value that describes whether a combat encounter should start when the player enters that room, which the GameController will load as the player enters. GetNumOptions() returns how many options the player can pick between for that room’s choice, with GetOptions() returning text to describe the options themselves.
+
  
  > ## Phase III
  > You will need to schedule a check-in for the second scrum meeting with the same reader you had your first scrum meeting with (using Calendly). Your entire team must be present. This meeting will occur on week 8 during lab time.
