@@ -1,5 +1,12 @@
 #include "gtest/gtest.h"
+#include <ftxui/dom/elements.hpp>
 
+
+TEST(FTX_Import, CreateElement) {
+    EXPECT_NO_THROW( ftxui::Element testBox = ftxui::hbox({
+        ftxui::text(L"Hello, World!") | ftxui::border | ftxui::bold
+    }));
+}
 
 
 int main(int argc, char **argv) {

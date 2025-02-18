@@ -32,8 +32,11 @@ add_executable(trpg
     src/main.cpp
 )
 
+TARGET_LINK_LIBRARIES(test 
+  ftxui::dom
+  gtest
+)
 
-TARGET_LINK_LIBRARIES(test gtest)
 TARGET_LINK_LIBRARIES(trpg
   PRIVATE ftxui::screen
   PRIVATE ftxui::dom
