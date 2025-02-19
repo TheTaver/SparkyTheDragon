@@ -15,3 +15,21 @@ Character::Character(const string& charName, int level, const vector<int>& stats
         tempStats.push_back(0);
     }
 }
+
+int Character::GetStat(int statNum) const {
+    return stats.at(statNum) + tempStats.at(statNum);
+}
+
+void Character::TempChangeStat(int statNum, int change) {
+    tempStats.at(statNum)+= change;
+}
+
+void Character::ResetTempStat(int statNum) {
+    tempStats.at(statNum) = 0;
+}
+
+void Character::ResetAllTemp() {
+    for(int i = 0; i < tempStats.size(); i++) {
+        ResetTempStat(i);
+    }
+}

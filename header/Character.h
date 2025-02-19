@@ -15,20 +15,20 @@ class Character {
 
     protected:
         int currHp;
-        // vv Make vector instead of array?
         vector<int> stats;     // [maxHp, strength, agility, defense]
         vector<int> tempStats;  // [maxHp, strength, agility, defense]
-        // std::vector<Attack> moves;
+        // vector<Attack> moves;  // Need Attack class stub
 
     public:
         Character(const string& charName, int level, const vector<int>& stats);  // stats is 4 element int array
-        // ~Character();
+        // ~Character();  // Not needed since no "new" members
+
         const string& GetName() const { return name; };
         int GetLevel() const          { return lvl;  };
 
-        int GetStat(int statNum) const { return stats.at(statNum) + tempStats.at(statNum); };
+        int GetStat(int statNum) const;
+        void TempChangeStat(int statNum, int change);
+        void ResetTempStat(int statNum);
+        void ResetAllTemp();
 };
-
-
-
 #endif
