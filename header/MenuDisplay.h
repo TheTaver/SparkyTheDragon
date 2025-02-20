@@ -29,7 +29,7 @@ ButtonOption Style() {
 
 class MenuDisplay {
     public:
-    void Displaystart() const{
+    string Displaystart() const{
       string playerInput = "";
       auto screen = ScreenInteractive::FitComponent();
   
@@ -58,6 +58,7 @@ class MenuDisplay {
       });
     
       screen.Loop(renderer);
+      return playerInput;
     };
     string DisplayClassSelection() const;
     string DisplayGameOver() const;

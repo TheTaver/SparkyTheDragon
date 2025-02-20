@@ -12,8 +12,12 @@ int main() {
     Render(display, textBox);
     cout << display.ToString() << endl;
 
-    MenuDisplay menu;
 
-    menu.Displaystart();
+    MenuDisplay menu;
+    string theInput = menu.Displaystart();
+
+    if(theInput == "Start"){
+        cout << "YOOOO" << endl;
+    }
     return 0;
 }
