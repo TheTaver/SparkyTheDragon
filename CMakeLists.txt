@@ -40,6 +40,7 @@ TARGET_LINK_LIBRARIES(test
 TARGET_LINK_LIBRARIES(trpg
   PRIVATE ftxui::screen
   PRIVATE ftxui::dom
+  PRIVATE ftxui::component
 )
 
 # include_directories(
