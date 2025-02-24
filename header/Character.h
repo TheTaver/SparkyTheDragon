@@ -2,7 +2,7 @@
 #define CHARACTER_CLASS_H
 
 #include <string>
-#include <vector>  // For attack vector
+#include <vector>  // For attack/stats vectors
 // #include "Attack.h"  // For attack vector
 
 using std::string;
@@ -11,9 +11,9 @@ using std::vector;
 class Character {
     private:
         string name;
-        int lvl;
-
+        
     protected:
+        int lvl;
         int currHp;
         vector<int> stats;     // [maxHp, strength, agility, defense]
         vector<int> tempStats;  // [maxHp, strength, agility, defense]
