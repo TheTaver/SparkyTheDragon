@@ -1,5 +1,5 @@
-#ifndef CHARACTER_CLASS_H
-#define CHARACTER_CLASS_H
+#ifndef __CHARACTER_H__
+#define __CHARACTER_H__
 
 #include <string>
 #include <vector>  // For attack/stats vectors
