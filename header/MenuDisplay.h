@@ -59,9 +59,55 @@ class MenuDisplay {
         screen.Loop(renderer);
         return playerInput;
       };
-      string DisplayClassSelection() const;
+      string DisplayClassSelection() const{
+        string playerInput = "";
+        auto screen = ScreenInteractive::FitComponent();
+  
+        auto brawlerb = Button("Brawler", [&] { playerInput = "Brawler"; screen.ExitLoopClosure()(); }, Style());
+        auto shooterb = Button("Shooter", [&] { playerInput = "Shooter"; screen.ExitLoopClosure()(); }, Style()); 
+        auto fighterb = Button("Fighter", [&] { playerInput = "Fighter"; screen.ExitLoopClosure()(); }, Style());
+     
+        // The tree of components. This defines how to navigate using the keyboard.
+        // The selected `row` is shared to get a grid layout.
+        int row = 0;
+        auto buttons = Container::Vertical({
+          brawlerb | flex,
+          shooterb | flex,
+          fighterb | flex
+        });
+
+        //discription of classes
+        Element textBox = vbox({
+          text(L"Discription") | flex | bold,
+          separator(),
+          text(L"Brawler, More defence") | flex,
+          separator(),
+          text(L"Shooter, more  strength") | flex,
+          separator(),
+          text(L"Fighter, more agility") | flex,
+        }) | border;
+        //make this shit to the right
+        
+        Screen display = Screen::Create(Dimension::Full(), Dimension::Fit(textBox));
+        Render(display, textBox);
+        cout << display.ToString() << endl;
+     
+        // Modify the way to render them on screen:
+        auto renderer = Renderer(buttons, [&] {
+          return vbox({
+                    text("Pick your class!") | center | bold,
+                    separator(),
+                    buttons->Render() | flex,
+                }) | flex | border;
+        });
+        screen.Loop(renderer);
+        return playerInput;
+      };
       string DisplayGameOver() const;
-      string Displaylvlup();
+        //display game over 
+        //have option to quit game or continue from last save (2 options)
+      void Displaylvlup();
+        //just display lvl up options
 };
 
 #endif

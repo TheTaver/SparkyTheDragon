@@ -17,7 +17,15 @@ int main() {
     string theInput = menu.Displaystart();
 
     if(theInput == "Start"){
-        cout << "YOOOO" << endl;
+        theInput = menu.DisplayClassSelection();
+        if(theInput == "Brawler"){
+            cout << "YUHHHHH" << endl;
+        }
+        else if (theInput == "Shooter"){
+            cout << "bruh" << endl;
+        }
+        //smth with like player can input their char name when any button click
     }
+
     return 0;
 }
