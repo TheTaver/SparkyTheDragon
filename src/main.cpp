@@ -26,6 +26,13 @@ int main() {
         }
         //smth with like player can input their char name when any button click
     }
+    else if(theInput == "Continue"){
+        //just to see if gameover screen is fine
+        theInput = menu.DisplayGameOver();
+        if(theInput == "Quitcuzdead"){
+            cout << "dead fr" << endl;
+        }
+    }
 
     return 0;
 }

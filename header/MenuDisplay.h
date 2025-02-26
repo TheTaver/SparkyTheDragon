@@ -77,25 +77,64 @@ class MenuDisplay {
         });
 
         //discription of classes
-        Element textBox = vbox({
-          text(L"Discription") | flex | bold,
+        auto textBox = vbox({
+          text(L"Description") | flex | bold,
           separator(),
-          text(L"Brawler, More defence") | flex,
+          text(L"Brawler class has the most defence stats, less damage intake.") | flex,
           separator(),
-          text(L"Shooter, more  strength") | flex,
+          text(L"Shooter class has the most strength stats, alot of damage output.") | flex,
           separator(),
-          text(L"Fighter, more agility") | flex,
+          text(L"Fighter class has the most agility stats, higher chance to dodge attacks.") | flex,
         }) | border;
+
+        //auto right = Renderer([] { return text("Discription") | center; });
         //make this shit to the right
         
-        Screen display = Screen::Create(Dimension::Full(), Dimension::Fit(textBox));
-        Render(display, textBox);
-        cout << display.ToString() << endl;
+        // Screen display = Screen::Create(Dimension::Full(), Dimension::Fit(textBox));
+        // Render(display, textBox);
+        // cout << display.ToString() << endl;
      
         // Modify the way to render them on screen:
+        // auto renderer = Renderer(buttons, [&] {
+        //   return vbox({
+        //             text("Pick your class!") | center | bold,
+        //             separator(),
+        //             buttons->Render() | flex,
+        //         }) | flex | border;
+        // });
+
+        auto classanddisctogether = Renderer(buttons, [&] {
+            return hbox({
+              vbox({
+                text("Pick your class!") | center | bold,
+                    separator(),
+                    buttons->Render() | flex,
+              }),
+              textBox | flex,
+            }) | flex |border;
+        });
+
+        screen.Loop(classanddisctogether);
+        return playerInput;
+      };
+      string DisplayGameOver() const{
+        //display game over 
+        //have option to quit game or continue from last save (2 options)
+        string playerInput = "";
+        auto screen = ScreenInteractive::FitComponent();
+  
+        auto quitgameb = Button("Quit Game", [&] { playerInput = "Quitcuzdead"; screen.ExitLoopClosure()(); }, Style());
+        auto contlastsaveb = Button("Load Checkpoint", [&] { playerInput = "Returncd"; screen.ExitLoopClosure()(); }, Style()); 
+     
+        int row = 0;
+        auto buttons = Container::Vertical({ 
+          quitgameb | flex,
+          contlastsaveb | flex
+        });
+     
         auto renderer = Renderer(buttons, [&] {
           return vbox({
-                    text("Pick your class!") | center | bold,
+                    text("GAME OVER") | center | bold,
                     separator(),
                     buttons->Render() | flex,
                 }) | flex | border;
@@ -103,9 +142,6 @@ class MenuDisplay {
         screen.Loop(renderer);
         return playerInput;
       };
-      string DisplayGameOver() const;
-        //display game over 
-        //have option to quit game or continue from last save (2 options)
       void Displaylvlup();
         //just display lvl up options
 };
