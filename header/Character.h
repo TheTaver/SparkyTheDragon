@@ -30,5 +30,8 @@ class Character {
         void TempChangeStat(int statNum, int change);
         void ResetTempStat(int statNum);
         void ResetAllTemp();
+
+        // const vector<Attack> GetMoves() const;
+        // void AddMove(const Attack&);
 };
 #endif
