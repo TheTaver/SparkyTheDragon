@@ -1,23 +1,21 @@
 #include "MenuDisplay.h"
+#include "CombatDisplay.h"
+
+#include <vector>
 
 
-
+using namespace std;
 
 int main() {
-    Element textBox = hbox({
-        text(L"Hello, World!") | border | bold
-    });
-
-    Screen display = Screen::Create(Dimension::Full(), Dimension::Fit(textBox));
-    Render(display, textBox);
+    vector<int> items = {2, 3, 4, 5};
+    vector<int> maxItems = {10, 10, 10, 10};
+    vector<int> stats = {15, 7, 3, 4};
+    int currHealth = 11;
+    
+    ftxui::Element sidebar = getScreenSideBar(currHealth, stats, items, maxItems);
+    Screen display = Screen::Create(Dimension::Full(), Dimension::Fit(sidebar));
+    Render(display, sidebar);
     cout << display.ToString() << endl;
 
-
-    MenuDisplay menu;
-    string theInput = menu.Displaystart();
-
-    if(theInput == "Start"){
-        cout << "YOOOO" << endl;
-    }
     return 0;
 }
