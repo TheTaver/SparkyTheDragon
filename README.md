@@ -30,8 +30,9 @@ This project is particularly interesting to us because many of us enjoy playing 
 When you start the game, you start at the Main menu where you choose to make a new game / load a game and then from there you go into the game. When you are in the Game, at any point you can quit, so everytime you do you just go to the main menu. In the Game you eventually have to enter combat, so you have a combat screen which ends and goes back to the game when you won your battle. When you die in combat, you go to the game over screen that takes you to the menu. Same thing happens when you win and see the victory screen. 
 
 ### Screen Layouts
-![Screen_Layout1](https://github.com/user-attachments/assets/68d86d0a-8187-4afb-8635-320cf0c9abbe)
-![Screen_Layout2](https://github.com/user-attachments/assets/133efc07-2f96-46ef-8f8a-fc7d52225332)
+![Screen_Layout1](https://github.com/user-attachments/assets/7046bfd9-11e2-46c9-8171-3b001deb7fa4)
+![Screen_Layout2](https://github.com/user-attachments/assets/89da2b96-0b79-403d-9f1e-7a89261b0ac0)
+
 Main menu screen 
 \- Allows the player to continue a save (if one exists), start a new game, or exit the game    
 \- Purpose: player can create a new game or load into a game        
