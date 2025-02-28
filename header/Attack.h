@@ -1,14 +1,15 @@
 #ifndef ATTACK_H
 #define ATTACK_H
 #include <string>
+#include "Character.h"
 
 
 class Attack {
     
     private:
     int effectChance;
-    std::string effectStat;
-    int effect;
+    int effectStat;
+    int effectAmount;
 
     bool doesItHit(Character& target, int randSeed);
     void applyEffect(Character& target, int randSeed);
@@ -24,8 +25,8 @@ class Attack {
 
     Attack();
 
-    Attack(std::string name, std::string description, int baseAccuracy, int numUses, int maxUses, 
-        int damage, int effectChance, std::string effectStat, int effect);
+    Attack(const std::string& name, const std::string& description, int baseAccuracy, int numUses, int maxUses, 
+        int damage, int effectChance, int effectStat, int effectAmount);
 
     void hit(Character& attacker, Character& target, int randSeed);
 
