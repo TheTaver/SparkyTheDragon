@@ -1,199 +1,63 @@
-#include <string>
+#include "../header/Player.h"
+#include <gtest/gtest.h>
 #include <vector>
-#include "gtest/gtest.h"
 
-#include <ftxui/dom/elements.hpp>
-#include "Character.h"
-
-using std::string;
-using std::vector;
-
-
-TEST(FTX_Import, CreateElement) {
-    EXPECT_NO_THROW( ftxui::Element testBox = ftxui::hbox({
-        ftxui::text(L"Hello, World!") | ftxui::border | ftxui::bold
-    }));
+// Test default constructor
+TEST(PlayerTest, DefaultConstructor) {
+    Player p;
+    EXPECT_EQ(p.GetName(), "");
+    EXPECT_EQ(p.GetClass(), "Unknown");
+    EXPECT_EQ(p.GetLevel(), 1);
+    EXPECT_EQ(p.GetStat(0), 10);
+    EXPECT_EQ(p.itemCount(1), 0);
 }
 
-const int NUM_STATS = 4;
+// Test parameterized constructor
+TEST(PlayerTest, ParameterizedConstructor) {
+    std::vector<int> stats = {100, 10, 10, 10};
+    Player p("Hero", "Brawler", 1, stats);
 
-TEST(CharacterClass, ConstructReg) {
-    std::string name = "Reginald";
-    int level = 1;
-    vector<int> stats;
-    for(int i = 0; i < NUM_STATS; i++) {
-        stats.push_back(i);
-    }
-    
-    EXPECT_NO_THROW(
-        Character reggie(name, level, stats);
-        EXPECT_EQ(reggie.GetName(), name);
-        EXPECT_EQ(reggie.GetLevel(), level);
-    );
+    EXPECT_EQ(p.GetName(), "Hero");
+    EXPECT_EQ(p.GetClass(), "Brawler");
+    EXPECT_EQ(p.GetLevel(), 1);
+    EXPECT_EQ(p.GetStat(0), stats);
+    EXPECT_EQ(p.itemCount(1), 0);
 }
 
-TEST(CharacterClass, NegativeLevel) {
-    std::string name = "Reginald";
-    int level = -1;
-    vector<int> stats;
-    for(int i = 0; i < NUM_STATS; i++) {
-        stats.push_back(i);
-    }
-    
-    EXPECT_THROW(Character reggie(name, level, stats);, std::invalid_argument);
+// Test adding experience and leveling up
+TEST(PlayerTest, AddExpAndLevelUp) {
+    std::vector<int> stats = {100, 10, 10, 10};
+    Player p("Hero", "Brawler", 1, stats);
+
+    p.addExp(100);
+    EXPECT_TRUE(p.canLevelUp());
+
+    p.levelUp("strength");
+
+    EXPECT_EQ(p.GetLevel(), 2);
+    EXPECT_FALSE(p.canLevelUp());
+    EXPECT_EQ(p.GetStat(0), 12);  // Strength +2
 }
 
-TEST(CharacterClass, NotEnoughStats) {
-    std::string name = "Reginald";
-    int level = 1;
-    vector<int> stats;
-    for(int i = 0; i < (NUM_STATS - 1); i++) {
-        stats.push_back(i);
-    }
-    
-    EXPECT_THROW(Character reggie(name, level, stats);, std::invalid_argument);
+// Test adding items and item count
+TEST(PlayerTest, AddItemAndItemCount) {
+    Player p;
+    p.addItem(1);
+    p.addItem(1);
+    p.addItem(2);
+
+    EXPECT_EQ(p.itemCount(1), 2);
+    EXPECT_EQ(p.itemCount(2), 1);
+    EXPECT_EQ(p.itemCount(3), 0);
 }
 
-TEST(CharacterClass, GetStatNoTemp) {
-    std::string name = "Reginald";
-    int level = 1;
-    vector<int> stats;
-    for(int i = 0; i < NUM_STATS; i++) {
-        stats.push_back(i);
-    }
-    Character reggie(name, level, stats);
-    
-    for(int i = 0; i < NUM_STATS; i++) {
-        EXPECT_EQ(reggie.GetStat(i), stats.at(i));
-    }
-}
+// Test using items
+TEST(PlayerTest, UseItem) {
+    Player p;
+    p.addItem(1);
+    p.addItem(2);
 
-TEST(CharacterTempStats, OnePosChange) {
-    std::string name = "Reginald";
-    int level = 1;
-    vector<int> stats;
-    for(int i = 0; i < NUM_STATS; i++) {
-        stats.push_back(i);
-    }
-    Character reggie(name, level, stats);
-    reggie.TempChangeStat(2, 10);
-
-    
-    EXPECT_EQ(reggie.GetStat(2), 12);
-    for(int i = 0; i < NUM_STATS; i++) {
-        if(i != 2) {
-            EXPECT_EQ(reggie.GetStat(i), stats.at(i));
-        }
-    }
-}
-
-TEST(CharacterTempStats, OneNegChange) {
-    std::string name = "Reginald";
-    int level = 1;
-    vector<int> stats;
-    for(int i = 0; i < NUM_STATS; i++) {
-        stats.push_back(i);
-    }
-    Character reggie(name, level, stats);
-    reggie.TempChangeStat(2, -10);
-
-    
-    EXPECT_EQ(reggie.GetStat(2), -8);
-    for(int i = 0; i < NUM_STATS; i++) {
-        if(i != 2) {
-            EXPECT_EQ(reggie.GetStat(i), stats.at(i));
-        }
-    }
-}
-
-TEST(CharacterTempStats, AllPosChanges) {
-    std::string name = "Reginald";
-    int level = 1;
-    vector<int> stats;
-    vector<int> tempStats;
-    for(int i = 0; i < NUM_STATS; i++) {
-        stats.push_back(i);
-        tempStats.push_back(i);
-    }
-    Character reggie(name, level, stats);
-    for(int i = 0; i < NUM_STATS; i++) {
-        reggie.TempChangeStat(i, tempStats.at(i));
-    }
-
-
-    for(int i = 0; i < NUM_STATS; i++) {
-        EXPECT_EQ(reggie.GetStat(i), (stats.at(i) + tempStats.at(i)));
-    }
-}
-
-TEST(CharacterTempStats, AllNegChanges) {
-    std::string name = "Reginald";
-    int level = 1;
-    vector<int> stats;
-    vector<int> tempStats;
-    for(int i = 0; i < NUM_STATS; i++) {
-        stats.push_back(i);
-        tempStats.push_back(-i);
-    }
-    Character reggie(name, level, stats);
-    for(int i = 0; i < NUM_STATS; i++) {
-        reggie.TempChangeStat(i, tempStats.at(i));
-    }
-
-
-    for(int i = 0; i < NUM_STATS; i++) {
-        EXPECT_EQ(reggie.GetStat(i), (stats.at(i) + tempStats.at(i)));
-    }
-}
-
-TEST(CharacterTempStats, ResetOneChange) {
-    std::string name = "Reginald";
-    int level = 1;
-    vector<int> stats;
-    for(int i = 0; i < NUM_STATS; i++) {
-        stats.push_back(i);
-    }
-    Character reggie(name, level, stats);
-    reggie.TempChangeStat(2, 10);
-    reggie.TempChangeStat(1, 5);
-
-    
-    EXPECT_EQ(reggie.GetStat(1), 6);
-    EXPECT_EQ(reggie.GetStat(2), 12);
-    
-    reggie.ResetTempStat(2);
-    
-    EXPECT_EQ(reggie.GetStat(1), 6);
-    EXPECT_EQ(reggie.GetStat(2), 2);
-
-}
-
-TEST(CharacterTempStats, ResetAllChanges) {
-    std::string name = "Reginald";
-    int level = 1;
-    vector<int> stats;
-    vector<int> tempStats;
-    for(int i = 0; i < NUM_STATS; i++) {
-        stats.push_back(i);
-        tempStats.push_back(-i);
-    }
-    Character reggie(name, level, stats);
-    for(int i = 0; i < NUM_STATS; i++) {
-        reggie.TempChangeStat(i, tempStats.at(i));
-    }
-    
-    for(int i = 0; i < NUM_STATS; i++) {
-        EXPECT_EQ(reggie.GetStat(i), (stats.at(i) + tempStats.at(i)));
-    }
-    
-    reggie.ResetAllTemp();
-
-    for(int i = 0; i < NUM_STATS; i++) {
-        EXPECT_EQ(reggie.GetStat(i), stats.at(i));
-    }
-}
-
-int main(int argc, char **argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+    EXPECT_TRUE(p.useItem(1));
+    EXPECT_EQ(p.itemCount(1), 0);
+    EXPECT_FALSE(p.useItem(3));  // Item 3 was never added
 }

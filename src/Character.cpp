@@ -1,7 +1,7 @@
 #include "Character.h"
 #include <stdexcept>
 
-Character::Character(const string& charName, int level, const vector<int>& stats) {
+Character::Character(const string& charName, const string& charClass, int level, const vector<int>& stats) {
     if(level < 0)
         throw std::invalid_argument("level value must be positive");
     if(stats.size() < 4)

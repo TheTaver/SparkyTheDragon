@@ -1,4 +1,4 @@
-#include "Player.h"
+#include "../header/Player.h"
 #include <cmath>
 #include <vector>
 #include <algorithm>
@@ -6,24 +6,23 @@
 // Call the character which have an empty name "", level 1, the default stat(idk how you guys want it)
 //  Temp starting stats (hp 100, 10, 10, 10)
 Player::Player() 
-: Character("", 1, std::vector<int>{100, 10, 10, 10}), exp(0), inventory({}) {}
+: Character("", "", 1, std::vector<int>{100, 10, 10, 10}), exp(0), inventory({}) {}
 
 
 // For the new players when start fresh
-Player::Player(std::string, std::string playerClass, int level, std::vector<int>& stats) 
-: Character(name, level, stats), exp(0), inventory({}) {}
+Player::Player(std::string name, std::string playerClass, int level, std::vector<int>& stats) 
+: Character(name, playerClass, level, stats), exp(0), inventory({}) {}
 
 // For returning players
-Player::Player(std::string, std::string playerClass, int level, std::vector<int>& stats, int exp, std::vector<int>& inventory) 
-: Character(name , level, stats), exp(exp), inventory(inventory) {}
+Player::Player(std::string name, std::string playerClass, int level, std::vector<int>& stats, int exp, std::vector<int>& inventory) 
+: Character(name, playerClass, level, stats), exp(exp), inventory(inventory) {}
 
-Player::Player() {
-    inventory.clear();
-}
+
+// no deconstructor needed
 
 // to check if they can level up
 bool Player::canLevelUp() {
-    int requiredExp = static_cast<int>(100 * pow(1.5, level - 1)); // checking if they level up
+    int requiredExp = static_cast<int>(100 * pow(expMult, lvl - 1)); // checking if they level up
     return exp >= requiredExp; // return true if this is true
 }
 
@@ -32,17 +31,17 @@ void Player::levelUp(std::string stats) {
     while(canLevelUp) // if this true then it will go on this loop
     {
         // change the required xp to up x1.5 (can be change later you guys want to)
-       int requiredExp = static_cast<int>(100 * pow(1.5, level - 1));
+       int requiredExp = static_cast<int>(100 * pow(expMult, lvl - 1));
        
        exp -= requiredExp; // Substract the the current xp with the required xp
-       level++; // level up :)
+       lvl++; // level up :)
 
 
        // The choices of what stat can the player upgrade (idk how much you guy the stat to be upgrade)
        if(stats == "strength") {
         this->stats[0] += 2; 
 
-       } else if(stats == "health"){
+       } else if(stats == "maxHP"){
         this->stats[1] += 2;
 
        } else if (stats == "agility") {
@@ -76,7 +75,7 @@ int Player::itemCount(int itemType) {
         if (item == itemType) count ++;
     }
     
-    return count ++;
+    return count;
 }
 
 

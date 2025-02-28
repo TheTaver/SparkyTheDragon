@@ -3,11 +3,14 @@
 
 #include <vector>
 #include <string>
+#include "Character.h"
 
 class Player : public Character {
     private:
     // Player's xp
     int exp;
+
+    const double expMult = 1.5;
 
     // Player's inventory
     std::vector<int> inventory;
