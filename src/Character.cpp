@@ -34,7 +34,7 @@ void Character::ResetAllTemp() {
     }
 }
 
-// const vector<Attack> GetMOves() const {
+// const vector<Attack> GetMoves() const {
 //     return moves;
 // }
 
