@@ -36,6 +36,12 @@ add_executable(chartest
     src/Attack.cpp
 )
 
+add_executable(attacktest
+    tests/attacktest.cpp
+    src/Character.cpp
+    src/Attack.cpp
+)
+
 add_executable(trpg
     src/main.cpp
     src/Character.cpp
@@ -44,6 +50,14 @@ add_executable(trpg
 
 TARGET_LINK_LIBRARIES(test 
   ftxui::dom
+  gtest
+)
+
+TARGET_LINK_LIBRARIES(chartest
+  gtest
+)
+
+TARGET_LINK_LIBRARIES(attacktest
   gtest
 )
 

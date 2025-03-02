@@ -7,10 +7,6 @@
 using std::string;
 using std::vector;
 
-vector<int> stats = {20, 0, 0, 0};
-Character punchingBag("Test Dummy", 1, stats);
-// Attack basicAttack("Basic Shot", "", 90, 30, 30, 10, 0, "none", 0);
-
 TEST(DealDamageTest, NoDefense) {
     vector<int> stats = {20, 0, 0, 0}; // 0% Damage Reduction
     Character punchingBag("Test Dummy", 1, stats);

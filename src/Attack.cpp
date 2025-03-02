@@ -15,13 +15,9 @@ Attack::Attack(std::string name, std::string description, int baseAccuracy, int 
 
     // Check if the target get hit or not
 bool Attack::doesItHit(Character& target, int randSeed) {
-    int targetAgility = target.GetStat(2); // Target's agility makes it easier for them to dodge
-    double dodgeChanceMultiplier = 1 + (targetAgility/20.0); // 20 agility => 2x miss chance at most
-
     srand(randSeed); // outputs the dfferent number every time so it doesnt output the same number
     int dodgeChance = rand() % 100; // which a number will return 0-99
-    return (dodgeChance * dodgeChanceMultiplier)  < baseAccuracy; // if the baseAccuracy is greater then will hit and return true
-    // => If dodgeChance is less than the accuracy, they failed to dodge the attack
+    return dodgeChance  < baseAccuracy; // if the baseAccuracy is greater then will hit and return true
     }
 
     // Check if the target gets a temp stat decrease
@@ -39,10 +35,7 @@ void Attack::applyEffect(Character& target, int randSeed) {
 // The hit function 
 void Attack::hit(Character& attacker, Character& target, int randSeed) {
     if(doesItHit(target, randSeed)) {
-        srand(randSeed);
-        double damageRangePercent = (rand() % 31) - 15; // Each attack can deal +-15% damage for more variability
-        damageRangePercent = damageRangePercent / 100.0;
-        target.DealDamage(std::floor(damage * (1 + damageRangePercent))); // Decrease the hp when the target after the hit
+        target.DealDamage(damage); // Decrease the hp when the target after the hit
 
         // Attempts the to give the target an effect after the hit
         applyEffect(target, randSeed);
