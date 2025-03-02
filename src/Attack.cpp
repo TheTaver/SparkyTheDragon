@@ -14,10 +14,13 @@ Attack::Attack(std::string name, std::string description, int baseAccuracy, int 
 
     // Check if the target get hit or not
 bool Attack::doesItHit(Character& target, int randSeed) {
-    srand(randSeed); // outputs the dfferent number every time so it doesnt output the same number
-    int hitChance = rand() % 100; // which a number will return 0-99
-    return hitChance < baseAccuracy; // if the baseAccuracy is greater then will hit and return true
+    int targetAgility = target.GetStat(2); // Target's agility makes it easier for them to dodge
+    double dodgeChanceMultiplier = 1 + (targetAgility/20.0); // 20 agility => 2x miss chance at most
 
+    srand(randSeed); // outputs the dfferent number every time so it doesnt output the same number
+    int dodgeChance = rand() % 100; // which a number will return 0-99
+    return (dodgeChance * dodgeChanceMultiplier)  < baseAccuracy; // if the baseAccuracy is greater then will hit and return true
+    // => If dodgeChance is less than the accuracy, they failed to dodge the attack
     }
 
     // Check if the target gets a temp stat decrease
