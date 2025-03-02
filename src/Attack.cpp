@@ -2,6 +2,7 @@
 #include "Character.h"
 #include "../header/Character.h"
 #include <stdlib.h>
+#include <cmath>
 
 Attack::Attack() : name(""), description(0), baseAccuracy(0), numUses(0), maxUses(0), 
 damage(0), effectChance(0), effectStat(-1), effect(0) {}
@@ -38,7 +39,10 @@ void Attack::applyEffect(Character& target, int randSeed) {
 // The hit function 
 void Attack::hit(Character& attacker, Character& target, int randSeed) {
     if(doesItHit(target, randSeed)) {
-        target.DealDamage(damage); // Decrease the hp when the target after the hit
+        srand(randSeed);
+        double damageRangePercent = (rand() % 31) - 15; // Each attack can deal +-15% damage for more variability
+        damageRangePercent = damageRangePercent / 100.0;
+        target.DealDamage(std::floor(damage * (1 + damageRangePercent))); // Decrease the hp when the target after the hit
 
         // Attempts the to give the target an effect after the hit
         applyEffect(target, randSeed);
