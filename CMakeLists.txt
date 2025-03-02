@@ -30,6 +30,12 @@ add_executable(test
     src/Attack.cpp
 )
 
+add_executable(chartest
+    tests/chartest.cpp
+    src/Character.cpp
+    src/Attack.cpp
+)
+
 add_executable(trpg
     src/main.cpp
     src/Character.cpp

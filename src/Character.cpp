@@ -26,7 +26,7 @@ int Character::GetStat(int statNum) const {
 void Character::DealDamage(int damageAmount) {
     // Stats can be from 0-20 base (not counting temp)
     // 20 Defense takes 1/2 the damage compared to 0 defense
-    double damageMultiplier = 1 - 0.5 * (GetStat(3) / 20);
+    double damageMultiplier = 1 - 0.5 * (GetStat(3) / 20.0);
     currHp-= std::floor(damageAmount * damageMultiplier);
 }
 
