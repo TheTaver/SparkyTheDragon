@@ -1,21 +1,8 @@
- > As you complete each section you **must** remove the prompt text. Every *turnin* of this project includes points for formatting of this README so keep it clean and keep it up to date. 
- > Prompt text is any lines beginning with "\>"
- > Replace anything between \<...\> with your project specifics and remove angle brackets. For example, you need to name your project and replace the header right below this line with that title (no angle brackets). 
-# \<Project title\>
- > Your author list below should include links to all members GitHub (remove existing author).
- 
- > Authors: \<[Jeffrey McDaniel](https://github.com/jmcda001)\>
-
- > You will be forming a group of **FOUR** students and working on an interesting project. The project has 4 phases, each one with specific requirements. A list of proposed project ideas that have been successful in previous quarters is listed in the project specifications document on Canvas. You can select an idea from the list and start thinking about the features you will implement. If you want to propose your own original idea, you will have to contact your instructor to discuss the project and obtain written permission before you submit your project proposal (Phase 1). The project work should be divided almost equally among team members. You can of course help each other, but it needs to be clear who will be responsible for which features. Additionally, you are expected to follow Scrum patterns, specifically the use of a Scrum (Project) board, Sprints, and Scrum meetings.
-
- > ## Expectations
- > * The backend of your project should be implemented in C++. If you wish to choose anoher programming language (e.g. Java, Python), please discuss with your lab TA to obtain permission.
- > * You can incorporate additional technologies/tools but they must be approved (in writing) by the instructor or the TA.
- > * Each member of the group **must** be committing code regularly and make sure their code is correctly attributed to them. We will be checking attributions to determine if there was equal contribution to the project.
- > * **Each member of the group must actively participate in the Github Project board, writing unit tests, and reviewing commited code.**
-> * All project phases are to be submitted to this GitHub repository. You should modify this README file to reflect the different phases of the project. In addition, you should regularly hold sprint meetings with your group. You will need to hold two to three scrum/check-in meetings with your lab TA/reader at different times in addition to the final demo.
+# Sparky the Dragon
+ Authors: [Roseanne Shildt](https://github.com/roseisanne) [Connor Dickson](https://github.com/TheTaver) [Ayelen Mansilla Soler](https://github.com/a-ms26) [Jared Nepomuceno](http://github.com/Jaredn747)
 
 ## Project Description
+The player will be able to choose which character’s skill set to use on their quest in turn based combat. The player will go through a series of challenges to stop the dragon from decimating the world.
 This project is particularly interesting to us because many of us enjoy playing video games, and we thought it would be exciting to combine our knowledge, experiences, and favorite elements from different games to create one of our own.
 
 ### Tools:
@@ -32,51 +19,74 @@ This project is particularly interesting to us because many of us enjoy playing 
 - Inventory system with items and potions for healing, with a stretch goal of adding temporary stat-boosting items
 - Leveling system where characters grow stronger as they gain XP, with the potential for a skill tree as a stretch goal
 - Storyline-driven progression system where players navigate areas and encounters to complete quests
- 
- > ## Phase II
- > In addition to completing the "User Interface Specification" and "Class Diagram" sections below, you will need to:
- > * Create an "Epic" (note) for each feature. Place these epics in the `Product Backlog` column
- > * Complete your first *sprint planning* meeting to plan out the next 7 days of work.
- >   * Break down the "Epics" into smaller actionable user stories (i.e. smaller development tasks). Convert them into issues and assign them to team members. Place these in the `TODO` column (aka Sprint Backlog).
- >   * These cards should represent roughly 7 days worth of development time for your team. Then, once the sprint is over you should be repeating these steps to plan a new sprint, taking you until your second scrum meeting with the reader in phase III.
- > * Each team member needs to submit the Peer Evaluation Form on Canvas for this phase. In this form, you need to fill in the names of all team members, the percentage of work contributed by each member for phase  II, and a description of their contributions. Remember that each team member should submit the form individually.
- > * Schedule two check-ins using Calendly. Both time slots should be during your lab on week 6. Your entire team must be present for both check-ins.
- >   * The first check-in needs to be scheduled with your lab TA. During that meeting, you will discuss your project design/class diagram from phase II.
- >   * The second check-in should be scheduled with a reader. During that meeting you will discuss:
- >     * The tasks you are planning for the first sprint
- >     * How work will be divided between the team members
-## User Interface Specification
- > Include a navigation diagram for your screens and the layout of each of those screens as desribed below. For all the layouts/diagrams, you can use any tool such as PowerPoint or a drawing program. (Specification requirement is adapted from the User Interface Design Document Template of CMSC 345 at the University of Maryland Global Campus)
+- Save/load file
 
-### Navigation Diagram
-> Draw a diagram illustrating how the user can navigate from one screen to another. Here is an [example](https://creately.com/diagram/example/ikfqudv82/user-navigation-diagram-classic?r=v). It can be useful to label each symbol that represents a screen so that you can reference the screens in the next section or the rest of the document if necessary. Give a brief description of what the diagram represents.
+### Input/Output:
+- FTXUI will be used to display the character’s resources (Health, Items, etc.) and get input for player customization or choices
+ 
+## User Interface Specification
+ ### Navigation Diagram
+![Diagram drawio](https://github.com/user-attachments/assets/7b2c7ecc-85aa-4469-9f7e-3f0447e8dae9)      
+When you start the game, you start at the Main menu where you choose to make a new game / load a game and then from there you go into the game. When you are in the Game, at any point you can quit, so everytime you do you just go to the main menu. In the Game you eventually have to enter combat, so you have a combat screen which ends and goes back to the game when you won your battle. When you die in combat, you go to the game over screen that takes you to the menu. Same thing happens when you win and see the victory screen. 
 
 ### Screen Layouts
-> Include the layout of each of your screens. The layout should describe the screen’s major components such as menus and prompts for user inputs and expected output, or any graphical user interface components if applicable (e.g. buttons, text boxes, etc). Explain what is on the layout, and the purpose of each menu item, button, etc. If many screens share the same layout, start by describing the general layout and then list the screens that will be using that layout and the differences between each of them.
+![Screen_Layout1](https://github.com/user-attachments/assets/7046bfd9-11e2-46c9-8171-3b001deb7fa4)
+![Screen_Layout2](https://github.com/user-attachments/assets/89da2b96-0b79-403d-9f1e-7a89261b0ac0)
+
+Main menu screen 
+\- Allows the player to continue a save (if one exists), start a new game, or exit the game    
+\- Purpose: player can create a new game or load into a game        
+In-game screen     
+\- Room description text, item options, buttons for player choices (what choices player can do when given)     
+\- Purpose: Text of current room so player knows what room they’re in and what they can do in the room, item options so they know what items they have and how many, box for user to choose an option (user input), output will be new room description or event (process repeats)           
+Battle screen     
+\- Descriptive text explaining what you did and what enemy did, options for attacks, shows your characters hp and enemies hp, options to choose different attacks, item options    
+\- so that player knows that their move went through and also knows what attacks enemy did, hp displays so that player knows how low they are and how low enemy is, options for attacks so player can choose what attack to use, item options so they can use an item instead of attack        
+Game over screen     
+\- Displaying that the game is over, option to quit game     
+\- Purpose: Return to main menu after dying         
+Victory screen    
+\- Displays you won game, button to quit game or return to main menu   
+\- to go back to menu when you completed the game   
+
+
 
 ## Class Diagram
- > Include a **class diagram(s)** for your project and a **description** of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper UML notation (as discussed in the course slides).
- 
- > ## Phase III
- > You will need to schedule a check-in for the second scrum meeting with the same reader you had your first scrum meeting with (using Calendly). Your entire team must be present. This meeting will occur on week 8 during lab time.
- 
- > BEFORE the meeting you should do the following:
- > * Update your class diagram from Phase II to include any feedback you received from your TA/grader.
- > * Considering the SOLID design principles, reflect back on your class diagram and think about how you can use the SOLID principles to improve your design. You should then update the README.md file by adding the following:
- >   * A new class diagram incorporating your changes after considering the SOLID principles.
- >   * For each update in your class diagram, you must explain in 3-4 sentences:
- >     * What SOLID principle(s) did you apply?
- >     * How did you apply it? i.e. describe the change.
- >     * How did this change help you write better code?
- > * Perform a new sprint plan like you did in Phase II.
- > * Make sure that your README file (and Project board) are up-to-date reflecting the current status of your project and the most recent class diagram. Previous versions of the README file should still be visible through your commit history.
->  * Each team member should also submit the Peer Evaluation Form on Canvas for phase III. In this form, you need to fill in the names of all team members, the percentage of work contributed by each member for phase III, and a description of their contributions. Remember that each team member should submit the form individually.
- 
-> During the meeting with your reader you will discuss: 
- > * How effective your last sprint was (each member should talk about what they did)
- > * Any tasks that did not get completed last sprint, and how you took them into consideration for this sprint
- > * Any bugs you've identified and created issues for during the sprint. Do you plan on fixing them in the next sprint or are they lower priority?
- > * What tasks you are planning for this next sprint.
+![uml diagram SOLID principles](https://github.com/user-attachments/assets/b2fed4d2-309e-4053-b2d5-e68f4a32791f)
+
+### Class Descriptions:
+#### View Classes:
+\- Menu Display Class: I/O class for displaying the start and game over menus, returns a string describing the player’s input on that screen (whether to start a new game or continue a save, or quit)     
+\- Room Display Class: Displays UI for room description, along with the player’s current stats/items. A function that describes the room and the choice the player can make in that room returns a string description of the choice they made.       
+\- Combat Display Class: Describes the current opponent, and the displays the player’s options for actions to take in battle, and gets input for their choices       
+
+#### Controller Classes:
+\- Game Controller Class: Manages overall game flow, including saving/loading game data from files, starting and maintaining the main game loop, of transitioning between rooms, updating the player’s position, and starting the events of that room, starting combat, and ending the game      
+\- Combat Controller Class: Manage in-combat game loop, tracks combatants’ current hp, ending combat when one dies, gets each combatant’s next attack, and executing the attacks/actions each round        
+
+#### Entity Classes:
+\- Character class: Interface for player characters as well as enemy combatants. Has member variables for the character’s stats (Strength, Defense, Agility, Max/Current Health, Level) and a vector of possible moves that the character can perform during combat that differs based on the type of character.        
+\- Player Interface: Brawler/Shooter/Duelist: Different options for classes the player can choose from, each with a unique moveset implementation and starting stat distribution. Also has member variables (int vectors) to track the current items the player is carrying and can use, and the maximum amount of each they can carry. CanLevelUp() function returns whether the player has enough xp to level up, in which case the GameController will display the level up menu, and call the LevelUp() function with the stats the player chooses to increase, which will increase those stats. The GetItem() function adds an item to the player’s inventory, returning true if it was successful, or false if it failed (inventory was full, so couldn’t add it). The UseItem() function removes an item from their inventory, if they have more than 0, and the ItemCount() function returns how many of an item type they have.          
+\- NPC Interface: Is the base class for all NPCs/Enemies, each of which will have their own implementation of the GetAttack() function. They will also each have member variables for the exp reward and item rewards the player gets from defeating them in battle.         
+\- Enemy type Subclasses: Derived from the NPC interface, the GetAttack() function will pick what attack to use in battle, so enemies at different points in the game have different AI for battle decisions.   
+\- Attack Class: Member variables for the attack’s base accuracy, name of the attack, number of uses the attack has, and the attack’s base damage. The DoesItHit() function decides whether the attack hits or not, based on the attack’s accuracy, and the agility of the target, with rng seeded by the seed passed to the function. The hit() function takes in the attacker and the target of the attack (and the seed for randomness calculations) and calls the private DoesItHit() function, and if it hits, deals damage scaled by the attacker’s strength to the target. If the attack has a nonzero effect chance, Hit will also call the private ApplyEffect() function, again with the rng seed, which decides whether to apply the effect or not, decreasing one of the target’s stats (determined by the effectStat member variable) if successful.  
+\- Room Class: Constructor will require a filename to load the room’s info from. Will contain a room’s description, and a choice that the player can make in that room. Member variable hasCombat will be a boolean value that describes whether a combat encounter should start when the player enters that room, which the GameController will load as the player enters. GetNumOptions() returns how many options the player can pick between for that room’s choice, with GetOptions() returning text to describe the options themselves.
+
+### S.O.L.I.D. Principles
+Single Responsibility Principle:  
+We implemented the SRP by separating our data managing classes from controller classes and classes that handle program input and output.  
+We have the RoomDisplay, MenuDisplay, and CombatDisplay classes that each have the responsibility of displaying the screens of different types. They also get the player input, as the graphics library that we are using for this project handles display and input getting together, when using clickable parts of the interface.  
+This helps us write better code, because the other parts of the program can focus primarily on their own logic or data manipulation tasks, without considering the input or output methods the program uses. As long as there are methods to get the important information from the other classes that the I/O can use, the data and logic classes can ignore all other requirements or influence from the I/O method the program is using.  
+  
+Open-Closed Principle:  
+We implemented the OCP by being able to extend the Player class without having to modify any of the functions within the class.  
+This is demonstrated through having the Brawler, Shooter, and Duelist subclasses. They are all extensions of the Player class with different function implementations specific to the player type. We can add as many player types as needed without having to modify the Player class itself.  
+This helps us write better code because as we add new player types we can easily add new subclasses of the Player class without having to go back into the Player class itself and modify the functions already written for it. It helps us easily add new features without the risk of potentially getting bugs or breaking what already works.  
+  
+Interface Segregation Principle:  
+We implemented the ISP by adding the NPC and Player class interfaces that both inherit from Character class.  
+The player subclasses don’t need to manage the getAttack() or expReward members, and the enemies inherited from NPC don’t need to implement any levelUp() function. We applied the ISP by splitting these functions into two interfaces that derive from the Character class, that objects can implement only as they need.  
+This helps us write better code because it means we do not need to write implementations for functions or set values to member variables that don’t make sense for an object to have. This saves time and reduces clutter in the code. It also means compiler errors are generated if we attempt to call a function on an object that doesn’t implement it, rather than running into errors at runtime.  
 
  
  > ## Final deliverable
