@@ -41,19 +41,35 @@ int main() {
             //     });
             // });
             
-    wstring ratDesc = L"The CyberRat is a mechanical scavenger, searching the abandoned factory for scraps of metal and energy to consume.";
+    string ratDesc = "The CyberRat is a mechanical scavenger, searching the abandoned factory for scraps of metal and energy to consume.";
     vector<wstring> log = combatlog();
 
     // Element combatLog = getCombatLog(log);
     // Element enemyDisplay = enemySidebar(L" CyberRat ", ratDesc,  15, 15);
     // auto display = Screen::Create(Dimension::Fit(combatLog));
-
-    Element combatInfoUI = GetAllCombatElements(player, log, items, maxItems, L"CyberRat", ratDesc, 10, 15);
+    
+    Element combatInfoUI = GetAllCombatElements(player, log, items, maxItems, L"CyberRat", ratDesc, 15, 15);
     auto display = Screen::Create(Dimension::Fit(combatInfoUI));
     Render(display, combatInfoUI);
-            
-
     cout << display.ToString() << endl;
+    combatInfoUI = GetAllCombatElements(player, log, items, maxItems, L"CyberRat", ratDesc, 12, 15);
+
+    Render(display, combatInfoUI);
+    cout << display.ToString() << endl;
+    combatInfoUI = GetAllCombatElements(player, log, items, maxItems, L"CyberRat", ratDesc, 9, 15);
+
+    Render(display, combatInfoUI);
+    cout << display.ToString() << endl;
+    combatInfoUI = GetAllCombatElements(player, log, items, maxItems, L"CyberRat", ratDesc, 7, 15);
+
+    Render(display, combatInfoUI);
+    cout << display.ToString() << endl;
+    combatInfoUI = GetAllCombatElements(player, log, items, maxItems, L"CyberRat", ratDesc, 3, 15);
+
+    Render(display, combatInfoUI);
+    cout << display.ToString() << endl;
+    
+
     // cout << "quitStr: " << quitStr << endl;
 
     return 0;

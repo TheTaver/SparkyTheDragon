@@ -19,18 +19,22 @@ using std::wstring;
 using std::vector;
 using namespace ftxui;
 
+// Element showing item's name, amount currently held, and max amount in a given color
 Element itemCounter(const wstring& name, const int curr, const int max, Color clr) {
   return hbox({
     text((name+L": ")), text(to_wstring(curr)) | bold | color(clr), text(L"/"+to_wstring(max)) | color(clr),
   });
 }
 
+// Element that shows an individual stat's name and current value, with the value set to a color
 Element statDisplay(const wstring& name, const int amount, Color clr) {
   return hbox({
     text((name+L": ")), text(to_wstring(amount)) | align_right | bold | color(clr)
   });
 }
 
+// Return the gauge that shows the enemy's current Hp Percentage
+// Colored Green when near full hp, Orange when medium hp, Red when low on hp
 Element enemyHpDisplay(const wstring& name, const int currHp, const int maxHp) {
   float remainingHpPercent = static_cast<double>(currHp) / maxHp;
   Color gaugeColor;
@@ -44,16 +48,19 @@ Element enemyHpDisplay(const wstring& name, const int currHp, const int maxHp) {
   return window(text(name) | center, gauge(remainingHpPercent) | color(gaugeColor));
 }
 
-Element getEnemySidebar(const wstring& name, const wstring& enemyDesc, const int enemyHp, const int enemyMaxHp) {
+// Return the element showing the enemy's Name, Health bar, and Description
+Element getEnemySidebar(const wstring& name, const string& enemyDesc, const int enemyHp, const int enemyMaxHp) {
   return vbox({
     enemyHpDisplay(name, enemyHp, enemyMaxHp),
-    window(text(L"Description") | center, text(enemyDesc))
+    window(text(L"Description") | center, hflow(paragraph(enemyDesc)))
   });
 }
 
+// Return the element containing the player's inventory display
 Element playerInventoryWindow(const vector<int>& currItems, const vector<int>& maxItems) {
   if(currItems.size() != 4 or maxItems.size() != 4) 
     throw std::invalid_argument("Curr and Max stats must have Medkits, Str, Agi, Def items");
+  // A window showing the player's current inventory contents
   auto content =
         vbox({
           itemCounter(L"MedKits", currItems[0], maxItems[0], Color::Pink1),
@@ -66,6 +73,7 @@ Element playerInventoryWindow(const vector<int>& currItems, const vector<int>& m
 }
 
 Element playerStatWindow(const Character& player) {
+  // A window element showing the player's current health and stats
   auto content =
         vbox({
           itemCounter(L"HP", player.GetCurrHp(), player.GetStat(0), Color::HotPink),
@@ -78,6 +86,7 @@ Element playerStatWindow(const Character& player) {
 }
 // Element getInfoSideBar(const Character& player) { // TODO: Swap character for player class, so can get inv status
 Element getInfoSideBar(const Character& player, const vector<int>& currItems, const vector<int>& maxItems) {
+  // Put together the Player stat and item displays
   return vbox({
     playerInventoryWindow(currItems, maxItems),
     playerStatWindow(player)
@@ -95,6 +104,7 @@ Element getCombatLog(const vector<wstring>& combatLog) {
   return window(text(L"Combat Log") | center, vbox({textLog}));
 }
 
+// Make buttons fill in background & bold name when hovered/selected
 ButtonOption Style() {
   auto option = ButtonOption::Animated();
   option.transform = [](const EntryState& s) {
@@ -107,27 +117,33 @@ ButtonOption Style() {
   return option;
 };
 
+// Get entire top half of combat UI
+// All NON-INPUT sections (Displays Only)
 Element GetAllCombatElements(Character& player, const vector<wstring>& combatLog,
   const vector<int>& currItems, const vector<int>& maxItems,
-  const wstring& enemyName, const wstring& enemyDesc, const int enemyHp, const int enemyMaxHp) {
-
-    Element playerSidebar = getInfoSideBar(player, currItems, maxItems);
+  const wstring& enemyName, const string& enemyDesc, const int enemyHp, const int enemyMaxHp) {
+    
+    // Columns displayed from left to right
     Element enemySidebar = getEnemySidebar(enemyName, enemyDesc, enemyHp, enemyMaxHp);
     Element combatLogElement = getCombatLog(combatLog);
+    Element playerSidebar = getInfoSideBar(player, currItems, maxItems);
     
+    // Resize the elements if necessary
     return hbox({
-      enemySidebar,
+      enemySidebar | size(WIDTH, LESS_THAN, 40),
       separator(),
-      combatLogElement,
+      combatLogElement | size(WIDTH, GREATER_THAN, 60),
       separator(),
       playerSidebar
     });
 }
 
+// Returns component for the quit button
 Component screenQuitButton(string& quitStr, ScreenInteractive& screen) {
   return Button("Quit Game", [&] { quitStr = "Quit"; screen.ExitLoopClosure()(); }, Style());;
 }
 
+// Doesn't work
 void fullSidebarRenderer(const Character& player, const vector<int>& currItems, const vector<int>& maxItems, string& quitStr, ScreenInteractive& screen) {
   Element infoSidebar = getInfoSideBar(player, currItems, maxItems);
   Component quitButton = screenQuitButton(quitStr, screen);
@@ -144,8 +160,7 @@ void fullSidebarRenderer(const Character& player, const vector<int>& currItems, 
 /*
 class CombatDisplay {
     private:
-        const Player* player;
-        // const NPC* opponent;
+        
 
     public:
         CombatDisplay(const Player* playerChar, const NPC* battleOpponent) : player(playerChar), opponent(battleOpponent);
