@@ -243,6 +243,63 @@ TEST(DealDamageTest, Temp10Defense) {
     EXPECT_EQ(punchingBag.GetCurrHp(), (stats.at(0) - 10));
 }
 
+TEST(CharIsDead, FullHp) {
+    std::string name = "Reginald";
+    int level = 1;
+    vector<int> stats = {10, 1, 2, 3};
+    Character reggie(name, level, stats);
+    
+    EXPECT_FALSE(reggie.IsDead());
+}
+
+TEST(CharIsDead, NoMaxHp) {
+    std::string name = "Reginald";
+    int level = 1;
+    vector<int> stats = {0, 0, 0, 0};
+    Character reggie(name, level, stats);
+    
+    EXPECT_TRUE(reggie.IsDead());
+}
+
+TEST(CharIsDead, NegMaxHp) {
+    std::string name = "Reginald";
+    int level = 1;
+    vector<int> stats = {-10, 0, 0, 0};
+    Character reggie(name, level, stats);
+    
+    EXPECT_TRUE(reggie.IsDead());
+}
+
+TEST(CharIsDead, DamagedNotDead) {
+    std::string name = "Reginald";
+    int level = 1;
+    vector<int> stats = {10, 0, 0, 0};
+    Character reggie(name, level, stats);
+    EXPECT_FALSE(reggie.IsDead());
+    reggie.DealTrueDamage(9);
+    EXPECT_FALSE(reggie.IsDead());
+}
+
+TEST(CharIsDead, LostAllHp) {
+    std::string name = "Reginald";
+    int level = 1;
+    vector<int> stats = {10, 0, 0, 0};
+    Character reggie(name, level, stats);
+    EXPECT_FALSE(reggie.IsDead());
+    reggie.DealTrueDamage(10);
+    EXPECT_TRUE(reggie.IsDead());
+}
+
+TEST(CharIsDead, DamagedPastHp) {
+    std::string name = "Reginald";
+    int level = 1;
+    vector<int> stats = {10, 0, 0, 0};
+    Character reggie(name, level, stats);
+    EXPECT_FALSE(reggie.IsDead());
+    reggie.DealTrueDamage(15);
+    EXPECT_TRUE(reggie.IsDead());
+}
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

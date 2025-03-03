@@ -34,6 +34,8 @@ class Character {
         void ResetAllTemp();
 
         void DealDamage(int damageAmount);
+        void DealTrueDamage(int damageAmount); // Ignore defense stat
+        bool IsDead() const;
 
         const vector<Attack> GetMoves() const;
         void AddMove(const Attack&);

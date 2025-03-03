@@ -30,6 +30,15 @@ void Character::DealDamage(int damageAmount) {
     currHp-= std::floor(damageAmount * damageMultiplier);
 }
 
+void Character::DealTrueDamage(int damageAmount) {
+    // True damage ignores defense
+    currHp-= damageAmount;
+}
+
+bool Character::IsDead() const {
+    return (currHp <= 0);
+}
+
 void Character::TempChangeStat(int statNum, int change) {
     tempStats.at(statNum)+= change;
     if(statNum == 0) {
