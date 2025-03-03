@@ -34,10 +34,6 @@ void Character::ResetAllTemp() {
     }
 }
 
-// const vector<Attack> GetMOves() const {
-//     return moves;
-// }
-
 // void AddMove(const Attack& newMove) {
 //     moves.push_back(newMove);
 // }
