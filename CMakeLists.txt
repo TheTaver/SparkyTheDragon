@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 cmake_minimum_required(VERSION 3.10)
 project(RPGGame)
 
@@ -15,7 +14,7 @@ target_link_libraries(runTests
     gtest_main
     pthread
 )
-=======
+
 cmake_minimum_required(VERSION 3.26)
 project(cs100-final-project)
 
@@ -45,11 +44,13 @@ include_directories(${CMAKE_SOURCE_DIR}/header)
 add_executable(test
     tests/test.cpp
     src/Character.cpp
+    src/Attack.cpp
 )
 
 add_executable(trpg
     src/main.cpp
     src/Character.cpp
+    src/Attack.cpp
 )
 
 TARGET_LINK_LIBRARIES(test 
@@ -68,4 +69,4 @@ TARGET_LINK_LIBRARIES(trpg
 #   ${CMAKE_SOURCE_DIR}/deps/FTXUI/include/ftxui/
 # )
 
->>>>>>> master
+
