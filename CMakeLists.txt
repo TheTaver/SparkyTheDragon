@@ -27,11 +27,13 @@ include_directories(${CMAKE_SOURCE_DIR}/header)
 add_executable(test
     tests/test.cpp
     src/Character.cpp
+    src/Player.cpp
 )
 
 add_executable(trpg
     src/main.cpp
     src/Character.cpp
+    src/Player.cpp
 )
 
 TARGET_LINK_LIBRARIES(test 
