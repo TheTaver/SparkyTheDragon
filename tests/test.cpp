@@ -214,7 +214,7 @@ TEST(PlayerTest, ParameterizedConstructor) {
     Player p("Hero", "Brawler", 1, stats);
     EXPECT_EQ(p.GetName(), "Hero");
     EXPECT_EQ(p.GetLevel(), 1);
-    EXPECT_EQ(p.GetStat(0), stats);
+    EXPECT_EQ(p.GetStat(0), stats.at(0));
     EXPECT_EQ(p.itemCount(1), 0);
 }
 

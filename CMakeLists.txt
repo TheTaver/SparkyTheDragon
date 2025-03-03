@@ -55,13 +55,15 @@ PRIVATE ftxui::component
   # )
   
 add_executable(runTests
-    src/Character.cpp
-    src/Attack.cpp
-    tests/test.cpp
+  tests/test.cpp
+  src/Character.cpp
+  src/Attack.cpp
+  src/Player.cpp
 )
 
 target_link_libraries(runTests
-    gtest
-    gtest_main
-    pthread
+  ftxui::dom
+  gtest
+  gtest_main
+  pthread
 )

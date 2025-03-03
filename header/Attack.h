@@ -1,8 +1,8 @@
 #ifndef ATTACK_H
 #define ATTACK_H
 #include <string>
-#include "Character.h"
 
+class Character;
 
 class Attack {
     
