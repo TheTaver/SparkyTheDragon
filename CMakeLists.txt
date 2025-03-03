@@ -1,19 +1,52 @@
-cmake_minimum_required(VERSION 3.10)
-project(PlayerTests)
+cmake_minimum_required(VERSION 3.26)
+project(cs100-final-project)
 
+# -----------------------------------
 
-set(CMAKE_CXX_STANDARD 17)
-
-
-add_library(player_lib
-    src/Player.cpp
+include(FetchContent)
+FetchContent_Declare(ftxui
+  GIT_REPOSITORY https://github.com/ArthurSonzogni/ftxui
+  GIT_TAG v5.0.0
 )
 
+FetchContent_GetProperties(ftxui)
+if(NOT ftxui_POPULATED)
+  FetchContent_Populate(ftxui)
+  add_subdirectory(${ftxui_SOURCE_DIR} ${ftxui_BINARY_DIR} EXCLUDE_FROM_ALL)
+endif()
 
-target_include_directories(player_lib PUBLIC include)
+# ---------------------------------
 
-# Enable testing
-enable_testing()
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
+add_subdirectory("_deps/googletest")
 
 
-add_subdirectory(test)
+include_directories(${CMAKE_SOURCE_DIR}/header)
+
+
+add_executable(test
+    tests/test.cpp
+    src/Character.cpp
+)
+
+add_executable(trpg
+    src/main.cpp
+    src/Character.cpp
+)
+
+TARGET_LINK_LIBRARIES(test 
+  ftxui::dom
+  gtest
+)
+
+TARGET_LINK_LIBRARIES(trpg
+  PRIVATE ftxui::screen
+  PRIVATE ftxui::dom
+  PRIVATE ftxui::component
+)
+
+# include_directories(
+#   ${CMAKE_SOURCE_DIR}/test/lib/googletest/include/
+#   ${CMAKE_SOURCE_DIR}/deps/FTXUI/include/ftxui/
+# )
+
