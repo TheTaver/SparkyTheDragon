@@ -14,6 +14,7 @@ Character::Character(const string& charName, int level, const vector<int>& stats
         this->stats.push_back(stats.at(i));
         tempStats.push_back(0);
     }
+    currHp = stats.at(0);
 }
 
 int Character::GetStat(int statNum) const {

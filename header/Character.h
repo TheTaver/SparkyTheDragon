@@ -25,6 +25,7 @@ class Character {
 
         const string& GetName() const { return name; };
         int GetLevel() const          { return lvl;  };
+        int GetCurrHp() const         { return currHp; };
 
         int GetStat(int statNum) const;
         void TempChangeStat(int statNum, int change);
