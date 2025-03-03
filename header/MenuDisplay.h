@@ -29,39 +29,11 @@ ButtonOption Style() {
 
 class MenuDisplay {
     public:
-
-      string Displaystart() const{
-        string playerInput = "";
-        auto screen = ScreenInteractive::FitComponent();
-  
-        auto newgameb = Button("New Game", [&] { playerInput = "Start"; screen.ExitLoopClosure()(); }, Style()); //to screen.charcostumization()
-        auto loadgameb = Button("Continue Load Game", [&] { playerInput = "Continue"; screen.ExitLoopClosure()(); }, Style()); //to screen.ingame()
-        auto quitb = Button("Quit", [&] { playerInput = "Quit"; screen.ExitLoopClosure()(); }, Style());
-     
-        // The tree of components. This defines how to navigate using the keyboard.
-        // The selected `row` is shared to get a grid layout.
-        int row = 0;
-        auto buttons = Container::Vertical({
-          newgameb | flex,
-          loadgameb | flex,
-          quitb | flex
-        });
-     
-        // Modify the way to render them on screen:
-        auto renderer = Renderer(buttons, [&] {
-          return vbox({
-                    text("Sparky the Dragon!") | center | bold,
-                    separator(),
-                    buttons->Render() | flex,
-                }) | flex | border;
-        });
-    
-        screen.Loop(renderer);
-        return playerInput;
-      };
+      string Displaystart() const;
       string DisplayClassSelection() const;
       string DisplayGameOver() const;
-      string Displaylvlup();
+      void Displaylvlup();
+        //just display lvl up options
 };
 
 #endif
