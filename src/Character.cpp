@@ -16,18 +16,19 @@ Character::Character(const string& charName, int level, const vector<int>& stats
         this->stats.push_back(stats.at(i));
         tempStats.push_back(0);
     }
+    // Initialize currHp to maxHp
     currHp = stats.at(0);
 }
 
 int Character::GetStat(int statNum) const {
-    return stats.at(statNum) + tempStats.at(statNum);
+    return stats.at(statNum) + tempStats.at(statNum); // Effective stat amount, base + temp
 }
 
 void Character::DealDamage(int damageAmount) {
     // Stats can be from 0-20 base (not counting temp)
     // 20 Defense takes 1/2 the damage compared to 0 defense
-    double damageMultiplier = 1 - 0.5 * (GetStat(3) / 20.0);
-    currHp-= std::floor(damageAmount * damageMultiplier);
+    double damageMultiplier = 1 - 0.5 * (GetStat(3) / 20.0); // Between 1 (0 Def) and 0.5 (20 Def) (inclusive)
+    DealTrueDamage(std::floor(damageAmount * damageMultiplier));
 }
 
 void Character::DealTrueDamage(int damageAmount) {
@@ -41,8 +42,9 @@ bool Character::IsDead() const {
 
 void Character::TempChangeStat(int statNum, int change) {
     tempStats.at(statNum)+= change;
+    // If changing the maxHp, make sure currHp isn't above the new max
     if(statNum == 0) {
-        if(GetStat(0) < currHp) {
+        if(currHp > GetStat(0)) {
             currHp = GetStat(0);
         }
     }
@@ -50,7 +52,7 @@ void Character::TempChangeStat(int statNum, int change) {
 
 void Character::ResetTempStat(int statNum) {
     tempStats.at(statNum) = 0;
-    // If changing maxHp, make sure currHp doesn't go over
+    // If changing maxHp, make sure currHp doesn't go over its new max
     if(statNum == 0) {
         if(currHp > GetStat(0)) {
             currHp = GetStat(0);
