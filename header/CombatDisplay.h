@@ -45,14 +45,14 @@ Element enemyHpDisplay(const wstring& name, const int currHp, const int maxHp) {
   } else {
     gaugeColor = Color::Red1;
   }
-  return window(text(name) | center, gauge(remainingHpPercent) | color(gaugeColor));
+  return window(text(L" " +name+L" ") | center, gauge(remainingHpPercent) | color(gaugeColor));
 }
 
 // Return the element showing the enemy's Name, Health bar, and Description
 Element getEnemySidebar(const wstring& name, const string& enemyDesc, const int enemyHp, const int enemyMaxHp) {
   return vbox({
     enemyHpDisplay(name, enemyHp, enemyMaxHp),
-    window(text(L"Description") | center, hflow(paragraph(enemyDesc)))
+    window(text(L" Description ") | center, hflow(paragraph(enemyDesc)))
   });
 }
 
@@ -69,7 +69,7 @@ Element playerInventoryWindow(const vector<int>& currItems, const vector<int>& m
           itemCounter(L"DefBuff", currItems[3], maxItems[3], Color::DarkGreen),
         });
 
-  return window(text(L" Player Info ") | center, content);
+  return window(text(L" Inventory ") | center, content);
 }
 
 Element playerStatWindow(const Character& player) {
@@ -88,8 +88,8 @@ Element playerStatWindow(const Character& player) {
 Element getInfoSideBar(const Character& player, const vector<int>& currItems, const vector<int>& maxItems) {
   // Put together the Player stat and item displays
   return vbox({
-    playerInventoryWindow(currItems, maxItems),
-    playerStatWindow(player)
+    playerStatWindow(player),
+    playerInventoryWindow(currItems, maxItems)
   });
 }
 
@@ -101,7 +101,7 @@ Element getCombatLog(const vector<wstring>& combatLog) {
     textLog.push_back(text(combatLog.at(i)));
   }
   // Display all text elements in a vbox
-  return window(text(L"Combat Log") | center, vbox({textLog}));
+  return window(text(L" Combat Log ") | center, vbox({textLog}));
 }
 
 // Make buttons fill in background & bold name when hovered/selected
@@ -130,8 +130,10 @@ Element GetAllCombatElements(Character& player, const vector<wstring>& combatLog
     
     // Resize the elements if necessary
     return hbox({
+      // enemySidebar,
       enemySidebar | size(WIDTH, LESS_THAN, 40),
       separator(),
+      // combatLogElement,
       combatLogElement | size(WIDTH, GREATER_THAN, 60),
       separator(),
       playerSidebar
