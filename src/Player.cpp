@@ -29,7 +29,7 @@ bool Player::canLevelUp() {
 
 // Leveling up the player
 void Player::levelUp(std::string stats) {
-    while(canLevelUp) // if this true then it will go on this loop
+    while(canLevelUp()) // if this true then it will go on this loop
     {
         // change the required xp to up x1.5 (can be change later you guys want to)
        int requiredExp = static_cast<int>(100 * pow(expMult, lvl - 1));
@@ -40,10 +40,10 @@ void Player::levelUp(std::string stats) {
 
        // The choices of what stat can the player upgrade (idk how much you guy the stat to be upgrade)
        if(stats == "strength") {
-        this->stats[0] += 2; 
+        this->stats[1] += 2; 
 
        } else if(stats == "maxHP"){
-        this->stats[1] += 2;
+        this->stats[2] += 2;
 
        } else if (stats == "agility") {
         this->stats[2] += 2;

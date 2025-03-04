@@ -206,7 +206,7 @@ TEST(PlayerTest, DefaultConstructor) {
     Player p;
     EXPECT_EQ(p.GetName(), "");
     EXPECT_EQ(p.GetLevel(), 1);
-    EXPECT_EQ(p.GetStat(0), 10);
+    EXPECT_EQ(p.GetStat(0), 100);
     EXPECT_EQ(p.itemCount(1), 0);
 }
 TEST(PlayerTest, ParameterizedConstructor) {
@@ -214,7 +214,7 @@ TEST(PlayerTest, ParameterizedConstructor) {
     Player p("Hero", "Brawler", 1, stats);
     EXPECT_EQ(p.GetName(), "Hero");
     EXPECT_EQ(p.GetLevel(), 1);
-    EXPECT_EQ(p.GetStat(0), stats);
+    EXPECT_EQ(p.GetStat(0), stats.at(0));
     EXPECT_EQ(p.itemCount(1), 0);
 }
 
@@ -227,7 +227,7 @@ TEST(PlayerTest, AddExpAndLevelUp) {
     p.levelUp("strength");
     EXPECT_EQ(p.GetLevel(), 2);
     EXPECT_FALSE(p.canLevelUp());
-    EXPECT_EQ(p.GetStat(0), 12);  // Strength +2
+    EXPECT_EQ(p.GetStat(1), 12);  // Strength +2
 }
 
 TEST(PlayerTest, AddItemAndItemCount) {
