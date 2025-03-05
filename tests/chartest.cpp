@@ -300,6 +300,84 @@ TEST(CharIsDead, DamagedPastHp) {
     EXPECT_TRUE(reggie.IsDead());
 }
 
+TEST(CharacterHeal, HealSome) {
+    std::string name = "Reginald";
+    int level = 1;
+    vector<int> stats = {25, 0, 0, 0};
+    Character reggie(name, level, stats);
+    reggie.DealTrueDamage(15);
+    EXPECT_EQ(reggie.GetCurrHp(), 10);
+    reggie.HealCharacter(10);
+    EXPECT_EQ(reggie.GetCurrHp(), 20);
+}
+
+TEST(CharacterHeal, HealToFull) {
+    std::string name = "Reginald";
+    int level = 1;
+    vector<int> stats = {25, 0, 0, 0};
+    Character reggie(name, level, stats);
+    reggie.DealTrueDamage(15);
+    EXPECT_EQ(reggie.GetCurrHp(), 10);
+    reggie.HealCharacter(15);
+    EXPECT_EQ(reggie.GetCurrHp(), 25);
+}
+
+TEST(CharacterHeal, HealPastFull) {
+    std::string name = "Reginald";
+    int level = 1;
+    vector<int> stats = {25, 0, 0, 0};
+    Character reggie(name, level, stats);
+    reggie.DealTrueDamage(15);
+    EXPECT_EQ(reggie.GetCurrHp(), 10);
+    reggie.HealCharacter(999);
+    EXPECT_EQ(reggie.GetCurrHp(), 25);
+}
+
+TEST(CharacterTempStats, ReduceMaxHp) {
+    std::string name = "Reginald";
+    int level = 1;
+    vector<int> stats = {25, 0, 0, 0};
+    Character reggie(name, level, stats);
+    reggie.TempChangeStat(0, -15);
+    EXPECT_EQ(reggie.GetCurrHp(), 10);
+    reggie.HealCharacter(999);
+    EXPECT_EQ(reggie.GetCurrHp(), 10);
+}
+
+TEST(CharacterTempStats, ReduceAndRestoreMaxHp) {
+    std::string name = "Reginald";
+    int level = 1;
+    vector<int> stats = {25, 0, 0, 0};
+    Character reggie(name, level, stats);
+    reggie.TempChangeStat(0, -15);
+    EXPECT_EQ(reggie.GetCurrHp(), 10);
+    reggie.ResetTempStat(0);
+    EXPECT_EQ(reggie.GetCurrHp(), 10);
+    reggie.HealCharacter(999);
+    EXPECT_EQ(reggie.GetCurrHp(), 25);
+}
+
+TEST(CharacterTempStats, IncreaseMaxHp) {
+    std::string name = "Reginald";
+    int level = 1;
+    vector<int> stats = {25, 0, 0, 0};
+    Character reggie(name, level, stats);
+    reggie.TempChangeStat(0, 15);
+    EXPECT_EQ(reggie.GetCurrHp(), 40);
+}
+
+TEST(CharacterTempStats, IncreaseAndRestoreMaxHp) {
+    std::string name = "Reginald";
+    int level = 1;
+    vector<int> stats = {25, 0, 0, 0};
+    Character reggie(name, level, stats);
+    reggie.TempChangeStat(0, 15);
+    EXPECT_EQ(reggie.GetCurrHp(), 40);
+    reggie.ResetTempStat(0);
+    EXPECT_EQ(reggie.GetCurrHp(), 25);
+}
+
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

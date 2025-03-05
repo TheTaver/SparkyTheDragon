@@ -25,6 +25,9 @@ int Character::GetStat(int statNum) const {
 }
 
 void Character::DealDamage(int damageAmount) {
+    if(damageAmount < 0) {
+        throw std::invalid_argument("Damage Amount must be non-negative. Damage amount: "+damageAmount);
+    }
     // Stats can be from 0-20 base (not counting temp)
     // 20 Defense takes 1/2 the damage compared to 0 defense
     double damageMultiplier = 1 - 0.5 * (GetStat(3) / 20.0); // Between 1 (0 Def) and 0.5 (20 Def) (inclusive)
@@ -32,8 +35,24 @@ void Character::DealDamage(int damageAmount) {
 }
 
 void Character::DealTrueDamage(int damageAmount) {
+    if(damageAmount < 0) {
+        throw std::invalid_argument("Damage Amount must be non-negative. Damage amount: "+damageAmount);
+    }
     // True damage ignores defense
     currHp-= damageAmount;
+}
+
+void Character::HealCharacter(int healAmount) {
+    if(healAmount < 0) {
+        throw std::invalid_argument("Heal Amount must be non-negative. Damage amount: "+healAmount);
+    }
+    
+    currHp+=healAmount;
+    
+    // Check if went over maxHp:
+    if(currHp > GetStat(0)) {
+        currHp = GetStat(0);
+    }
 }
 
 bool Character::IsDead() const {
@@ -41,9 +60,17 @@ bool Character::IsDead() const {
 }
 
 void Character::TempChangeStat(int statNum, int change) {
+    if(statNum >= 4) {
+        throw std::invalid_argument("Invalid stat number: "+statNum);
+    }
     tempStats.at(statNum)+= change;
-    // If changing the maxHp, make sure currHp isn't above the new max
+    // If changing the maxHp
     if(statNum == 0) {
+        // If increasing maxHp, also heal character for the same amount
+        if(change > 0) {
+            currHp += change;
+        }
+        // Make sure currHp isn't above the new max
         if(currHp > GetStat(0)) {
             currHp = GetStat(0);
         }
