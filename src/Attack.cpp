@@ -6,7 +6,7 @@
 Attack::Attack() : name(""), description(""), baseAccuracy(0), numUses(0), maxUses(0), 
 damage(0), effectChance(0), effectStat(0), effectAmount(0) {}
 
-Attack::Attack(const std::string& name, const std::string& description, int baseAccuracy, int numUse, int maxUses, 
+Attack::Attack(const std::string& name, const std::string& description, int baseAccuracy, int numUses, int maxUses, 
     int damage, int effectChance, int effectStat, int effectAmount) : name(name), description(description), 
     baseAccuracy(baseAccuracy), numUses(numUses), maxUses(maxUses), damage(damage), effectChance(effectChance),
     effectStat(effectStat), effectAmount(effectAmount) {}
