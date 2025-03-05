@@ -72,5 +72,8 @@ int main() {
 
     // cout << "quitStr: " << quitStr << endl;
 
+    if(theInput == "Start"){
+        cout << "YOOOO" << endl;
+    }
     return 0;
 }
