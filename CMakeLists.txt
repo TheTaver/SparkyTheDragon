@@ -48,6 +48,7 @@ add_executable(trpg
     src/Character.cpp
     src/Attack.cpp
     src/Player.cpp
+    src/CombatInfoDisplay.cpp
 )
 
 TARGET_LINK_LIBRARIES(test 

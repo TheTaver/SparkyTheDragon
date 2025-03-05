@@ -1,0 +1,13 @@
+#include "npc.h"
+
+class CyberRat : public NPC {
+    private:
+
+    public:
+        CyberRat() :
+            NPC("CyberRat", 1,
+            "The CyberRat is a mechanical scavenger, searching the abandoned factory for scraps of metal and energy to consume.",
+            {25, 0, 0, 0})
+            {};
+
+};
