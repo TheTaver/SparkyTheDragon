@@ -29,6 +29,7 @@ tests/test.cpp
 src/Character.cpp
 src/Attack.cpp
 src/Player.cpp
+src/Duelist.cpp
 )
 
 add_executable(trpg
@@ -36,6 +37,7 @@ src/main.cpp
 src/Character.cpp
 src/Attack.cpp
 src/Player.cpp
+src/Duelist.cpp
 )
 
 TARGET_LINK_LIBRARIES(test 
@@ -59,6 +61,7 @@ add_executable(runTests
   src/Character.cpp
   src/Attack.cpp
   src/Player.cpp
+  src/Duelist.cpp
 )
 
 target_link_libraries(runTests

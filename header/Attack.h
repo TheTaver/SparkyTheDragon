@@ -30,6 +30,10 @@ class Attack {
 
     void hit(Character& attacker, Character& target, int randSeed);
 
+    // I added the this for the new test cases for the player classes
+    int GetEffectChance() const { return effectChance; }
+    int GetEffectStat() const { return effectStat; }
+    int GetEffectAmount() const { return effectAmount; }
 };
 
 #endif

@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include "Character.h"
+#include "Attack.h"
 
 class Player : public Character {
     private:
@@ -41,6 +42,8 @@ class Player : public Character {
     int itemCount(int itemtype);
 
     bool useItem(int itemType);
+
+    virtual Attack GetLvlUpMove(int newLvl) = 0;
 
 };
 
