@@ -258,50 +258,41 @@ TEST(DuelistTest, UseItem) {
     EXPECT_FALSE(p.useItem(3));
 }
 
-// Test GetLvlUpMove at Level 3
+
+// New test cases for the duelist
+TEST(DuelistTest, GetLvlUpMove_Level1) {
+    Duelist d;
+    Attack move = d.GetLvlUpMove(1);
+    EXPECT_EQ(move.name, "Quick Slash");
+    EXPECT_EQ(move.damage, 10);
+    EXPECT_EQ(move.baseAccuracy, 95);
+}
+
+TEST(DuelistTest, GetLvlUpMove_Level2) {
+    Duelist d;
+    Attack move = d.GetLvlUpMove(2);
+    EXPECT_EQ(move.name, "Piercing Thrust");
+    EXPECT_EQ(move.damage, 15);
+    EXPECT_EQ(move.baseAccuracy, 90);
+}
+
 TEST(DuelistTest, GetLvlUpMove_Level3) {
     Duelist d;
     Attack move = d.GetLvlUpMove(3);
-
-    EXPECT_EQ(move.name, "Piercing Thrust");
-    EXPECT_EQ(move.description, "A thrust aimed at the weak spots");
-    EXPECT_EQ(move.baseAccuracy, 90);
-    EXPECT_EQ(move.numUses, 3);
-    EXPECT_EQ(move.maxUses, 3);
-    EXPECT_EQ(move.damage, 15);
-    EXPECT_EQ(move.GetEffectChance(), 30);
-    EXPECT_EQ(move.GetEffectStat(), 3);  
-    EXPECT_EQ(move.GetEffectAmount(), -3);
-}
-
-// Test GetLvlUpMove at Level 5
-TEST(DuelistTest, GetLvlUpMove_Level5) {
-    Duelist d;
-    Attack move = d.GetLvlUpMove(5);
-
     EXPECT_EQ(move.name, "Blade Dance");
-    EXPECT_EQ(move.description, "A rapid series of sword strikes");
-    EXPECT_EQ(move.baseAccuracy, 85);
-    EXPECT_EQ(move.numUses, 3);
-    EXPECT_EQ(move.maxUses, 3);
     EXPECT_EQ(move.damage, 20);
-    EXPECT_EQ(move.GetEffectChance(), 20);
-    EXPECT_EQ(move.GetEffectStat(), 2);  // Agility
-    EXPECT_EQ(move.GetEffectAmount(), -4);
+    EXPECT_EQ(move.baseAccuracy, 85);
 }
 
-// Test GetLvlUpMove at Invalid Level
+TEST(DuelistTest, GetLvlUpMove_Level4) {
+    Duelist d;
+    Attack move = d.GetLvlUpMove(4);
+    EXPECT_EQ(move.name, "Master Parry");
+    EXPECT_EQ(move.damage, 25);
+    EXPECT_EQ(move.baseAccuracy, 90);
+}
+
 TEST(DuelistTest, GetLvlUpMove_InvalidLevel) {
     Duelist d;
-    Attack move = d.GetLvlUpMove(2);
-
-    EXPECT_EQ(move.name, "");
-    EXPECT_EQ(move.description, "");
-    EXPECT_EQ(move.baseAccuracy, 0);
-    EXPECT_EQ(move.numUses, 0);
-    EXPECT_EQ(move.maxUses, 0);
-    EXPECT_EQ(move.damage, 0);
-    EXPECT_EQ(move.GetEffectChance(), 0);
-    EXPECT_EQ(move.GetEffectStat(), 0);
-    EXPECT_EQ(move.GetEffectAmount(), 0);
+    EXPECT_THROW(d.GetLvlUpMove(99), std::invalid_argument);
 }

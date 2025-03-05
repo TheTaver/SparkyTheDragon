@@ -1,4 +1,5 @@
 #include "../header/Duelist.h"
+#include <stdexcept>
 
 Duelist::Duelist() : Player() {}
 
@@ -10,27 +11,21 @@ Duelist::Duelist(std::string name, std::string playerClass, int level, std::vect
 
 Attack Duelist::GetLvlUpMove(int newLvl) {
 
-    if(newLvl == 3) {
-        return Attack("Piercing Thrust", "A thrust aimed at the weak spots", 90, 3, 3,
-        15, 30, 3, -3); // Effect lower the enemy's agility by 3
-    }
+    switch(newLvl){
+    case 1: 
+    return Attack("Quick Slash", "A swift sword slash.", 95, 5, 5, 10, 20, 2, -2);
 
-    else if(newLvl == 5) {
-        return Attack("Blade Dance", "A rapid series of sword strikes", 85, 3, 3,
-        20, 20, 2, -4); // Effect lower the enemy's defense by 4
-    }
+    case 2: 
+    return Attack("Piercing Thrust", "A thrust aimed at the weak spots.", 90, 3, 3, 15, 30, 3, -3);
 
-    else if(newLvl == 7) {
-        return Attack("Parry Counter", "Parries and counters the next attack", 95, 3, 3,
-        10, 0, 3, 3); // Effect increase the Player's defense by 3
-    }
-    else if(newLvl == 10) {
-        return Attack("Finishing Blow", "A finishing strike", 70, 3, 3,
-        30, 0, 0, 0);
-    }
+    case 3: 
+    return Attack("Blade Dance", "A rapid series of sword strike.", 85, 3, 3, 20, 20, 2, -4);
 
-    // The player didn't reach the lvl yet
-    return Attack();
-    
+    case 4: 
+    return Attack("Master Parry", "A counterattack that reduces enemy defense.", 90, 2, 2, 25, 50, 3, -5);
+
+    default:
+    throw std::invalid_argument("Invalid level requested for attack: " + std::to_string(newLvl));
+}
 }
 
