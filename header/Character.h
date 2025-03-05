@@ -4,8 +4,6 @@
 #include <string>
 #include <vector>  // For attack/stats vectors
 
-// class Attack; // Forward declaration of attack to resolve circular dependancy
-
 using std::string;
 using std::vector;
 
