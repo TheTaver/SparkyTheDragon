@@ -24,12 +24,21 @@ vector<wstring> makeCombatLog() {
 
 int main() {
     using namespace ftxui;
-    vector<int> items = {2, 3, 4, 5};
-    vector<int> maxItems = {10, 10, 10, 10};
+    // Initialize test variables
     vector<int> stats = {15, 8, 2, 4};
-    // int currHealth = 11;
-    string quitStr = "";
+    string ratDesc = "The CyberRat is a mechanical scavenger, searching the abandoned factory for scraps of metal and energy to consume.";
+    vector<wstring> log = makeCombatLog();
+    Player* playerChar = new Player("Shooty Guy", "Shooter", 1, stats);
+    NPC* rat = new CyberRat();
+    
+    for(int i = 0; i < 4; i++) {
+        for(int j = 0; j < 2*i; j++) {
+            playerChar->addItem(i);
+        }
+    }
 
+    string inputStr = "";
+    
     // auto display = ScreenInteractive::Fullscreen();
     // ftxui::Component sidebarRenderer = fullSidebarRenderer(player, items, maxItems, quitStr, display);
     
@@ -42,21 +51,16 @@ int main() {
             //     });
             // });
             
-    string ratDesc = "The CyberRat is a mechanical scavenger, searching the abandoned factory for scraps of metal and energy to consume.";
-    vector<wstring> log = makeCombatLog();
 
     // Element combatLog = getCombatLog(log);
     // Element enemyDisplay = enemySidebar(L" CyberRat ", ratDesc,  15, 15);
     // auto display = Screen::Create(Dimension::Fit(combatLog));
-    Player* playerChar = new Player("Shooty Guy", "Shooter", 1, stats);
-    NPC* rat = new CyberRat();
+
 
     CombatInfoDisplay infoDisplay(playerChar, rat);
     Element combatDisplay = infoDisplay.GetAllCombatElements(log);
-    auto display = Screen::Create(Dimension::Fit(combatDisplay));
-    Render(display, combatDisplay);
-    cout << display.ToString() << endl;
-
+    
+    
     
 
     return 0;
