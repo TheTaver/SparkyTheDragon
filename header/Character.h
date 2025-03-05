@@ -3,7 +3,9 @@
 
 #include <string>
 #include <vector>  // For attack/stats vectors
-// #include "Attack.h"  // For attack vector
+#include "Attack.h"  // For attack vector
+
+
 
 using std::string;
 using std::vector;
@@ -17,7 +19,9 @@ class Character {
         int currHp;
         vector<int> stats;     // [maxHp, strength, agility, defense]
         vector<int> tempStats;  // [maxHp, strength, agility, defense]
-        // vector<Attack> moves;  // Need Attack class stub
+
+        vector<Attack> moves;  // Need Attack class stub
+
 
     public:
         Character(const string& charName, int level, const vector<int>& stats);  // stats is 4 element int array
@@ -31,7 +35,9 @@ class Character {
         void ResetTempStat(int statNum);
         void ResetAllTemp();
 
-        // const vector<Attack> GetMoves() const;
-        // void AddMove(const Attack&);
+
+        const vector<Attack> GetMoves() const;
+        void AddMove(const Attack&);
+
 };
 #endif
