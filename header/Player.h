@@ -38,7 +38,7 @@ class Player : public Character {
 
     void addItem(int itemType);
 
-    int itemCount(int itemtype);
+    int itemCount(int itemtype) const;
 
     bool useItem(int itemType);
 
