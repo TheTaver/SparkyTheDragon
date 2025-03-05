@@ -13,7 +13,7 @@ Attack Duelist::GetLvlUpMove(int newLvl) {
 
     switch(newLvl){
     case 1: 
-    return Attack("Quick Slash", "A swift sword slash.", 95, 5, 5, 10, 20, 2, -2);
+    return Attack("Quick Slash", "A swift sword slash.", 95, 5, 5, 10, 0, 0, 0);
 
     case 2: 
     return Attack("Piercing Thrust", "A thrust aimed at the weak spots.", 90, 3, 3, 15, 30, 3, -3);
@@ -26,6 +26,7 @@ Attack Duelist::GetLvlUpMove(int newLvl) {
 
     default:
     throw std::invalid_argument("Invalid level requested for attack: " + std::to_string(newLvl));
+    
 }
 }
 

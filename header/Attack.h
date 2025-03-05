@@ -30,6 +30,7 @@ class Attack {
 
     void hit(Character& attacker, Character& target, int randSeed);
 
+    
 };
 
 #endif
