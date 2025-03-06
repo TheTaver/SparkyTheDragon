@@ -29,7 +29,7 @@ class NPC : public Character {
             return loot;
         };
 
-        //Attack GetAttack(int ) 
+        virtual Attack GetAttack(int seed) = 0; 
 };
 
 #endif
