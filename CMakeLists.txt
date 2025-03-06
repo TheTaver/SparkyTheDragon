@@ -25,22 +25,42 @@ include_directories(${CMAKE_SOURCE_DIR}/header)
 
 
 add_executable(test
-tests/test.cpp
-src/Character.cpp
-src/Attack.cpp
-src/Player.cpp
+    tests/test.cpp
+    src/Character.cpp
+    src/Attack.cpp
+    src/Player.cpp
+)
+
+add_executable(chartest
+    tests/chartest.cpp
+    src/Character.cpp
+    src/Attack.cpp
+)
+
+add_executable(attacktest
+    tests/attacktest.cpp
+    src/Character.cpp
+    src/Attack.cpp
 )
 
 add_executable(trpg
-src/main.cpp
-src/Character.cpp
-src/Attack.cpp
-src/Player.cpp
+    src/main.cpp
+    src/Character.cpp
+    src/Attack.cpp
+    src/Player.cpp
 )
 
 TARGET_LINK_LIBRARIES(test 
 ftxui::dom
 gtest
+)
+
+TARGET_LINK_LIBRARIES(chartest
+  gtest
+)
+
+TARGET_LINK_LIBRARIES(attacktest
+  gtest
 )
 
 TARGET_LINK_LIBRARIES(trpg
