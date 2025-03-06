@@ -43,11 +43,18 @@ add_executable(attacktest
     src/Attack.cpp
 )
 
+add_executable(roomTest
+    tests/roomTest.cpp
+    src/Room.cpp
+
+)
+
 add_executable(trpg
     src/main.cpp
     src/Character.cpp
     src/Attack.cpp
     src/Player.cpp
+    src/Room.cpp
 )
 
 TARGET_LINK_LIBRARIES(test 
@@ -62,6 +69,13 @@ TARGET_LINK_LIBRARIES(chartest
 TARGET_LINK_LIBRARIES(attacktest
   gtest
 )
+
+TARGET_LINK_LIBRARIES(roomTest
+PRIVATE gtest
+PRIVATE gtest_main
+PRIVATE pthread
+)
+
 
 TARGET_LINK_LIBRARIES(trpg
 PRIVATE ftxui::screen

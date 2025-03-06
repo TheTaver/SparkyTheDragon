@@ -1,0 +1,5 @@
+IncompleteRoom
+This room is missing data.
+What do you do?
+2
+Option 1
