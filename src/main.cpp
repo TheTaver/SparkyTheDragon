@@ -1,7 +1,7 @@
 // #include "MenuDisplay.h"
-#include "CombatInfoDisplay.h"
-#include "Character.h"
+#include "CombatUI.h"
 #include "CyberRat.h"
+#include "Duelist.h"
 
 # include <ftxui/component/screen_interactive.hpp>
 #include <vector>
@@ -28,7 +28,7 @@ int main() {
     vector<int> stats = {15, 8, 2, 4};
     string ratDesc = "The CyberRat is a mechanical scavenger, searching the abandoned factory for scraps of metal and energy to consume.";
     vector<wstring> log = makeCombatLog();
-    Player* playerChar = new Player("Shooty Guy", "Shooter", 1, stats);
+    Duelist* playerChar = new Duelist("Shooty Guy", 1, stats);
     NPC* rat = new CyberRat();
     
     for(int i = 0; i < 4; i++) {
@@ -37,28 +37,29 @@ int main() {
         }
     }
 
-    string inputStr = "";
+    string inputStr = "This is a very long string so that it has lots of space for input text.";
     
     // auto display = ScreenInteractive::Fullscreen();
     // ftxui::Component sidebarRenderer = fullSidebarRenderer(player, items, maxItems, quitStr, display);
     
     // Element infoSidebar = GetPlayerSidebar(player, items, maxItems);
     // Component quitButton = screenQuitButton(quitStr, display);
-    // Component sidebarRenderer = Renderer(quitButton, [&] {
-        //     return vbox({
-            //     infoSidebar | yflex,
-            //     quitButton->Render()
-            //     });
-            // });
+    CombatUI combUI(playerChar, rat, &inputStr);
+    CombatUI::BtnCoords left(0, 0, 0);
+    CombatUI::BtnCoords right(0, 0, 0);
+    // Component buttons = combUI.GetAllButtons(left, right);
+    Component buttons = combUI.GetMoveButtons(left);
+    
             
+    combUI.screen.Loop(buttons);
 
     // Element combatLog = getCombatLog(log);
     // Element enemyDisplay = enemySidebar(L" CyberRat ", ratDesc,  15, 15);
     // auto display = Screen::Create(Dimension::Fit(combatLog));
 
 
-    CombatInfoDisplay infoDisplay(playerChar, rat);
-    Element combatDisplay = infoDisplay.GetAllCombatElements(log);
+    // CombatInfoDisplay infoDisplay(playerChar, rat);
+    // Element combatDisplay = infoDisplay.GetAllCombatElements(log);
     
     
     

@@ -1,6 +1,5 @@
-
 #include "CombatUI.h"
-
+#include "GridButtons.h"
 
 using namespace ftxui;
 
@@ -23,6 +22,7 @@ ButtonOption CombatUI::HighlightButtonStyle() {
   };
     
 ftxui::Component CombatUI::MakeButton(const string& text) {
+    // BROKEN SHIT: text string var needs to exist (in scope) when button is clicked on
     return Button(
       text,
       [&] {
@@ -70,6 +70,7 @@ ftxui::Component CombatUI::QuadButtonMenu(const string& text1, const string& tex
       return buttonGrid;
 }
 
+
 // Returns component for the quit button
 Component CombatUI::GetQuitButton() {
     return Button("Quit Game", [&] { *userInputString = "Quit"; screen.ExitLoopClosure()(); }, HighlightButtonStyle());
@@ -77,12 +78,16 @@ Component CombatUI::GetQuitButton() {
 
 Component CombatUI::GetMoveButtons(BtnCoords& coords) {
     const string move1 = playerChar->GetMoves().at(0).name;
+    if(playerChar->GetMoves().size() == 1) {
+        return QuadButtonMenu(, "None", "None", "None", coords);
+    }
     const string move2 = playerChar->GetMoves().at(1).name;
     const string move3 = playerChar->GetMoves().at(2).name;
     const string move4 = playerChar->GetMoves().at(3).name;
 
-    return QuadButtonMenu(move1, move2, move3, move4, coords);
+    return QuadButtonMenu(mvStrs.at(0), mvStrs.at(0), mvStrs.at(0), mvStrs.at(0), coords);
 }
+
 
 Component CombatUI::GetItemButtons(BtnCoords& coords) {
     const string item1 = "Use Medkit";
@@ -100,3 +105,6 @@ Component CombatUI::GetAllButtons(BtnCoords& leftCoords, BtnCoords& rightCoords)
     });
 }
 
+void CombatUI::ShowCombatScreenUntilInput(const vector<wstring>& combatLog) {
+  const string mv1 = player->GetM
+}

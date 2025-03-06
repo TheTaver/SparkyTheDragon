@@ -42,6 +42,8 @@ class Player : public Character {
 
     bool useItem(int itemType);
 
+    virtual Attack GetLvlUpMove(int newlvl) = 0;
+
 };
 
 #endif
