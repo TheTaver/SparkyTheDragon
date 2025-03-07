@@ -15,17 +15,7 @@
 using namespace std;
 using namespace ftxui;
 
-ButtonOption Style() {
-    auto option = ButtonOption::Animated();
-    option.transform = [](const EntryState& s) {
-      auto element = text(s.label);
-      if (s.focused) {
-        element |= bold;
-      }
-      return element | center | borderEmpty | flex;
-    };
-    return option;
-};
+ButtonOption Style();
 
 class MenuDisplay {
     public:

@@ -1,4 +1,4 @@
-// #include "MenuDisplay.h"
+#include "MenuDisplay.h"
 #include "CombatUI.h"
 #include "CyberRat.h"
 #include "Duelist.h"
@@ -9,53 +9,37 @@
 
 using namespace std;
 
-vector<wstring> makeCombatLog() {
-    wstring ratTurn1 = L"CyberRat used Metallic Bite.";
-    wstring ratTurn2 = L"But it missed!";
-    wstring playerTurn1 = L"Shooter used Gun.";
-    wstring playerTurn2 = L"CyberRat was defeated!";
-    vector<wstring> combatLog;
-    combatLog.push_back(ratTurn1);
-    combatLog.push_back(ratTurn2);
-    combatLog.push_back(playerTurn1);
-    combatLog.push_back(playerTurn2);
-    return combatLog;
-}
-
 int main() {
     using namespace ftxui;
-    // Initialize test variables
-    vector<int> stats = {15, 8, 2, 4};
-    string ratDesc = "The CyberRat is a mechanical scavenger, searching the abandoned factory for scraps of metal and energy to consume.";
-    vector<wstring> log = makeCombatLog();
-    Duelist* playerChar = new Duelist("Shooty Guy", 1, stats);
-    NPC* rat = new CyberRat();
-    
-    for(int i = 0; i < 4; i++) {
-        for(int j = 0; j < 2*i; j++) {
-            playerChar->addItem(i);
+    Element textBox = hbox({
+        text(L"Hello, World!") | border | bold
+    });
+
+    Screen display = Screen::Create(Dimension::Full(), Dimension::Fit(textBox));
+    Render(display, textBox);
+    cout << display.ToString() << endl;
+
+
+    MenuDisplay menu;
+    string theInput = menu.Displaystart();
+
+    if(theInput == "Start"){
+        theInput = menu.DisplayClassSelection();
+        if(theInput == "Brawler"){
+            cout << "YUHHHHH" << endl;
+        }
+        else if (theInput == "Shooter"){
+            cout << "bruh" << endl;
+        }
+        //smth with like player can input their char name when any button click
+    }
+    else if(theInput == "Continue"){
+        //just to see if gameover screen is fine
+        theInput = menu.DisplayGameOver();
+        if(theInput == "Quitcuzdead"){
+            cout << "dead fr" << endl;
         }
     }
-
-    string inputStr = "This is a very long string so that it has lots of space for input text.";
-    
-    CombatUI combUI(playerChar, rat, &inputStr);
-    combUI.ShowCombatScreenUntilInput(log);
-
-    cout << "Input: " << inputStr << endl;
-    
-    // combUI.screen.Loop(buttons);
-
-    // Element combatLog = getCombatLog(log);
-    // Element enemyDisplay = enemySidebar(L" CyberRat ", ratDesc,  15, 15);
-    // auto display = Screen::Create(Dimension::Fit(combatLog));
-
-
-    // CombatInfoDisplay infoDisplay(playerChar, rat);
-    // Element combatDisplay = infoDisplay.GetAllCombatElements(log);
-    
-    
-    
 
     return 0;
 }

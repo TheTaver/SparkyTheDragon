@@ -36,6 +36,7 @@ add_executable(chartest
     tests/chartest.cpp
     src/Character.cpp
     src/Attack.cpp
+    src/Player.cpp
 )
 
 add_executable(attacktest
@@ -44,8 +45,18 @@ add_executable(attacktest
     src/Attack.cpp
 )
 
+add_executable(cuitest
+    tests/combatuitest.cpp
+    src/Character.cpp
+    src/Attack.cpp
+    src/Player.cpp
+    src/CombatInfoDisplay.cpp
+    src/CombatUI.cpp
+)
+
 add_executable(trpg
     src/main.cpp
+    src/MenuDisplay.cpp
     src/Character.cpp
     src/Attack.cpp
     src/Player.cpp
@@ -67,6 +78,12 @@ TARGET_LINK_LIBRARIES(attacktest
 )
 
 TARGET_LINK_LIBRARIES(trpg
+PRIVATE ftxui::screen
+PRIVATE ftxui::dom
+PRIVATE ftxui::component
+)
+
+TARGET_LINK_LIBRARIES(cuitest
 PRIVATE ftxui::screen
 PRIVATE ftxui::dom
 PRIVATE ftxui::component

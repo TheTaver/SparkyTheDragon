@@ -1,3 +1,5 @@
+#ifndef NPC_H
+#define NPC_H
 // class npc; public character 
 #include <string>
 #include <vector>
@@ -5,8 +7,6 @@
 using std::string;
 using std::vector;
 
-#ifndef NPC_H
-#define NPC_H
 
 #include "Character.h"
 //#include "Attack.h"

@@ -1,3 +1,6 @@
+#ifndef __CYBERRAT_H__
+#define __CYBERRAT_H__
+
 #include "npc.h"
 
 class CyberRat : public NPC {
@@ -11,3 +14,4 @@ class CyberRat : public NPC {
             {};
 
 };
+#endif
