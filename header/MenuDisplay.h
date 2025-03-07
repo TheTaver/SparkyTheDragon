@@ -22,6 +22,7 @@ class MenuDisplay {
       string Displaystart() const;
       string DisplayClassSelection() const;
       string DisplayGameOver() const;
+      string DisplayVictory() const;
       void Displaylvlup();
         //just display lvl up options
 };

@@ -110,3 +110,28 @@ string MenuDisplay::DisplayGameOver() const{
     screen.Loop(renderer);
     return playerInput;
   };
+
+string MenuDisplay::DisplayVictory() const{
+  string playerInput = "";
+  auto screen = ScreenInteractive::FitComponent();
+
+  auto playagainb = Button("Play Again", [&] { playerInput = "Again"; screen.ExitLoopClosure()(); }, Style()); 
+  auto quitfrfrb = Button("Quit Game", [&] { playerInput = "Quit"; screen.ExitLoopClosure()(); }, Style());
+  
+
+  int row = 0;
+  auto buttons = Container::Vertical({ 
+    playagainb | flex,
+    quitfrfrb | flex
+  });
+
+  auto renderer = Renderer(buttons, [&] {
+    return vbox({
+              text("VICTORY!") | center | bold,
+              separator(),
+              buttons->Render() | flex,
+          }) | flex | border;
+  });
+  screen.Loop(renderer);
+  return playerInput;
+};
