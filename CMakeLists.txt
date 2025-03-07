@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.26)
 project(cs100-final-project)
 
+set(CMAKE_BUILD_TYPE Debug)
 # -----------------------------------
 
 include(FetchContent)
@@ -49,12 +50,24 @@ add_executable(NPCTests
   src/npc.cpp
 )
 
+add_executable(cuitest
+    tests/combatuitest.cpp
+    src/Character.cpp
+    src/Attack.cpp
+    src/Player.cpp
+    src/CombatInfoDisplay.cpp
+    src/CombatUI.cpp
+)
+
 add_executable(trpg
     src/main.cpp
+    src/MenuDisplay.cpp
     src/Character.cpp
     src/Attack.cpp
     src/Player.cpp
     src/npc.cpp
+    src/CombatInfoDisplay.cpp
+    src/CombatUI.cpp
 )
 
 TARGET_LINK_LIBRARIES(test 
@@ -71,6 +84,12 @@ TARGET_LINK_LIBRARIES(attacktest
 )
 
 TARGET_LINK_LIBRARIES(trpg
+PRIVATE ftxui::screen
+PRIVATE ftxui::dom
+PRIVATE ftxui::component
+)
+
+TARGET_LINK_LIBRARIES(cuitest
 PRIVATE ftxui::screen
 PRIVATE ftxui::dom
 PRIVATE ftxui::component
@@ -94,6 +113,7 @@ target_link_libraries(runTests
   gtest_main
   pthread
 )
+
 TARGET_LINK_LIBRARIES(NPCTests
   PRIVATE gtest
   PRIVATE gtest_main
