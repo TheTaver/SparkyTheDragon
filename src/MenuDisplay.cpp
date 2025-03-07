@@ -42,46 +42,54 @@ string MenuDisplay::Displaystart() const{
     return playerInput;
   };
 
+Element MenuDisplay::GetClassDescritption(){
+  auto textBox = vbox({
+    text(L"Brawler class has the most defence stats, less damage intake.") | flex,
+    separator(),
+    text(L"Shooter class has the most strength stats, alot of damage output.") | flex,
+    separator(),
+    text(L"Duelist class has the most agility stats, higher chance to dodge attacks.") | flex,
+  });
+
+  return window(text(L" Description ") | center, textBox) |align_right;
+};
+
 string MenuDisplay::DisplayClassSelection() const{
-    string playerInput = "";
-    auto screen = ScreenInteractive::FitComponent();
+  string playerInput = "";
+  MenuDisplay menu;
+  Element Description = menu.GetClassDescritption();
+  auto screen = ScreenInteractive::FitComponent();
 
-    auto brawlerb = Button("Brawler", [&] { playerInput = "Brawler"; screen.ExitLoopClosure()(); }, Style());
-    auto shooterb = Button("Shooter", [&] { playerInput = "Shooter"; screen.ExitLoopClosure()(); }, Style()); 
-    auto fighterb = Button("Fighter", [&] { playerInput = "Fighter"; screen.ExitLoopClosure()(); }, Style());
+  auto brawlerb = Button("Brawler", [&] { playerInput = "Brawler"; screen.ExitLoopClosure()(); }, Style());
+  auto shooterb = Button("Shooter", [&] { playerInput = "Shooter"; screen.ExitLoopClosure()(); }, Style()); 
+  auto duelistb = Button("Duelist", [&] { playerInput = "Duelist"; screen.ExitLoopClosure()(); }, Style());
  
-    // The tree of components. This defines how to navigate using the keyboard.
-    // The selected `row` is shared to get a grid layout.
-    int row = 0;
-    auto buttons = Container::Vertical({
-      brawlerb | flex,
-      shooterb | flex,
-      fighterb | flex
-    });
+  // The tree of components. This defines how to navigate using the keyboard.
+  // The selected `row` is shared to get a grid layout.
+  int row = 0;
+  auto buttons = Container::Vertical({
+    brawlerb | flex,
+    shooterb | flex,
+    duelistb | flex
+  });
 
-    //discription of classes
-    auto textBox = vbox({
-      text(L"Description") | flex | bold,
+  auto classOptions = Renderer(buttons, [&] {
+    return vbox({
+      text("Pick your class!") | center | bold,
       separator(),
-      text(L"Brawler class has the most defence stats, less damage intake.") | flex,
-      separator(),
-      text(L"Shooter class has the most strength stats, alot of damage output.") | flex,
-      separator(),
-      text(L"Fighter class has the most agility stats, higher chance to dodge attacks.") | flex,
-    }) | border;
+      buttons->Render() | flex,
+      Description,
+  }) | flex | border;
+  });
 
-    auto classAndDescriptionTogether = Renderer(buttons, [&] {
-        return hbox({
-          vbox({
-            text("Pick your class!") | center | bold,
-                separator(),
-                buttons->Render() | flex,
-          }),
-          textBox | flex,
-        }) | flex |border;
-    });
+    // auto DescriptionandOptionsTogether = Renderer(buttons, [&]{
+    //   return hbox({
+    //     Description,
+    //   });
+    // });
 
-    screen.Loop(classAndDescriptionTogether);
+    //screen.Loop(DescriptionandOptionsTogether);
+    screen.Loop(classOptions);
     return playerInput;
   };
 

@@ -19,6 +19,7 @@ ButtonOption Style();
 class MenuDisplay {
     public:
       string Displaystart() const;
+      Element GetClassDescritption();
       string DisplayClassSelection() const;
       string DisplayGameOver() const;
       string DisplayVictory() const;
