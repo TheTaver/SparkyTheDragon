@@ -26,6 +26,8 @@ include_directories(${CMAKE_SOURCE_DIR}/header)
 
 add_executable(test
 tests/test.cpp
+tests/enemytest.cpp
+header/npc.h
 src/Character.cpp
 src/Attack.cpp
 src/Player.cpp
