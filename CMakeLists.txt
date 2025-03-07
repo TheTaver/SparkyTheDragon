@@ -59,6 +59,16 @@ add_executable(cuitest
     src/CombatUI.cpp
 )
 
+add_executable(combattest
+    tests/combattest.cpp
+    src/Character.cpp
+    src/Attack.cpp
+    src/Player.cpp
+    src/CombatInfoDisplay.cpp
+    src/CombatUI.cpp
+    src/NPCReader.cpp
+)
+
 add_executable(trpg
     src/main.cpp
     src/MenuDisplay.cpp
@@ -90,6 +100,12 @@ PRIVATE ftxui::component
 )
 
 TARGET_LINK_LIBRARIES(cuitest
+PRIVATE ftxui::screen
+PRIVATE ftxui::dom
+PRIVATE ftxui::component
+)
+
+TARGET_LINK_LIBRARIES(combattest
 PRIVATE ftxui::screen
 PRIVATE ftxui::dom
 PRIVATE ftxui::component
