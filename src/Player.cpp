@@ -69,7 +69,7 @@ void Player::addItem(int itemType) {
 }
 
 // get the count of the item type
-int Player::itemCount(int itemType) {
+int Player::itemCount(int itemType) const {
     int count = 0;
 
     for (int item : inventory) {

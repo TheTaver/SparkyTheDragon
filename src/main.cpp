@@ -1,9 +1,13 @@
 #include "MenuDisplay.cpp"
 
+# include <ftxui/component/screen_interactive.hpp>
+#include <vector>
 
 
+using namespace std;
 
 int main() {
+    using namespace ftxui;
     Element textBox = hbox({
         text(L"Hello, World!") | border | bold
     });
