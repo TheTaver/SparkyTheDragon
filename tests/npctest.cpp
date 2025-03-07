@@ -14,7 +14,7 @@ const int NUM_STATS = 4;
 class TestNPC : public NPC {
 public:
     TestNPC(const string& name, int level, const vector<int>& stats, int expReward, const vector<int>& loot)
-        : NPC(name, level, stats, expReward, loot) {}
+        : NPC(name, level, "", stats, expReward, loot) {}
 
     Attack GetAttack(int seed) override {
         return Attack("Test Attack", "A test move", 100, 10, 10, 20, 0, 0, 0);
