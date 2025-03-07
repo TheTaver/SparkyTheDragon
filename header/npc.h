@@ -7,7 +7,6 @@
 using std::string;
 using std::vector;
 
-
 #include "Character.h"
 //#include "Attack.h"
 
@@ -33,7 +32,6 @@ class NPC : public Character {
         };
 
         const string GetDescription() const { return enemyDescription; }
-
         //Attack GetAttack(int ) 
 };
 

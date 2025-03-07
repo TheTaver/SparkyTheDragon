@@ -1,7 +1,4 @@
-#include "MenuDisplay.h"
-#include "CombatUI.h"
-#include "CyberRat.h"
-#include "Duelist.h"
+#include "MenuDisplay.cpp"
 
 # include <ftxui/component/screen_interactive.hpp>
 #include <vector>

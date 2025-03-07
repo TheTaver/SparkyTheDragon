@@ -36,7 +36,6 @@ add_executable(chartest
     tests/chartest.cpp
     src/Character.cpp
     src/Attack.cpp
-    src/Player.cpp
 )
 
 add_executable(attacktest
@@ -64,10 +63,10 @@ add_executable(trpg
     src/CombatUI.cpp
 )
 
-# TARGET_LINK_LIBRARIES(test 
-# ftxui::dom
-# gtest
-# )
+TARGET_LINK_LIBRARIES(test 
+ftxui::dom
+gtest
+)
 
 TARGET_LINK_LIBRARIES(chartest
   gtest
@@ -94,16 +93,16 @@ PRIVATE ftxui::component
   #   ${CMAKE_SOURCE_DIR}/deps/FTXUI/include/ftxui/
   # )
   
-# add_executable(runTests
-#   tests/test.cpp
-#   src/Character.cpp
-#   src/Attack.cpp
-#   src/Player.cpp
-# )
+add_executable(runTests
+  tests/test.cpp
+  src/Character.cpp
+  src/Attack.cpp
+  src/Player.cpp
+)
 
-# target_link_libraries(runTests
-#   ftxui::dom
-#   gtest
-#   gtest_main
-#   pthread
-# )
+target_link_libraries(runTests
+  ftxui::dom
+  gtest
+  gtest_main
+  pthread
+)
