@@ -27,7 +27,7 @@ int main() {
     vector<int> stats = {15, 8, 2, 4};
     string ratDesc = "The CyberRat is a mechanical scavenger, searching the abandoned factory for scraps of metal and energy to consume.";
     vector<wstring> log = makeCombatLog();
-    Duelist* playerChar = new Duelist("Shooty Guy", 1, stats);
+    Duelist* playerChar = new Duelist("Shooty Guy", "Duelist", 1, stats);
     NPC* rat = new CyberRat();
     
     for(int i = 0; i < 4; i++) {
