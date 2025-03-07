@@ -1,9 +1,13 @@
 #include "MenuDisplay.h"
 
+# include <ftxui/component/screen_interactive.hpp>
+#include <vector>
 
 
+using namespace std;
 
 int main() {
+    using namespace ftxui;
     Element textBox = hbox({
         text(L"Hello, World!") | border | bold
     });
@@ -16,8 +20,30 @@ int main() {
     MenuDisplay menu;
     string theInput = menu.Displaystart();
 
-    if(theInput == "Start"){
-        cout << "YOOOO" << endl;
+    if(theInput == "Quit"){
+        //see if victory screen is okay
+        theInput = menu.DisplayVictory();
+        if(theInput == "Again"){
+            theInput = "Start";
+        }
     }
+    if(theInput == "Start"){
+        theInput = menu.DisplayClassSelection();
+        if(theInput == "Brawler"){
+            cout << "YUHHHHH" << endl;
+        }
+        else if (theInput == "Shooter"){
+            cout << "bruh" << endl;
+        }
+        //smth with like player can input their char name when any button click
+    }
+    else if(theInput == "Continue"){
+        //just to see if gameover screen is fine
+        theInput = menu.DisplayGameOver();
+        if(theInput == "Quitcuzdead"){
+            cout << "dead fr" << endl;
+        }
+    }
+
     return 0;
 }

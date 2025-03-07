@@ -30,8 +30,7 @@ This project is particularly interesting to us because many of us enjoy playing 
 When you start the game, you start at the Main menu where you choose to make a new game / load a game and then from there you go into the game. When you are in the Game, at any point you can quit, so everytime you do you just go to the main menu. In the Game you eventually have to enter combat, so you have a combat screen which ends and goes back to the game when you won your battle. When you die in combat, you go to the game over screen that takes you to the menu. Same thing happens when you win and see the victory screen. 
 
 ### Screen Layouts
-![Screen_Layout1](https://github.com/user-attachments/assets/7046bfd9-11e2-46c9-8171-3b001deb7fa4)
-![Screen_Layout2](https://github.com/user-attachments/assets/89da2b96-0b79-403d-9f1e-7a89261b0ac0)
+![screendia drawio](https://github.com/user-attachments/assets/17b7e892-b4e6-4f55-91d0-26030bf771a1)
 
 Main menu screen 
 \- Allows the player to continue a save (if one exists), start a new game, or exit the game    
@@ -46,13 +45,13 @@ Game over screen
 \- Displaying that the game is over, option to quit game     
 \- Purpose: Return to main menu after dying         
 Victory screen    
-\- Displays you won game, button to quit game or return to main menu   
+\- Displays you won game, button to quit game or continue last save 
 \- to go back to menu when you completed the game   
 
 
 
 ## Class Diagram
-![uml diagram](https://github.com/user-attachments/assets/08fcc5f3-8df7-4a0b-8366-957b831b6a09)
+![uml diagram SOLID principles](https://github.com/user-attachments/assets/b2fed4d2-309e-4053-b2d5-e68f4a32791f)
 
 ### Class Descriptions:
 #### View Classes:
@@ -72,27 +71,21 @@ Victory screen
 \- Attack Class: Member variables for the attack’s base accuracy, name of the attack, number of uses the attack has, and the attack’s base damage. The DoesItHit() function decides whether the attack hits or not, based on the attack’s accuracy, and the agility of the target, with rng seeded by the seed passed to the function. The hit() function takes in the attacker and the target of the attack (and the seed for randomness calculations) and calls the private DoesItHit() function, and if it hits, deals damage scaled by the attacker’s strength to the target. If the attack has a nonzero effect chance, Hit will also call the private ApplyEffect() function, again with the rng seed, which decides whether to apply the effect or not, decreasing one of the target’s stats (determined by the effectStat member variable) if successful.  
 \- Room Class: Constructor will require a filename to load the room’s info from. Will contain a room’s description, and a choice that the player can make in that room. Member variable hasCombat will be a boolean value that describes whether a combat encounter should start when the player enters that room, which the GameController will load as the player enters. GetNumOptions() returns how many options the player can pick between for that room’s choice, with GetOptions() returning text to describe the options themselves.
 
- 
- > ## Phase III
- > You will need to schedule a check-in for the second scrum meeting with the same reader you had your first scrum meeting with (using Calendly). Your entire team must be present. This meeting will occur on week 8 during lab time.
- 
- > BEFORE the meeting you should do the following:
- > * Update your class diagram from Phase II to include any feedback you received from your TA/grader.
- > * Considering the SOLID design principles, reflect back on your class diagram and think about how you can use the SOLID principles to improve your design. You should then update the README.md file by adding the following:
- >   * A new class diagram incorporating your changes after considering the SOLID principles.
- >   * For each update in your class diagram, you must explain in 3-4 sentences:
- >     * What SOLID principle(s) did you apply?
- >     * How did you apply it? i.e. describe the change.
- >     * How did this change help you write better code?
- > * Perform a new sprint plan like you did in Phase II.
- > * Make sure that your README file (and Project board) are up-to-date reflecting the current status of your project and the most recent class diagram. Previous versions of the README file should still be visible through your commit history.
->  * Each team member should also submit the Peer Evaluation Form on Canvas for phase III. In this form, you need to fill in the names of all team members, the percentage of work contributed by each member for phase III, and a description of their contributions. Remember that each team member should submit the form individually.
- 
-> During the meeting with your reader you will discuss: 
- > * How effective your last sprint was (each member should talk about what they did)
- > * Any tasks that did not get completed last sprint, and how you took them into consideration for this sprint
- > * Any bugs you've identified and created issues for during the sprint. Do you plan on fixing them in the next sprint or are they lower priority?
- > * What tasks you are planning for this next sprint.
+### S.O.L.I.D. Principles
+Single Responsibility Principle:  
+We implemented the SRP by separating our data managing classes from controller classes and classes that handle program input and output.  
+We have the RoomDisplay, MenuDisplay, and CombatDisplay classes that each have the responsibility of displaying the screens of different types. They also get the player input, as the graphics library that we are using for this project handles display and input getting together, when using clickable parts of the interface.  
+This helps us write better code, because the other parts of the program can focus primarily on their own logic or data manipulation tasks, without considering the input or output methods the program uses. As long as there are methods to get the important information from the other classes that the I/O can use, the data and logic classes can ignore all other requirements or influence from the I/O method the program is using.  
+  
+Open-Closed Principle:  
+We implemented the OCP by being able to extend the Player class without having to modify any of the functions within the class.  
+This is demonstrated through having the Brawler, Shooter, and Duelist subclasses. They are all extensions of the Player class with different function implementations specific to the player type. We can add as many player types as needed without having to modify the Player class itself.  
+This helps us write better code because as we add new player types we can easily add new subclasses of the Player class without having to go back into the Player class itself and modify the functions already written for it. It helps us easily add new features without the risk of potentially getting bugs or breaking what already works.  
+  
+Interface Segregation Principle:  
+We implemented the ISP by adding the NPC and Player class interfaces that both inherit from Character class.  
+The player subclasses don’t need to manage the getAttack() or expReward members, and the enemies inherited from NPC don’t need to implement any levelUp() function. We applied the ISP by splitting these functions into two interfaces that derive from the Character class, that objects can implement only as they need.  
+This helps us write better code because it means we do not need to write implementations for functions or set values to member variables that don’t make sense for an object to have. This saves time and reduces clutter in the code. It also means compiler errors are generated if we attempt to call a function on an object that doesn’t implement it, rather than running into errors at runtime.  
 
  
  > ## Final deliverable
