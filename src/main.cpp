@@ -39,19 +39,12 @@ int main() {
 
     string inputStr = "This is a very long string so that it has lots of space for input text.";
     
-    // auto display = ScreenInteractive::Fullscreen();
-    // ftxui::Component sidebarRenderer = fullSidebarRenderer(player, items, maxItems, quitStr, display);
-    
-    // Element infoSidebar = GetPlayerSidebar(player, items, maxItems);
-    // Component quitButton = screenQuitButton(quitStr, display);
     CombatUI combUI(playerChar, rat, &inputStr);
-    CombatUI::BtnCoords left(0, 0, 0);
-    CombatUI::BtnCoords right(0, 0, 0);
-    // Component buttons = combUI.GetAllButtons(left, right);
-    Component buttons = combUI.GetMoveButtons(left);
+    combUI.ShowCombatScreenUntilInput(log);
+
+    cout << "Input: " << inputStr << endl;
     
-            
-    combUI.screen.Loop(buttons);
+    // combUI.screen.Loop(buttons);
 
     // Element combatLog = getCombatLog(log);
     // Element enemyDisplay = enemySidebar(L" CyberRat ", ratDesc,  15, 15);

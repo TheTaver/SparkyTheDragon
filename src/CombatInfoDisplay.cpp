@@ -110,6 +110,6 @@ Element CombatInfoDisplay::GetAllCombatElements(const vector<wstring>& combatLog
     // combatLogElement,
     combatLogElement | size(WIDTH, GREATER_THAN, 60),
     separator(),
-    playerSidebar
+    playerSidebar | size(WIDTH, GREATER_THAN, 14)
   });
 }
