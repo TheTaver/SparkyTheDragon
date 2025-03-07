@@ -1,35 +1,25 @@
-// class npc; public character 
-#include <string>
-#include <vector>
-
-using std::string;
-using std::vector;
-
 #ifndef NPC_H
 #define NPC_H
 
 #include "Character.h"
-//#include "Attack.h"
+#include "Attack.h"
+#include <vector>
+#include <string>
+
+using std::vector;
+using std::string;
 
 class NPC : public Character {
-    private:
-        int expReward;
-        vector<int> loot;
+protected:
+    int expReward;
+    vector<int> loot;
 
-    public:
-        NPC(const string& name, 
-            int level,
-            const vector<int>& stats);
+public:
+    NPC(const string& name, int level, const vector<int>& stats, int expReward, const vector<int>& loot);
 
-        int GetExpReward() const {
-            return expReward;
-        };
-
-        vector<int> GetLoot() const {
-            return loot;
-        };
-
-        virtual Attack GetAttack(int seed) = 0; 
+    int GetExpReward() const;
+    vector<int> GetLoot() const;
+    virtual Attack GetAttack(int seed) = 0;
 };
 
 #endif
