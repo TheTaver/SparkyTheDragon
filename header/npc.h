@@ -1,14 +1,12 @@
 #ifndef NPC_H
 #define NPC_H
-// class npc; public character 
-#include <string>
-#include <vector>
-
-using std::string;
-using std::vector;
-
 #include "Character.h"
-//#include "Attack.h"
+#include "Attack.h"
+#include <vector>
+#include <string>
+
+using std::vector;
+using std::string;
 
 class NPC : public Character {
     private:
@@ -20,19 +18,13 @@ class NPC : public Character {
         NPC(const string& name, 
             int level,
             const string& description,
-            const vector<int>& stats) : 
-            Character(name, level, stats), enemyDescription(description) {};
+            const vector<int>& stats, int xpReward, const vector<int>& itemLoot) : 
+            Character(name, level, stats), enemyDescription(description), expReward(xpReward), loot(itemLoot) {};
 
-        int GetExpReward() const {
-            return expReward;
-        };
-
-        vector<int> GetLoot() const {
-            return loot;
-        };
-
+        int GetExpReward() const;
+        vector<int> GetLoot() const;
+        virtual Attack GetAttack(int seed) = 0;
         const string GetDescription() const { return enemyDescription; }
-        //Attack GetAttack(int ) 
 };
 
 #endif

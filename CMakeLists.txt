@@ -43,6 +43,12 @@ add_executable(attacktest
     src/Character.cpp
     src/Attack.cpp
 )
+add_executable(NPCTests
+  tests/npctest.cpp
+  src/Character.cpp
+  src/Attack.cpp
+  src/npc.cpp
+)
 
 add_executable(cuitest
     tests/combatuitest.cpp
@@ -59,6 +65,7 @@ add_executable(trpg
     src/Character.cpp
     src/Attack.cpp
     src/Player.cpp
+    src/npc.cpp
     src/CombatInfoDisplay.cpp
     src/CombatUI.cpp
 )
@@ -105,4 +112,10 @@ target_link_libraries(runTests
   gtest
   gtest_main
   pthread
+)
+
+TARGET_LINK_LIBRARIES(NPCTests
+  PRIVATE gtest
+  PRIVATE gtest_main
+  PRIVATE pthread
 )
