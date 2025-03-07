@@ -1,6 +1,5 @@
 #ifndef __MENUDISPLAY_H__
 #define __MENUDISPLAY_H__
-
 #include <iostream>
 #include <ftxui/dom/elements.hpp>
 #include <ftxui/screen/screen.hpp>

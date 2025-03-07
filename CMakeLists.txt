@@ -25,12 +25,12 @@ add_subdirectory("_deps/googletest")
 include_directories(${CMAKE_SOURCE_DIR}/header)
 
 
-# add_executable(test
-#     tests/test.cpp
-#     src/Character.cpp
-#     src/Attack.cpp
-#     src/Player.cpp
-# )
+add_executable(test
+    tests/test.cpp
+    src/Character.cpp
+    src/Attack.cpp
+    src/Player.cpp
+)
 
 add_executable(chartest
     tests/chartest.cpp

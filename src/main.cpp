@@ -1,4 +1,4 @@
-#include "MenuDisplay.cpp"
+#include "MenuDisplay.h"
 
 # include <ftxui/component/screen_interactive.hpp>
 #include <vector>
