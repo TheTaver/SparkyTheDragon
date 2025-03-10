@@ -75,20 +75,16 @@ string MenuDisplay::DisplayClassSelection() const{
 
   auto classOptions = Renderer(buttons, [&] {
     return vbox({
-      text("Pick your class!") | center | bold,
-      separator(),
-      buttons->Render() | flex,
-      Description,
-  }) | flex | border;
+        text("Pick your class!") | center | bold, 
+        separator(),
+        hbox({
+            buttons->Render() | flex, 
+            separator(),  
+             Description | flex
+        }) | flex | border  
+    });
   });
 
-    // auto DescriptionandOptionsTogether = Renderer(buttons, [&]{
-    //   return hbox({
-    //     Description,
-    //   });
-    // });
-
-    //screen.Loop(DescriptionandOptionsTogether);
     screen.Loop(classOptions);
     return playerInput;
   };

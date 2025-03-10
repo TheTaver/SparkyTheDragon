@@ -1,10 +1,13 @@
-// #include "MenuDisplay.h"
+#include "MenuDisplay.h"
+#include "CombatInfoDisplay.h"
+#include "CombatUI.h"
+#include "Duelist.h"
+#include "CyberRat.h"
+#include <ftxui/component/screen_interactive.hpp>
+#include <vector>
 
-// #include <ftxui/component/screen_interactive.hpp>
-// #include <vector>
 
-
-// using namespace std;
+using namespace std;
 
 // int main() {
 //     using namespace ftxui;
@@ -48,37 +51,57 @@
 //     return 0;
 // }
 
-#include "MenuDisplay.h"
-#include "CombatInfoDisplay.h"
-#include "CombatUI.h"
-
-#include <ftxui/component/screen_interactive.hpp>
-#include <vector>
-
-
-using namespace std;
-
+//actual gameloop
 int main() {
+    NPC* enemy = new CyberRat();
+    Player* thePlayer = nullptr;
     MenuDisplay menu;
-    //CombatInfoDisplay 
-    //CombatUI 
     string playerName = "";
     string theInput = menu.Displaystart();
 
     if(theInput == "Start"){
+        cout << "What is your characters name?" << endl;
+        cin >> playerName;
         theInput = menu.DisplayClassSelection();
-        if(theInput == "Brawler" || theInput == "Shooter" || theInput == "Duelest"){
-            cout << "What is your characters name?" << endl;
-            cin >> playerName;
+        if(theInput == "Brawler"){
+            //not yet
+        } 
+        else if (theInput == "Shooter"){
+            //not yet
+        } 
+        else if (theInput == "Duelist"){
+            //health, power, agility, def
+            vector<int> duelistStats = {15, 4, 2, 8};
+            thePlayer = new Duelist(playerName, 1, duelistStats);
+        }
+        //then start first room
+        //games saves after a battle is done i assume
+        //but first lets just get the cui logic in here
+        while(thePlayer->IsDead() != true && enemy->IsDead() != true){
+            CombatInfoDisplay CombatInfoDisplay(thePlayer, enemy);
+            CombatUI CombatUI(thePlayer, enemy, &theInput);
+            vector<wstring> combatLog;
+            CombatUI.ShowCombatScreenUntilInput(combatLog);
+        }
+        
+        if (thePlayer->IsDead()){
+            theInput = menu.DisplayGameOver();
+            if (theInput == "Returncd"){
+                theInput = "Continue";
+            }
+        }
+        else{
             
-            //then start first room
-            //but lets
-
+            //to the next fight/room ig
         }
     }
-    else if(theInput == "Continue"){
+    if(theInput == "Continue"){
         //load from last checkpoint
     }
+
+    //clean up memory when the player finishes the game or starts a new one without finishing maybe
+    delete thePlayer;
+    delete enemy;
 
     return 0;
 }

@@ -59,16 +59,6 @@ add_executable(cuitest
     src/CombatUI.cpp
 )
 
-# add_executable(gameloop
-#   src/GameController.cpp
-#   src/Character.cpp
-#   src/Attack.cpp
-#   src/npc.cpp
-#   src/MenuDisplay.cpp
-#   src/CombatInfoDisplay.cpp
-#   src/CombatUI.cpp
-# )
-
 add_executable(trpg
     src/main.cpp
     src/MenuDisplay.cpp
