@@ -1,9 +1,11 @@
 #include "../header/npc.h"
+#include <stdexcept>
 
 #include <cstdlib>
 #include <vector>
 
 using std::vector;
+using std::runtime_error;
 
 
 int NPC::GetExpReward() const {
@@ -11,10 +13,8 @@ int NPC::GetExpReward() const {
 }
 
 void NPC::SetExpReward(int newExpReward) {
-    // can expReward be negative???
-    // if (newExpReward >= 0) {
-        expReward = newExpReward;
-    // }
+    if (newExpReward < 0) throw runtime_error("Cannot have negative experience");
+    expReward = newExpReward;
 }
 
 vector<int> NPC::GetLoot() const {
