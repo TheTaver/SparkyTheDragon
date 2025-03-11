@@ -44,6 +44,12 @@ class Player : public Character {
 
     virtual Attack GetLvlUpMove(int newLvl) = 0;
 
+<<<<<<< Updated upstream
 };
+=======
+ };
+>>>>>>> Stashed changes
+
+
 
 #endif

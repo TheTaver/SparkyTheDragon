@@ -32,4 +32,5 @@ class NPC : public Character {
         //Attack GetAttack(int ) 
 };
 
+
 #endif
