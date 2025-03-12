@@ -17,7 +17,7 @@ class Attack {
     public: 
     
     std::string name; 
-    std::string description;
+    bool targetSelf;
     int baseAccuracy;
     int numUses;
     int maxUses;
@@ -25,10 +25,10 @@ class Attack {
 
     Attack();
 
-    Attack(const std::string& name, const std::string& description, int baseAccuracy, int numUses, int maxUses, 
+    Attack(const std::string& name, bool selfTargeting, int baseAccuracy, int numUses, int maxUses, 
         int damage, int effectChance, int effectStat, int effectAmount);
 
-    void hit(Character& attacker, Character& target, int randSeed);
+    bool hit(Character& attacker, Character& target, int randSeed);
 
 };
 

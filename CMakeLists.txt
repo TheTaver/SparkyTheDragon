@@ -21,6 +21,17 @@ endif()
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
 add_subdirectory("_deps/googletest")
 
+set(SOURCE_FILES
+  src/Attack.cpp
+  src/Character.cpp
+  src/CombatController.cpp
+  src/CombatInfoDisplay.cpp
+  src/CombatUI.cpp
+  src/MenuDisplay.cpp
+  src/NPCReader.cpp
+  src/npc.cpp
+  src/Player.cpp
+  )
 
 include_directories(${CMAKE_SOURCE_DIR}/header)
 
@@ -66,18 +77,13 @@ add_executable(combattest
     src/Player.cpp
     src/CombatInfoDisplay.cpp
     src/CombatUI.cpp
+    src/CombatController.cpp
     src/NPCReader.cpp
 )
 
 add_executable(trpg
-    src/main.cpp
-    src/MenuDisplay.cpp
-    src/Character.cpp
-    src/Attack.cpp
-    src/Player.cpp
-    src/npc.cpp
-    src/CombatInfoDisplay.cpp
-    src/CombatUI.cpp
+  src/main.cpp
+  ${SOURCE_FILES}
 )
 
 TARGET_LINK_LIBRARIES(test 

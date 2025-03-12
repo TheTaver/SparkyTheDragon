@@ -3,6 +3,7 @@
 #include <cmath>
 #include <vector>
 #include <algorithm>
+#include <stdexcept>
 
 // Call the character which have an empty name "", level 1, the default stat(idk how you guys want it)
 //  Temp starting stats (hp 100, 10, 10, 10)
@@ -81,9 +82,16 @@ int Player::itemCount(int itemType) const {
 
 
 bool Player::useItem(int itemType) {
+    if(itemType >= 4)
+        throw std::runtime_error("Invalid item type");
     auto it = std::find(inventory.begin(), inventory.end(), itemType);
     if (it != inventory.end()) { 
         inventory.erase(it);
+        if(itemType == 0) {
+            HealCharacter(20);
+        } else {
+            TempChangeStat(itemType, 8);
+        }
         return true;
     }
     return false;

@@ -24,6 +24,10 @@ int Character::GetStat(int statNum) const {
     return stats.at(statNum) + tempStats.at(statNum); // Effective stat amount, base + temp
 }
 
+const vector<int> Character::GetTempStats() const {
+    return tempStats; // Effective stat amount, base + temp
+}
+
 void Character::DealDamage(int damageAmount) {
     if(damageAmount < 0) {
         throw std::invalid_argument("Damage Amount must be non-negative. Damage amount: "+damageAmount);
