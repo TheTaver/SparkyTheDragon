@@ -29,6 +29,7 @@ add_executable(test
     src/Character.cpp
     src/Attack.cpp
     src/Player.cpp
+    src/Shooter.cpp
 )
 
 add_executable(chartest
@@ -79,6 +80,19 @@ add_executable(runTests
   src/Character.cpp
   src/Attack.cpp
   src/Player.cpp
+  src/Shooter.cpp
+)
+add_executable(shooterTest
+tests/shootertest.cpp
+src/Attack.cpp
+src/Shooter.cpp
+src/Character.cpp
+src/Player.cpp
+)
+target_link_libraries(shooterTest
+ gtest
+ gtest_main
+ pthread
 )
 
 target_link_libraries(runTests

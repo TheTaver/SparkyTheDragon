@@ -4,12 +4,18 @@
 #include "Player.h"
 #include "Attack.h"
 
+#include <string>
+#include <vector>
+
+using std::string;
+using std::vector;
+
 class Shooter : public Player {
     public: 
 
         Shooter();
-        Shooter(std::string name, std::string playerClass, int level, std::vector<int>& stats);
-        Shooter(std::string name, std::string playerClass, int level, std::vector<int>& stats, int exp, std::vector<int>& inventory);
+        Shooter(const string& name, const string& playerClass, int level, vector<int>& stats);
+        Shooter(const string& name, const string& playerClass, int level, vector<int>& stats, int exp, vector<int>& inventory);
     
         Attack GetLvlUpMove(int newLvl) override;
     };
