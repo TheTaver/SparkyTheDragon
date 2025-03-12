@@ -3,6 +3,10 @@
 #include <iostream>
 #include <stdexcept>
 
+Room::Room() 
+: position("Unknown"), description("Empty room"), choice("None"), numOptions(0), hasCombat(false) {}
+
+
 Room::Room(const std::string& filename)
 : numOptions(0), hasCombat(false) {
     
@@ -52,11 +56,11 @@ Room::Room(const std::string& filename)
 
 }
 
-std::string Room::GetDescription() const {
+const std::string Room::GetDescription() const {
     return description;
 }
 
-std::string Room::GetChoice() const {
+const std::string Room::GetChoice() const {
     return choice;
 }
 
@@ -64,7 +68,7 @@ int Room::GetNumOptions() const {
     return numOptions;
 }
 
-std::vector<std::string> Room::GetOptions() const {
+const std::vector<std::string> Room::GetOptions() const {
     return optionText;
 }
 

@@ -14,12 +14,13 @@ class Room {
     bool hasCombat;
 
     public:
+    Room();
     Room(const std::string& position);
 
-    std::string GetDescription() const;
-    std::string GetChoice() const;
+    const std::string GetDescription() const;
+    const std::string GetChoice() const;
     int GetNumOptions() const;
-    std::vector<std::string> GetOptions() const;
+    const std::vector<std::string> GetOptions() const;
     bool HasCombat() const;
 };
 

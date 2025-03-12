@@ -29,6 +29,8 @@ add_executable(test
     src/Character.cpp
     src/Attack.cpp
     src/Player.cpp
+    src/Room.cpp
+    src/RoomDisplay.cpp
 )
 
 add_executable(chartest
@@ -48,6 +50,14 @@ add_executable(roomTest
     src/Room.cpp
 
 )
+add_executable(roomDisplayTest
+    tests/roomDisplayTest.cpp
+    src/Room.cpp
+    src/RoomDisplay.cpp
+    src/Character.cpp
+    src/Attack.cpp
+    src/Player.cpp
+)
 
 add_executable(trpg
     src/main.cpp
@@ -55,10 +65,13 @@ add_executable(trpg
     src/Attack.cpp
     src/Player.cpp
     src/Room.cpp
+    src/RoomDisplay.cpp
 )
 
 TARGET_LINK_LIBRARIES(test 
 ftxui::dom
+ftxui::screen
+ftxui::component 
 gtest
 )
 
@@ -71,6 +84,15 @@ TARGET_LINK_LIBRARIES(attacktest
 )
 
 TARGET_LINK_LIBRARIES(roomTest
+PRIVATE gtest
+PRIVATE gtest_main
+PRIVATE pthread
+)
+
+TARGET_LINK_LIBRARIES(roomDisplayTest
+PRIVATE ftxui::dom
+PRIVATE ftxui::screen
+PRIVATE ftxui::component
 PRIVATE gtest
 PRIVATE gtest_main
 PRIVATE pthread
@@ -97,6 +119,7 @@ add_executable(runTests
 
 target_link_libraries(runTests
   ftxui::dom
+  ftxui::component
   gtest
   gtest_main
   pthread
