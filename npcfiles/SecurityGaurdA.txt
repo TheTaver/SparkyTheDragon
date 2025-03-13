@@ -1,0 +1,6 @@
+SecurityGaurdA
+2
+This Security Gaurd has chainsaws for arms! Its program got corrupted, destorying every living thing it sees.
+25 3 3 3
+110
+2 2 1 0 0

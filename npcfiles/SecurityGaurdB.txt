@@ -1,0 +1,6 @@
+SecuirtyGaurdB
+2 
+This Security Gaurd has knives as fingers! Its program also got corrupted, destorying every living thing it sees.
+25 4 4 4
+110 
+3 3 1 0 0
