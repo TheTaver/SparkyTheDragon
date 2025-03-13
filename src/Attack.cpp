@@ -6,7 +6,7 @@
 Attack::Attack() : name(""), description(""), baseAccuracy(0), numUses(0), maxUses(0), 
 damage(0), effectChance(0), effectStat(0), effectAmount(0) {}
 
-Attack::Attack(const std::string& name, const std::string& description, int baseAccuracy, int numUse, int maxUses, 
+Attack::Attack(const std::string& name, const std::string& description, int baseAccuracy, int numUses, int maxUses, 
     int damage, int effectChance, int effectStat, int effectAmount) : name(name), description(description), 
     baseAccuracy(baseAccuracy), numUses(numUses), maxUses(maxUses), damage(damage), effectChance(effectChance),
     effectStat(effectStat), effectAmount(effectAmount) {}
@@ -15,7 +15,7 @@ Attack::Attack(const std::string& name, const std::string& description, int base
     // Check if the target get hit or not
 bool Attack::doesItHit(Character& target, int randSeed) {
     srand(randSeed); // outputs the dfferent number every time so it doesnt output the same number
-
+    
     int hitChance = rand() % 100; // which a number will return 0-99
     return hitChance < baseAccuracy; // if the baseAccuracy is greater then will hit and return true
 
@@ -29,7 +29,6 @@ void Attack::applyEffect(Character& target, int randSeed) {
     if (effectChanceHit <= effectChance) {
         target.TempChangeStat(effectStat, effectAmount);
     }
-    
 }
 
 // The hit function 

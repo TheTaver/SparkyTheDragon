@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.26)
 project(cs100-final-project)
 
+set(CMAKE_BUILD_TYPE Debug)
 # -----------------------------------
 
 include(FetchContent)
@@ -29,6 +30,7 @@ add_executable(test
     src/Character.cpp
     src/Attack.cpp
     src/Player.cpp
+    src/Duelist.cpp
 )
 
 add_executable(chartest
@@ -42,6 +44,12 @@ add_executable(attacktest
     src/Character.cpp
     src/Attack.cpp
 )
+add_executable(NPCTests
+  tests/npctest.cpp
+  src/Character.cpp
+  src/Attack.cpp
+  src/npc.cpp
+)
 
 add_executable(roomTest
     tests/roomTest.cpp
@@ -49,12 +57,34 @@ add_executable(roomTest
 
 )
 
+add_executable(cuitest
+    tests/combatuitest.cpp
+    src/Character.cpp
+    src/Attack.cpp
+    src/Player.cpp
+    src/CombatInfoDisplay.cpp
+    src/CombatUI.cpp
+    src/Duelist.cpp
+)
+
+add_executable(duelistTests
+    tests/duelistTest.cpp
+    src/Duelist.cpp
+    src/Attack.cpp
+    src/Character.cpp
+    src/Player.cpp
+    )
+
 add_executable(trpg
     src/main.cpp
+    src/MenuDisplay.cpp
     src/Character.cpp
     src/Attack.cpp
     src/Player.cpp
     src/Room.cpp
+    src/npc.cpp
+    src/CombatInfoDisplay.cpp
+    src/CombatUI.cpp
 )
 
 TARGET_LINK_LIBRARIES(test 
@@ -83,6 +113,12 @@ PRIVATE ftxui::dom
 PRIVATE ftxui::component
 )
 
+TARGET_LINK_LIBRARIES(cuitest
+PRIVATE ftxui::screen
+PRIVATE ftxui::dom
+PRIVATE ftxui::component
+)
+
 # include_directories(
   #   ${CMAKE_SOURCE_DIR}/test/lib/googletest/include/
   #   ${CMAKE_SOURCE_DIR}/deps/FTXUI/include/ftxui/
@@ -93,6 +129,7 @@ add_executable(runTests
   src/Character.cpp
   src/Attack.cpp
   src/Player.cpp
+  src/Duelist.cpp
 )
 
 target_link_libraries(runTests
@@ -100,4 +137,16 @@ target_link_libraries(runTests
   gtest
   gtest_main
   pthread
+)
+
+TARGET_LINK_LIBRARIES(NPCTests
+  PRIVATE gtest
+  PRIVATE gtest_main
+  PRIVATE pthread
+)
+
+TARGET_LINK_LIBRARIES(duelistTests
+  PRIVATE gtest
+  PRIVATE gtest_main
+  PRIVATE pthread
 )
