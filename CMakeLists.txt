@@ -51,6 +51,12 @@ add_executable(NPCTests
   src/npc.cpp
 )
 
+add_executable(roomTest
+    tests/roomTest.cpp
+    src/Room.cpp
+
+)
+
 add_executable(cuitest
     tests/combatuitest.cpp
     src/Character.cpp
@@ -60,6 +66,7 @@ add_executable(cuitest
     src/CombatUI.cpp
     src/Duelist.cpp
 )
+
 add_executable(duelistTests
     tests/duelistTest.cpp
     src/Duelist.cpp
@@ -67,12 +74,14 @@ add_executable(duelistTests
     src/Character.cpp
     src/Player.cpp
     )
+
 add_executable(trpg
     src/main.cpp
     src/MenuDisplay.cpp
     src/Character.cpp
     src/Attack.cpp
     src/Player.cpp
+    src/Room.cpp
     src/npc.cpp
     src/CombatInfoDisplay.cpp
     src/CombatUI.cpp
@@ -90,6 +99,13 @@ TARGET_LINK_LIBRARIES(chartest
 TARGET_LINK_LIBRARIES(attacktest
   gtest
 )
+
+TARGET_LINK_LIBRARIES(roomTest
+PRIVATE gtest
+PRIVATE gtest_main
+PRIVATE pthread
+)
+
 
 TARGET_LINK_LIBRARIES(trpg
 PRIVATE ftxui::screen
