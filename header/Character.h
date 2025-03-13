@@ -27,6 +27,7 @@ class Character {
         int GetCurrHp() const         { return currHp;  };
         
         int GetStat(int statNum) const;
+        const vector<int> GetTempStats() const;
         void TempChangeStat(int statNum, int change);
         void ResetTempStat(int statNum);
         void ResetAllTemp();
