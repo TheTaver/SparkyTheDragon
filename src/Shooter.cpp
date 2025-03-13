@@ -1,12 +1,17 @@
 #include "../header/Shooter.h"
 #include <stdexcept>
+#include <vector>
+#include <string>
 
-Shooter::Shooter() : Player() {}
+using std::vector;
+using std::string;
 
-Shooter::Shooter(std::string name, std::string playerClass, int level, std::vector<int>& stats) 
+Shooter::Shooter() :Player() {}
+
+Shooter::Shooter(const string& name, const string& playerClass, int level, vector<int>& stats) 
 : Player(name, playerClass, level, stats) {}
 
-Shooter::Shooter(std::string name, std::string playerClass, int level, std::vector<int>& stats, int exp, std::vector<int>& inventory) 
+Shooter::Shooter(const string& name, const string& playerClass, int level, vector<int>& stats, int exp, vector<int>& inventory) 
 : Player(name, playerClass, level, stats, exp, inventory) {}
 
 Attack Shooter::GetLvlUpMove(int newLvl) {
