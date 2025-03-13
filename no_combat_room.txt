@@ -1,0 +1,7 @@
+Lounge
+A quiet room with old couches and flickering lights.
+What do you want to do?
+2
+Sit and rest.
+Check the vending machine.
+0

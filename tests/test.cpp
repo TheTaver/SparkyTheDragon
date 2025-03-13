@@ -3,6 +3,7 @@
 #include "gtest/gtest.h"
 #include "Player.h"
 #include "../header/Shooter.h"
+#include "Duelist.h"
 
 #include <ftxui/dom/elements.hpp>
 #include "Character.h"
@@ -25,7 +26,7 @@ int main(int argc, char **argv) {
 // Player test cases
 
 TEST(DuelistTest, DefaultConstructor) {
-    Shooter p;
+    Duelist p;
     EXPECT_EQ(p.GetName(), "");
     EXPECT_EQ(p.GetLevel(), 1);
     EXPECT_EQ(p.GetStat(0), 100);
@@ -35,7 +36,7 @@ TEST(DuelistTest, DefaultConstructor) {
 // Test Parameterized Constructor
 TEST(DuelistTest, ParameterizedConstructor) {
     std::vector<int> stats = {100, 10, 10, 10};
-    Shooter p("Hero", "Duelist", 1, stats);
+    Duelist p("Hero", "Duelist", 1, stats);
 
     EXPECT_EQ(p.GetName(), "Hero");
     EXPECT_EQ(p.GetLevel(), 1);
@@ -46,7 +47,7 @@ TEST(DuelistTest, ParameterizedConstructor) {
 // Test Add Experience and Level Up
 TEST(DuelistTest, AddExpAndLevelUp) {
     std::vector<int> stats = {100, 10, 10, 10};
-    Shooter p("Hero", "Duelist", 1, stats);
+    Duelist p("Hero", "Duelist", 1, stats);
 
     p.addExp(100);
     EXPECT_TRUE(p.canLevelUp());
@@ -59,7 +60,8 @@ TEST(DuelistTest, AddExpAndLevelUp) {
 
 // Test Add Item and Item Count
 TEST(DuelistTest, AddItemAndItemCount) {
-    Shooter p;
+    Duelist p;
+
     p.addItem(1);
     p.addItem(1);
     p.addItem(2);
@@ -71,7 +73,8 @@ TEST(DuelistTest, AddItemAndItemCount) {
 
 // Test Use Item
 TEST(DuelistTest, UseItem) {
-    Shooter p;
+    Duelist p;
+
     p.addItem(1);
     p.addItem(2);
 
@@ -79,3 +82,4 @@ TEST(DuelistTest, UseItem) {
     EXPECT_EQ(p.itemCount(1), 0);
     EXPECT_FALSE(p.useItem(3));
 }
+  

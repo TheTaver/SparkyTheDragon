@@ -30,8 +30,7 @@ This project is particularly interesting to us because many of us enjoy playing 
 When you start the game, you start at the Main menu where you choose to make a new game / load a game and then from there you go into the game. When you are in the Game, at any point you can quit, so everytime you do you just go to the main menu. In the Game you eventually have to enter combat, so you have a combat screen which ends and goes back to the game when you won your battle. When you die in combat, you go to the game over screen that takes you to the menu. Same thing happens when you win and see the victory screen. 
 
 ### Screen Layouts
-![Screen_Layout1](https://github.com/user-attachments/assets/7046bfd9-11e2-46c9-8171-3b001deb7fa4)
-![Screen_Layout2](https://github.com/user-attachments/assets/89da2b96-0b79-403d-9f1e-7a89261b0ac0)
+![screendia drawio](https://github.com/user-attachments/assets/17b7e892-b4e6-4f55-91d0-26030bf771a1)
 
 Main menu screen 
 \- Allows the player to continue a save (if one exists), start a new game, or exit the game    
@@ -46,7 +45,7 @@ Game over screen
 \- Displaying that the game is over, option to quit game     
 \- Purpose: Return to main menu after dying         
 Victory screen    
-\- Displays you won game, button to quit game or return to main menu   
+\- Displays you won game, button to quit game or continue last save 
 \- to go back to menu when you completed the game   
 
 
