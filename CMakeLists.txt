@@ -27,6 +27,7 @@ set(SOURCE_FILES
   src/CombatController.cpp
   src/CombatInfoDisplay.cpp
   src/CombatUI.cpp
+  src/Duelist.cpp
   src/MenuDisplay.cpp
   src/NPCReader.cpp
   src/npc.cpp
@@ -41,6 +42,7 @@ add_executable(test
     src/Character.cpp
     src/Attack.cpp
     src/Player.cpp
+    src/Duelist.cpp
 )
 
 add_executable(chartest
@@ -68,6 +70,7 @@ add_executable(cuitest
     src/Player.cpp
     src/CombatInfoDisplay.cpp
     src/CombatUI.cpp
+    src/Duelist.cpp
 )
 
 add_executable(combattest
@@ -80,6 +83,14 @@ add_executable(combattest
     src/CombatController.cpp
     src/NPCReader.cpp
 )
+
+add_executable(duelistTests
+    tests/duelistTest.cpp
+    src/Duelist.cpp
+    src/Attack.cpp
+    src/Character.cpp
+    src/Player.cpp
+    )
 
 add_executable(trpg
   src/main.cpp
@@ -127,6 +138,7 @@ add_executable(runTests
   src/Character.cpp
   src/Attack.cpp
   src/Player.cpp
+  src/Duelist.cpp
 )
 
 target_link_libraries(runTests
@@ -137,6 +149,12 @@ target_link_libraries(runTests
 )
 
 TARGET_LINK_LIBRARIES(NPCTests
+  PRIVATE gtest
+  PRIVATE gtest_main
+  PRIVATE pthread
+)
+
+TARGET_LINK_LIBRARIES(duelistTests
   PRIVATE gtest
   PRIVATE gtest_main
   PRIVATE pthread

@@ -15,7 +15,7 @@ Attack::Attack(const std::string& name, bool selfTargeting, int baseAccuracy, in
     // Check if the target get hit or not
 bool Attack::doesItHit(Character& target, int randSeed) {
     srand(randSeed); // outputs the dfferent number every time so it doesnt output the same number
-
+    
     int hitChance = rand() % 100; // which a number will return 0-99
     return hitChance < baseAccuracy; // if the baseAccuracy is greater then will hit and return true
 
@@ -29,7 +29,6 @@ void Attack::applyEffect(Character& target, int randSeed) {
     if (effectChanceHit <= effectChance) {
         target.TempChangeStat(effectStat, effectAmount);
     }
-    
 }
 
 // The hit function 
