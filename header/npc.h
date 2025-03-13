@@ -27,4 +27,5 @@ class NPC : public Character {
         const string GetDescription() const { return enemyDescription; }
 };
 
+
 #endif

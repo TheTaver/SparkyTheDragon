@@ -2,6 +2,7 @@
 #include <vector>
 #include "gtest/gtest.h"
 #include "Player.h"
+#include "../header/Shooter.h"
 #include "Duelist.h"
 
 #include <ftxui/dom/elements.hpp>
@@ -23,7 +24,6 @@ int main(int argc, char **argv) {
 }
 
 // Player test cases
-
 
 TEST(DuelistTest, DefaultConstructor) {
     Duelist p;
@@ -61,6 +61,7 @@ TEST(DuelistTest, AddExpAndLevelUp) {
 // Test Add Item and Item Count
 TEST(DuelistTest, AddItemAndItemCount) {
     Duelist p;
+
     p.addItem(1);
     p.addItem(1);
     p.addItem(2);
@@ -73,6 +74,7 @@ TEST(DuelistTest, AddItemAndItemCount) {
 // Test Use Item
 TEST(DuelistTest, UseItem) {
     Duelist p;
+
     p.addItem(1);
     p.addItem(2);
 
@@ -80,3 +82,4 @@ TEST(DuelistTest, UseItem) {
     EXPECT_EQ(p.itemCount(1), 0);
     EXPECT_FALSE(p.useItem(3));
 }
+  
