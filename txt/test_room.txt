@@ -1,0 +1,8 @@
+Basement
+You wake up in a cold, abandoned factory basement.
+What do you want to do?
+3
+Search the room for anything useful.
+Head upstairs toward the faint sound of machinery.
+Listen carefully for anything nearby.
+1

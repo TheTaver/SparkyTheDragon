@@ -68,6 +68,8 @@ add_executable(trpg
     src/npc.cpp
     src/CombatInfoDisplay.cpp
     src/CombatUI.cpp
+    src/GameController.cpp
+    src/Room.cpp
 )
 
 TARGET_LINK_LIBRARIES(test 
