@@ -3,7 +3,6 @@
 
 #include "CombatUI.h"
 #include "CombatLog.h"
-#include "NPCReader.h"
 #include "Player.h"
 #include "npc.h"
 
@@ -19,12 +18,7 @@ class CombatController {
         bool DoRound(int rand); // Returns whether to continue combat or not
         void UseMove(Character* attacker, Attack& move, Character* target, const int roundSeed);
     public:
-        CombatController(Player* playerChar, const string& enemyFile);
-        ~CombatController();
-
-        // rule of 3
-        CombatController(const CombatController& rhs) = delete;
-        CombatController operator=(const CombatController& rhs) = delete;
+        CombatController(Player* playerChar, NPC* opponent);
 
         void StartCombat(int randSeed = -1); // -1 indicates no seed
 };

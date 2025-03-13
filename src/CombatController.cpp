@@ -5,16 +5,10 @@
 using std::cout;
 using std::endl;
 
-CombatController::CombatController(Player* playerChar, const string& enemyFile) :
-player(playerChar), npcFilename(enemyFile)
+CombatController::CombatController(Player* playerChar, NPC* opponent) :
+player(playerChar), enemy(opponent)
 {
-    // enemy created with new
-    enemy = NPCReader::GetEnemy(npcFilename);
     combatLog.add("You encountered a "+enemy->GetName()+"!");
-}
-
-CombatController::~CombatController() {
-    delete enemy;
 }
 
 void CombatController::StartCombat(int randSeed) {

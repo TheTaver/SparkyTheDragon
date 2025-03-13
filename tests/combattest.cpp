@@ -13,9 +13,10 @@ int main() {
     player.addItem(1);
     player.addItem(2);
     player.addItem(3);
-
-    CombatController controller(&player, enemyFile);
+    NPC* rat = NPCReader::GetEnemy(enemyFile);
+    CombatController controller(&player, rat);
     controller.StartCombat();
 
+    delete rat;
     return 0;
 }
