@@ -89,6 +89,7 @@ add_executable(combattest
     src/CombatUI.cpp
     src/CombatController.cpp
     src/NPCReader.cpp
+    src/Duelist.cpp
 )
 
 add_executable(duelistTests
