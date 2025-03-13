@@ -1,9 +1,9 @@
 #include "GameController.h"
 
 
-void GameController::SaveGame(NPC* enemy, Player*& thePlayer, string filename){
-    ofstream file(filename);
-    //everytime a file opens it saves ig
+void GameController::SaveGame(NPC* enemy, Player*& thePlayer, string position){
+    ofstream file(position);
+    //everytime a file opens it saves ig, probs will change
     if(file.is_open()){
         //uhhhhhh
         thePlayer->GetName();
@@ -15,19 +15,13 @@ void GameController::SaveGame(NPC* enemy, Player*& thePlayer, string filename){
     }
 };
 
-Room GameController::LoadRoom(NPC* enemy, Player*& thePlayer,string position,string filename){
-    ifstream file(filename);
-    if(file.is_open()){
-        Room room(position);
-        return room;
-    }
-    else{
-        cout << "didnt open save file" << endl;
-        return Room("default_position");
-    }
+Room GameController::LoadRoom(string position){
+    Room room(position);
+    return room;
 };
 
 void GameController::EnterRoom(Player* thePlayer, Room room){
+    //layout will be changed probs 
     cout << room.GetDescription() << endl;
     cout << room.GetChoice() << endl;
 
@@ -36,21 +30,16 @@ void GameController::EnterRoom(Player* thePlayer, Room room){
         cout << options[i] << endl;
     }
 
+    //to show the room text
     int playerChoice;
     cout << "Option chosen: " << room.GetNumOptions() << endl;
-    cin >> playerChoice;
-
-    //if choice is correct
-    if (playerChoice >= 1 && playerChoice <= room.GetNumOptions()) {
-        cout << "You chose: " << options[playerChoice - 1] << endl;
-    } else {
-        cout << "Invalid choice." << endl;
-    }
+    cin >> playerChoice; //this kinda does nothing lol
 };
 
 void GameController::StartGameLoop(NPC* enemy, Player*& thePlayer){
     MenuDisplay menu;
     string playerName = "";
+    string position = "";
     string theInput = menu.Displaystart();
 
     if(theInput == "Start"){
@@ -68,9 +57,13 @@ void GameController::StartGameLoop(NPC* enemy, Player*& thePlayer){
             vector<int> duelistStats = {20, 2, 4, 1};
             thePlayer = new Duelist(playerName, 1, duelistStats);
         }
-        Room currentRoom("txt/test_room.txt");
-        Room prevRoom("txt/test_room.txt");
+
+        //mane idk
+        position = "txt/test_room.txt";
+        Room currentRoom(position);
+        Room prevRoom(position);
         EnterRoom(thePlayer, currentRoom);
+
         //then start first room
         //games saves after a battle is done i assume
         //but first lets just get the cui logic in here
@@ -94,5 +87,8 @@ void GameController::StartGameLoop(NPC* enemy, Player*& thePlayer){
     }
     if(theInput == "Continue"){
         //load from last checkpoint
+        if (playerName != ""){
+            LoadRoom(position);
+        }
     }
 }

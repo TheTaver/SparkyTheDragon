@@ -18,8 +18,8 @@ class GameController {
     public:
     string position;
 
-    void SaveGame(NPC* enemy, Player*& thePlayer,string filename);
-    Room LoadRoom(NPC* enemy, Player*& thePlayer,string position,string filename);
+    void SaveGame(NPC* enemy, Player*& thePlayer,string position);
+    Room LoadRoom(string position);
     void StartGameLoop(NPC* enemy, Player*& thePlayer);
     void EnterRoom(Player* thePlayer, Room room);
 };
