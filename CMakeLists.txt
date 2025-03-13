@@ -42,6 +42,7 @@ add_executable(test
     src/Character.cpp
     src/Attack.cpp
     src/Player.cpp
+    src/Shooter.cpp
     src/Duelist.cpp
 )
 
@@ -61,6 +62,12 @@ add_executable(NPCTests
   src/Character.cpp
   src/Attack.cpp
   src/npc.cpp
+)
+
+add_executable(roomTest
+    tests/roomTest.cpp
+    src/Room.cpp
+
 )
 
 add_executable(cuitest
@@ -110,6 +117,13 @@ TARGET_LINK_LIBRARIES(attacktest
   gtest
 )
 
+TARGET_LINK_LIBRARIES(roomTest
+PRIVATE gtest
+PRIVATE gtest_main
+PRIVATE pthread
+)
+
+
 TARGET_LINK_LIBRARIES(trpg
 PRIVATE ftxui::screen
 PRIVATE ftxui::dom
@@ -139,6 +153,21 @@ add_executable(runTests
   src/Attack.cpp
   src/Player.cpp
   src/Duelist.cpp
+  src/Shooter.cpp
+)
+
+add_executable(shooterTest
+  tests/shootertest.cpp
+  src/Attack.cpp
+  src/Shooter.cpp
+  src/Character.cpp
+  src/Player.cpp
+)
+
+target_link_libraries(shooterTest
+ gtest
+ gtest_main
+ pthread
 )
 
 target_link_libraries(runTests
