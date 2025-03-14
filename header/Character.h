@@ -38,5 +38,6 @@ class Character {
         bool IsDead() const;
 
         const vector<Attack> GetMoves() const;
+        void AddMove(Attack newMove);
 };
 #endif

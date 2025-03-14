@@ -100,3 +100,7 @@ void Character::ResetAllTemp() {
 const vector<Attack> Character::GetMoves() const {
     return moves;
 }
+
+void Character::AddMove(Attack newMove) {
+    moves.push_back(newMove);
+}

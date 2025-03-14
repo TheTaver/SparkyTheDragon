@@ -3,8 +3,8 @@
 #include <stdlib.h>
 #include <iostream>
 
-Attack::Attack(const std::string& name, const string& desc, int baseAccuracy, int numUses, int maxUses, 
-    int damage, int effectChance, int effectStat, int effectAmount) : name(name), description(desc), 
+Attack::Attack(const std::string& name, bool selfTarget, int baseAccuracy, int numUses, int maxUses, 
+    int damage, int effectChance, int effectStat, int effectAmount) : name(name), targetSelf(selfTarget), 
     baseAccuracy(baseAccuracy), numUses(numUses), maxUses(maxUses), damage(damage), effectChance(effectChance),
     effectStat(effectStat), effectAmount(effectAmount) {}
 
