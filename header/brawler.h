@@ -1,16 +1,23 @@
-#ifndef __BRAWLER_H__
-#define __BRAWLER_H__
-#include "Attack.h"
+#ifndef BRAWLER_H
+#define BRAWLER_H
+
 #include "Player.h"
+#include "Attack.h"
 
-class Brawler : public Player{
-    public:
-    //constructors
-    Brawler();
-    Brawler(const std::string& name, const std::string& playerClass, int level, std::vector<int>& stats);
-    Brawler(const std::string& name, const std::string& playerClass, int level, std::vector<int>& stats, int exp, std::vector<int>& inventory);
+#include <string>
+#include <vector>
 
-    Attack GetLvlUpMove(int newlvl) override;
-};
+using std::string;
+using std::vector;
+
+class Brawler : public Player {
+    public: 
+
+        Brawler();
+        Brawler(const string& name, const string& playerClass, int level, vector<int>& stats);
+        Brawler(const string& name, const string& playerClass, int level, vector<int>& stats, int exp, vector<int>& inventory);
+    
+        Attack GetLvlUpMove(int newLvl) override;
+    };
 
 #endif
