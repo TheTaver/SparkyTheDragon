@@ -9,6 +9,7 @@
 #include "brawler.h"
 #include "Shooter.h"
 #include "CyberRat.h"
+#include "RoboNinja.h"
 #include "SecurityGaurdA.h"
 #include "SecurityGaurdB.h"
 #include "Sparky.h"
@@ -27,7 +28,7 @@ class GameController {
     void SaveGame(NPC* enemy, Player*& thePlayer,string position);
     Room LoadRoom(string position);
     Player* MakeCharacter(string theInput);
-    void StartGameLoop();
+    string StartGameLoop();
     void EnterRoom(Player* thePlayer, Room room);
     bool DoCombat(NPC* enemy, Player* thePlayer);
 };
