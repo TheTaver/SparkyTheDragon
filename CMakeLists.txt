@@ -32,6 +32,10 @@ set(SOURCE_FILES
   src/NPCReader.cpp
   src/npc.cpp
   src/Player.cpp
+  src/Shooter.cpp
+  src/Room.cpp
+  src/GameController.cpp
+  src/brawler.cpp
   )
 
 include_directories(${CMAKE_SOURCE_DIR}/header)
@@ -90,6 +94,9 @@ add_executable(combattest
     src/CombatController.cpp
     src/NPCReader.cpp
     src/Duelist.cpp
+    src/Shooter.cpp
+    src/brawler.cpp
+    src/MenuDisplay.cpp
 )
 
 add_executable(duelistTests

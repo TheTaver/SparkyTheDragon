@@ -8,16 +8,16 @@
 // Call the character which have an empty name "", level 1, the default stat(idk how you guys want it)
 //  Temp starting stats (hp 100, 10, 10, 10)
 Player::Player() 
-: Character("",  1, std::vector<int>{100, 10, 10, 10}), exp(0), inventory({}) {}
+: Character("",  1, std::vector<int>{100, 10, 10, 10}), playerClass("none"), exp(0), inventory({}) {}
 
 
 // For the new players when start fresh
-Player::Player(std::string name, std::string playerClass, int level, std::vector<int>& stats) 
-: Character(name, level, stats), exp(0), inventory({}) {}
+Player::Player(std::string name, std::string classStr, int level, std::vector<int>& stats) 
+: Character(name, level, stats), playerClass(classStr), exp(0), inventory({}) {}
 
 // For returning players
-Player::Player(std::string name, std::string playerClass, int level, std::vector<int>& stats, int exp, std::vector<int>& inventory) 
-: Character(name, level, stats), exp(exp), inventory(inventory) {}
+Player::Player(std::string name, std::string classStr, int level, std::vector<int>& stats, int exp, std::vector<int>& inventory) 
+: Character(name, level, stats),playerClass(classStr), exp(exp), inventory(inventory) {}
 
 
 // no deconstructor needed
@@ -29,7 +29,7 @@ bool Player::canLevelUp() {
 }
 
 // Leveling up the player
-void Player::levelUp(std::string stats) {
+void Player::levelUp() {
     while(canLevelUp()) // if this true then it will go on this loop
     {
         // change the required xp to up x1.5 (can be change later you guys want to)
@@ -40,19 +40,23 @@ void Player::levelUp(std::string stats) {
 
 
        // The choices of what stat can the player upgrade (idk how much you guy the stat to be upgrade)
-       if(stats == "strength") {
-        this->stats[1] += 2; 
-
-       } else if(stats == "maxHP"){
-        this->stats[2] += 2;
-
-       } else if (stats == "agility") {
-        this->stats[2] += 2;
-
-       } else if (stats == "defense") {
+       if(playerClass == "Duelist") {
+        this->stats[2] += 4; 
+        this->stats[1] += 1;
         this->stats[3] += 2;
 
+       } else if(playerClass == "Brawler"){
+        this->stats[3] += 4;
+        this->stats[1] += 2;
+        this->stats[2] += 1;
+
+       } else if (playerClass == "Shooter") {
+        this->stats[1] += 4;
+        this->stats[3] += 1;
+        this->stats[2] += 2;
        }
+       this->stats[0] += 10;
+       AddMove(GetLvlUpMove(lvl));
     }
 }
 
@@ -60,7 +64,9 @@ void Player::levelUp(std::string stats) {
 // get the xp
 void Player::addExp(int amount) {
     exp += amount;
-
+    if (canLevelUp() == true){
+        levelUp();
+    }
 }
 
 // add item to the inventory
