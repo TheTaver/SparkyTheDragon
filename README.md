@@ -124,5 +124,19 @@ From repository directory:
 $ ./bin/trpg
 ```
  ## Testing
- > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
- 
+>[googletest](https://github.com/google/googletest.git) was utilized to create test cases.
+> The following classes were tested:
+>  - Attack
+>  - Character
+>  - Player (this class was tested through its subclasses)
+>   -  Brawler
+>   -  Duelist
+>   -  Shooter
+>  - NPC
+>  - Room 
+>  We were unable to use automated testing for the following classes because they implemented utilized graphical user interface (GUI):
+ - CombatController
+ - CombatInfoDisplay
+ - CombotUI
+ - MenuDisplay
+ - GameController
