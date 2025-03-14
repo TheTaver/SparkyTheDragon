@@ -17,6 +17,7 @@ void CombatController::StartCombat(int randSeed) {
     while(not endCombat and not player->IsDead() and not enemy->IsDead()) {
         endCombat = DoRound(rand());
     }
+    player->ResetAllTemp();
     // Todo: Fix?
     if(player->IsDead()) {
         cout << "rip lmao" << endl;

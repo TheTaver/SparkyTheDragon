@@ -52,10 +52,12 @@ int main() {
     //         cout << "dead fr" << endl;
     //     }
     // }
-
-
+    string gameInput;
     GameController game;
-    game.StartGameLoop();
+    while (gameInput != "Quit" ){
+        //probs sum diff if loaded game
+        gameInput = game.StartGameLoop();
+    }
     //show the menus
     //load the room
     //room has combat then enter combat
