@@ -1,1 +1,5 @@
 /final-project-cs100projectgroup5-24/CMakeFiles/allTests.dir/src: lcov --zerocounters --directory . && ~/final-project-cs100projectgroup5-24/bin/allTests && gcov *.cpp.gcno && lcov --capture --directory . --output-file gtest_coverage.info && genhtml gtest_coverage.info --output-directory CODE_COV
+
+
+
+lcov --zerocounters --directory . && ~/final-project-cs100projectgroup5-24/bin/allTests && gcov *.cpp.gcno && lcov --capture --directory . --output-file gtest_coverage.info && genhtml gtest_coverage.info --output-directory CODE_COV

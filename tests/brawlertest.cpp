@@ -44,11 +44,18 @@ TEST(BrawlerTest, GetLvlUpMove_InvalidLevel) {
     EXPECT_THROW(d.GetLvlUpMove(99), std::invalid_argument);
 }
 
-TEST(BrawlerTest, ParameterizedConstructor2) {
+TEST(BrawlerTest, ParameterizedConstructor) {
     vector<int> stats = {20, 0, 0, 0};
     vector<int> inv = {0, 1, 2, 3};
-    string name = "Sir Garner";
+    string name = "Sensai Spike";
     Brawler d(name, "Brawler", 1, stats, 0, inv);
     EXPECT_EQ(d.GetName(), name);
+    EXPECT_EQ(d.GetMoves().size(), 1);
+}
+
+TEST(BrawlerTest, ParameterizedConstructor2) {
+    vector<int> stats = {10, 5, 5, 5};
+    Brawler d("Canelo", "Brawler", 1, stats);
+    EXPECT_EQ(d.GetName(), "Canelo");
     EXPECT_EQ(d.GetMoves().size(), 1);
 }
