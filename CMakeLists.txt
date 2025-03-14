@@ -35,6 +35,8 @@ set(SOURCE_FILES
   src/Player.cpp
   src/Room.cpp
   src/Shooter.cpp
+  src/Shooter.cpp
+  src/GameController.cpp
   src/brawler.cpp
   )
 
@@ -60,6 +62,9 @@ add_executable(combattest
     src/CombatController.cpp
     src/NPCReader.cpp
     src/Duelist.cpp
+    src/Shooter.cpp
+    src/brawler.cpp
+    src/MenuDisplay.cpp
 )
 
 add_executable(trpg

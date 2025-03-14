@@ -97,9 +97,32 @@ This helps us write better code because it means we do not need to write impleme
 >  * Each team member should also submit the Peer Evaluation Form on Canvas for this final phase. In this form, you need to fill in the names of all team members, the percentage of work contributed by each member for the final phase, and a description of their contributions. Remember that each team member should submit the form individually.
  
  ## Screenshots
- > Screenshots of the input/output after running your application
+ <img width="1440" alt="1" src="https://github.com/user-attachments/assets/4c0b0690-2fcf-4c6d-9088-579d491ea08d" />
+ <img width="1440" alt="2" src="https://github.com/user-attachments/assets/f721ad21-a84d-40e7-821c-f92910822e32" />
+ <img width="1440" alt="3" src="https://github.com/user-attachments/assets/74a06aad-ed88-48a2-810a-f5f2f71d7adf" />
+ <img width="1440" alt="4" src="https://github.com/user-attachments/assets/cff48488-eb55-4b77-ada0-8b96b584988c" />
+ <img width="1440" alt="5" src="https://github.com/user-attachments/assets/81cc469b-fa24-4487-8c45-e3847921a407" />
+ <img width="1440" alt="6" src="https://github.com/user-attachments/assets/587d7e53-7729-45ac-bad2-2f5cef4b2b41" />
+
  ## Installation/Usage
- > Instructions on installing and running your application
+#### Required dependencies
+- [googletest](https://github.com/google/googletest.git)
+  - Included through github submodules
+- [ftxui](https://github.com/arthursonzogni/FTXUI)  
+	 - Included through CMake file in repository  
+	 - Should be downloaded automatically upon running cmake
+ ### Installation
+ ```
+ $ git clone --recursive git clone --recursive https://github.com/cs100/final-project-cs100projectgroup5-24.git
+ $ cd ./final-project-cs100projectgroup5-24
+ $ cmake .
+ $ make -j
+```
+### Run Program
+From repository directory:
+```
+$ ./bin/trpg
+```
  ## Testing
  > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
  
