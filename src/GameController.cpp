@@ -81,28 +81,46 @@ string GameController::StartGameLoop() {
         NPC* enemy1 = new CyberRat();
         quitButtonClicked = DoCombat(enemy1, thePlayer);
         delete enemy1;
-            
+        if(thePlayer->IsDead()) {
+            delete thePlayer;
+            return theInput = menu.DisplayGameOver();
+        }
+        
         NPC* enemy2 = new SecurityGaurdA();
         quitButtonClicked = DoCombat(enemy2, thePlayer);
         delete enemy2;
-
+        if(thePlayer->IsDead()) {
+            delete thePlayer;
+            return theInput = menu.DisplayGameOver();
+        }
+        
         NPC* enemy3 = new SecurityGaurdB();
         quitButtonClicked = DoCombat(enemy3, thePlayer);
         delete enemy3;
-    
+        if(thePlayer->IsDead()) {
+            delete thePlayer;
+            return theInput = menu.DisplayGameOver();
+        }
+        
         NPC* enemy4 = new RoboNinja();
         quitButtonClicked = DoCombat(enemy4, thePlayer);
         delete enemy4;
-
+        if(thePlayer->IsDead()) {
+            delete thePlayer;
+            return theInput = menu.DisplayGameOver();
+        }
+        
         NPC* enemy5 = new Sparky();
         quitButtonClicked = DoCombat(enemy5, thePlayer);
         delete enemy5;
-        
-
         if(thePlayer->IsDead()) {
+            delete thePlayer;
             return theInput = menu.DisplayGameOver();
         }
+        
+
         if (enemy5->IsDead()){
+            delete thePlayer;
             return theInput = menu.DisplayVictory();
         }
     }
