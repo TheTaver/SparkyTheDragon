@@ -12,8 +12,8 @@ class SecurityGaurdA : public NPC {
             : NPC(name, level, description, stats, xpReward, itemLoot) {}
 
     Attack GetAttack(int randSeed){
-        Attack move1 = Attack("Chainsaw Stab", "", 85, 30,30,7,0,-2,0);
-        Attack move2 = Attack("Chainsaw Slash", "", 87,30,30,9,0,-2,0);
+        Attack move1 = Attack("Chainsaw Stab", false, 85, 30,30,7,0,-2,0);
+        Attack move2 = Attack("Chainsaw Slash", false, 87,30,30,9,0,-2,0);
 
         srand(randSeed);
         int randChoice = rand() %2;

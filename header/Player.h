@@ -15,6 +15,7 @@ class Player : public Character {
 
     // Player's inventory
     std::vector<int> inventory;
+    string playerClass;
 
     public:
 
@@ -33,7 +34,7 @@ class Player : public Character {
     // Our helper functions 
     bool canLevelUp();
 
-    void levelUp(std::string stats);
+    void levelUp();
 
     void addExp(int exp);
 

@@ -46,16 +46,16 @@ TEST(DuelistTest, ParameterizedConstructor) {
 
 // Test Add Experience and Level Up
 TEST(DuelistTest, AddExpAndLevelUp) {
-    std::vector<int> stats = {100, 10, 10, 10};
+    std::vector<int> stats = {20, 2, 4, 1};
     Duelist p("Hero", "Duelist", 1, stats);
 
     p.addExp(100);
     EXPECT_TRUE(p.canLevelUp());
 
-    p.levelUp("strength");
+    p.levelUp();
     EXPECT_EQ(p.GetLevel(), 2);
     EXPECT_FALSE(p.canLevelUp());
-    EXPECT_EQ(p.GetStat(1), 12);
+    EXPECT_EQ(p.GetStat(1), 4);
 }
 
 // Test Add Item and Item Count

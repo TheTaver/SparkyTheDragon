@@ -58,7 +58,7 @@ Player* GameController::MakeCharacter(string theInput){
     }
 }
 
-void GameController::StartGameLoop(NPC* enemy, Player*& thePlayer) {
+void GameController::StartGameLoop() {
     MenuDisplay menu;
     string playerName = "";
     string position = "";
@@ -66,21 +66,7 @@ void GameController::StartGameLoop(NPC* enemy, Player*& thePlayer) {
 
     if(theInput == "Start"){
         theInput = menu.DisplayClassSelection();
-        thePlayer = MakeCharacter(theInput);
-        //cout << "What is your characters name?" << endl;
-        //cin >> playerName;
-        // if(theInput == "Brawler"){
-        //     vector<int> brawlerStats = {20, 2, 1, 4};
-        //     thePlayer = new Brawler(playerName, "Brawler", 1, brawlerStats);
-        // } 
-        // else if (theInput == "Shooter"){
-        //     vector<int> shooterStats = {20, 4, 2, 1};
-        //     thePlayer = new Shooter(playerName, "Shooter", 1, shooterStats);
-        // } 
-        // else if (theInput == "Duelist"){
-        //     vector<int> duelistStats = {20, 2, 4, 1};
-        //     thePlayer = new Duelist(playerName, "Duelist", 1, duelistStats);
-        // }
+        Player* thePlayer = MakeCharacter(theInput);
 
         //mane idk
         position = "test_room.txt";
@@ -88,11 +74,13 @@ void GameController::StartGameLoop(NPC* enemy, Player*& thePlayer) {
         Room prevRoom(position);
         EnterRoom(thePlayer, currentRoom);
 
+        bool quitButtonClicked = false;
         //then start first room
         //games saves after a battle is done i assume
         //but first lets just get the cui logic in here
-        CombatController combat(thePlayer, enemy);
-        combat.StartCombat();
+        NPC* enemy1 = new CyberRat();
+        quitButtonClicked = DoCombat(enemy1, thePlayer);
+        delete enemy1;
         // while(thePlayer->IsDead() != true && enemy->IsDead() != true){
         //     CombatInfoDisplay CombatInfoDisplay(thePlayer, enemy);
         //     CombatUI CombatUI(thePlayer, enemy, &theInput);
@@ -100,26 +88,23 @@ void GameController::StartGameLoop(NPC* enemy, Player*& thePlayer) {
         //     CombatUI.ShowCombatScreenUntilInput(combatLog);
         //     CombatController CombatController(thePlayer, enemy);
         // }
-        
-        if (thePlayer->IsDead()){
-            theInput = menu.DisplayGameOver();
-            if (theInput == "Returncd"){
-                theInput = "Continue";
-            }
-        }
-        else{
-            vector<int> eneLoot = enemy->GetLoot();
-            for(int i =0; i < eneLoot.size(); i++){
-                thePlayer->addItem(eneLoot[i]);
-            }
-            thePlayer->addExp(enemy->GetExpReward());
-            thePlayer->
-            enemy = new SecurityGaurdA();
-            CombatController combat(thePlayer, enemy);
-            combat.StartCombat();
 
+            
+        NPC* enemy2 = new SecurityGaurdA();
+        quitButtonClicked = DoCombat(enemy2, thePlayer);
+        delete enemy2;
 
+        NPC* enemy3 = new SecurityGaurdB();
+        quitButtonClicked = DoCombat(enemy3, thePlayer);
+        delete enemy3;
+    
+        NPC* enemy4 = new Sparky();
+        quitButtonClicked = DoCombat(enemy4, thePlayer);
+        delete enemy4;
             //to the next fight/room ig
+        
+        if(thePlayer->IsDead()) {
+            theInput = menu.DisplayGameOver();
         }
     }
     if(theInput == "Continue"){
@@ -128,4 +113,20 @@ void GameController::StartGameLoop(NPC* enemy, Player*& thePlayer) {
             LoadRoom(position);
         }
     }
+}
+
+bool GameController::DoCombat(NPC* enemy, Player* thePlayer){
+    CombatController combat(thePlayer, enemy);
+    combat.StartCombat();
+    if (thePlayer->IsDead() != true && enemy->IsDead() != true){
+        return true; // clicked quit button
+    }
+    if(!thePlayer->IsDead()) {
+        vector<int> eneLoot = enemy->GetLoot();
+        for(int i =0; i < eneLoot.size(); i++){
+            thePlayer->addItem(eneLoot[i]);
+        }
+        thePlayer->addExp(enemy->GetExpReward());
+    }
+    return false;
 }

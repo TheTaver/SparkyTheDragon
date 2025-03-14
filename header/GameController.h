@@ -10,6 +10,8 @@
 #include "Shooter.h"
 #include "CyberRat.h"
 #include "SecurityGaurdA.h"
+#include "SecurityGaurdB.h"
+#include "Sparky.h"
 #include <ftxui/component/screen_interactive.hpp>
 #include <vector>
 #include "Player.h"
@@ -25,8 +27,9 @@ class GameController {
     void SaveGame(NPC* enemy, Player*& thePlayer,string position);
     Room LoadRoom(string position);
     Player* MakeCharacter(string theInput);
-    void StartGameLoop(NPC* enemy, Player*& thePlayer);
+    void StartGameLoop();
     void EnterRoom(Player* thePlayer, Room room);
+    bool DoCombat(NPC* enemy, Player* thePlayer);
 };
 
 #endif

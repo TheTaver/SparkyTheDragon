@@ -53,17 +53,13 @@ int main() {
     //     }
     // }
 
-    NPC* enemy = new CyberRat();
-    Player* thePlayer = nullptr;
 
     GameController game;
-    game.StartGameLoop(enemy, thePlayer);
+    game.StartGameLoop();
     //show the menus
     //load the room
     //room has combat then enter combat
     //dadadadadada
-    delete enemy;
-    delete thePlayer;
-
+    
     return 0;
 }
