@@ -7,10 +7,10 @@ class Brawler : public Player{
     public:
     //constructors
     Brawler();
-    Brawler(string name, string playerclass, int level, vector<int>& stats) : Player(name, "Brawler", lvl, stats){ moves.push_back(GetLvlUpMove(1)); };
-    Brawler(string name, string playerclass, int level, vector<int>& stats, int exp, vector<int>& inventory);
+    Brawler(const std::string& name, const std::string& playerClass, int level, std::vector<int>& stats);
+    Brawler(const std::string& name, const std::string& playerClass, int level, std::vector<int>& stats, int exp, std::vector<int>& inventory);
 
-    Attack GetLvlUpMove(int newlvl);
+    Attack GetLvlUpMove(int newlvl) override;
 };
 
 #endif
