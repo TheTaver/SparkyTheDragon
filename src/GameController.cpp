@@ -75,9 +75,7 @@ string GameController::StartGameLoop() {
         EnterRoom(thePlayer, currentRoom);
 
         bool quitButtonClicked = false;
-        //then start first room
-        //games saves after a battle is done i assume
-        //but first lets just get the cui logic in here
+
         NPC* enemy1 = new CyberRat();
         quitButtonClicked = DoCombat(enemy1, thePlayer);
         delete enemy1;
@@ -109,8 +107,8 @@ string GameController::StartGameLoop() {
             delete thePlayer;
             return theInput = menu.DisplayGameOver();
         }
-        
-        NPC* enemy5 = new Sparky();
+
+        NPC* enemy5 = new RoboBro();
         quitButtonClicked = DoCombat(enemy5, thePlayer);
         delete enemy5;
         if(thePlayer->IsDead()) {
@@ -118,8 +116,17 @@ string GameController::StartGameLoop() {
             return theInput = menu.DisplayGameOver();
         }
         
+        NPC* enemy6 = new Sparky();
+        quitButtonClicked = DoCombat(enemy6, thePlayer);
+        if(thePlayer->IsDead()) {
+            delete enemy6;
+            delete thePlayer;
+            return theInput = menu.DisplayGameOver();
+        }
+        
 
-        if (enemy5->IsDead()){
+        if (enemy6->IsDead()){
+            delete enemy6;
             delete thePlayer;
             return theInput = menu.DisplayVictory();
         }

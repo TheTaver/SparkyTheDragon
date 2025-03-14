@@ -54,7 +54,7 @@ int main() {
     // }
     string gameInput;
     GameController game;
-    while (gameInput != "Quit" ){
+    while (gameInput != "Quit" || gameInput != "Returncd" || gameInput != "Quitcuzdead"){
         //probs sum diff if loaded game
         gameInput = game.StartGameLoop();
     }
