@@ -99,7 +99,24 @@ This helps us write better code because it means we do not need to write impleme
  ## Screenshots
  > Screenshots of the input/output after running your application
  ## Installation/Usage
- > Instructions on installing and running your application
+#### Required dependencies
+- [googletest](https://github.com/google/googletest.git)
+  - Included through github submodules
+- [ftxui](https://github.com/arthursonzogni/FTXUI)  
+	 - Included through CMake file in repository  
+	 - Should be downloaded automatically upon running cmake
+ ### Installation
+ ```
+ $ git clone --recursive git clone --recursive https://github.com/cs100/final-project-cs100projectgroup5-24.git
+ $ cd ./final-project-cs100projectgroup5-24
+ $ cmake .
+ $ make -j
+```
+### Run Program
+From repository directory:
+```
+$ ./bin/trpg
+```
  ## Testing
  > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
  
