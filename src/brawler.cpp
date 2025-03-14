@@ -28,6 +28,7 @@ Attack Brawler::GetLvlUpMove(int newLvl) {
     case 4: 
     return Attack("Ultimate Taijutsu Combo", false, 80, 5, 5, 20, 0, 0, 0);
 
+
     default:
     throw std::invalid_argument("Invalid level requested for attack: " + std::to_string(newLvl));
     }
