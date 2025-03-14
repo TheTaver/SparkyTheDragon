@@ -29,11 +29,11 @@ void CombatController::StartCombat(int randSeed) {
 
 void CombatController::UseMove(Character* attacker, Attack& move, Character* opponent, const int roundSeed) {
     Character* target;
-    if(move.targetSelf) {
-        target = attacker;
-    } else {
-        target = opponent;
-    }
+    // if(move.description) {
+    //     target = attacker;
+    // } else {
+    target = opponent;
+    // }
     string hitMsg = attacker->GetName() + " used " + move.name + " on "+target->GetName()+"!";
     combatLog.add(hitMsg);
     
