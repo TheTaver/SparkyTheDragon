@@ -30,5 +30,5 @@ Attack Brawler::GetLvlUpMove(int newLvl) {
 
     default:
     throw std::invalid_argument("Invalid level requested for attack: " + std::to_string(newLvl));
-    
+    }
 }
