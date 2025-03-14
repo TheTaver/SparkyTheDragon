@@ -17,7 +17,7 @@ class CyberRat : public NPC {
                 : NPC(name, level, description, stats, xpReward, itemLoot) {};
         
         Attack GetAttack(int seed) override {
-            return Attack("Bite", "", 80, 30, 30, 7, 0, -1, 0);
+            return Attack("Bite", false, 80, 30, 30, 7, 0, -1, 0);
         }
 
 };
