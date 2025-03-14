@@ -43,3 +43,12 @@ TEST(DuelistTest, GetLvlUpMove_InvalidLevel) {
     Duelist d;
     EXPECT_THROW(d.GetLvlUpMove(99), std::invalid_argument);
 }
+
+TEST(DuelistTest, ParameterizedConstructor2) {
+    vector<int> stats = {20, 0, 0, 0};
+    vector<int> inv = {0, 1, 2, 3};
+    string name = "Sir Garner";
+    Duelist d(name, "Duelist", 1, stats, 0, inv);
+    EXPECT_EQ(d.GetName(), name);
+    EXPECT_EQ(d.GetMoves().size(), 1);
+}

@@ -68,3 +68,93 @@ TEST(RoomTest, MalformedFileThrows) {
 
     EXPECT_THROW(Room room("malformed_room.txt"), std::runtime_error);
 }
+
+TEST(RoomTest, MissingPositionThrows) {
+    std::ofstream file("missing_position.txt");
+    file.close();
+
+    EXPECT_THROW(Room room("missing_position.txt"), std::runtime_error);
+}
+
+TEST(RoomTest, MissingDescriptionThrows) {
+    std::ofstream file("missing_description.txt");
+    file << "OnlyPosition\n";
+    file.close();
+
+    EXPECT_THROW(Room room("missing_description.txt"), std::runtime_error);
+}
+
+TEST(RoomTest, MissingChoiceThrows) {
+    std::ofstream file("missing_choice.txt");
+    file << "PositionLine\n";
+    file << "DescriptionLine\n";
+    file.close();
+
+    EXPECT_THROW(Room room("missing_choice.txt"), std::runtime_error);
+}
+
+TEST(RoomTest, InvalidNumOptionsThrows) {
+    std::ofstream file("invalid_num_options.txt");
+    file << "Position\n";
+    file << "Description\n";
+    file << "Choice\n";
+    file << "XYZ\n"; 
+
+    EXPECT_THROW(Room room("invalid_num_options.txt"), std::runtime_error);
+}
+
+TEST(RoomTest, InvalidNumOptionsThrows2) {
+    std::ofstream file("invalid_num_options2.txt");
+    file << "Position\n";
+    file << "Description\n";
+    file << "Choice\n";
+    file << "XYZ\n"; 
+    file.close();
+
+    EXPECT_THROW(Room room("invalid_num_options.txt"), std::runtime_error);
+}
+
+TEST(RoomTest, MissingOptionsThrows) {
+    std::ofstream file("missing_options.txt");
+    file << "Position\n";
+    file << "Description\n";
+    file << "Choice\n";
+    file << "3\n"; 
+    file << "Option 1\n"; 
+    file.close();
+
+    EXPECT_THROW(Room room("missing_options.txt"), std::runtime_error);
+}
+
+TEST(RoomTest, InvalidHasCombatThrows) {
+    std::ofstream file("invalid_combat_value.txt");
+    file << "Position\n";
+    file << "Description\n";
+    file << "Choice\n";
+    file << "2\n"; 
+    file << "Option 1\n";
+    file << "Option 2\n";
+    file << "XYZ\n"; 
+    file.close();
+
+    EXPECT_THROW(Room room("invalid_combat_value.txt"), std::runtime_error);
+}
+
+TEST(RoomTest, UnexpectedFileErrorThrows) {
+    std::ofstream file("corrupt_file.txt");
+    file << "Position\n";
+    file << "Description\n";
+    file << "Choice\n";
+    file << "3\n";
+    file << "Option 1\n";
+    file << "Option 2\n";
+    file << "Option 3\n";
+    file << "1\n";  
+    file.close();
+
+    chmod("corrupt_file.txt", 0000);  
+
+    EXPECT_THROW(Room room("corrupt_file.txt"), std::runtime_error);
+
+    chmod("corrupt_file.txt", 0644); 
+}

@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.26)
 project(cs100-final-project)
 
 set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_CXX_FLAGS --coverage)
 # -----------------------------------
 
 include(FetchContent)
@@ -32,47 +33,14 @@ set(SOURCE_FILES
   src/NPCReader.cpp
   src/npc.cpp
   src/Player.cpp
-  src/Shooter.cpp
   src/Room.cpp
+  src/Shooter.cpp
+  src/Shooter.cpp
   src/GameController.cpp
   src/brawler.cpp
   )
 
 include_directories(${CMAKE_SOURCE_DIR}/header)
-
-
-add_executable(test
-    tests/test.cpp
-    src/Character.cpp
-    src/Attack.cpp
-    src/Player.cpp
-    src/Shooter.cpp
-    src/Duelist.cpp
-)
-
-add_executable(chartest
-    tests/chartest.cpp
-    src/Character.cpp
-    src/Attack.cpp
-)
-
-add_executable(attacktest
-    tests/attacktest.cpp
-    src/Character.cpp
-    src/Attack.cpp
-)
-add_executable(NPCTests
-  tests/npctest.cpp
-  src/Character.cpp
-  src/Attack.cpp
-  src/npc.cpp
-)
-
-add_executable(roomTest
-    tests/roomTest.cpp
-    src/Room.cpp
-
-)
 
 add_executable(cuitest
     tests/combatuitest.cpp
@@ -99,38 +67,10 @@ add_executable(combattest
     src/MenuDisplay.cpp
 )
 
-add_executable(duelistTests
-    tests/duelistTest.cpp
-    src/Duelist.cpp
-    src/Attack.cpp
-    src/Character.cpp
-    src/Player.cpp
-    )
-
 add_executable(trpg
   src/main.cpp
   ${SOURCE_FILES}
 )
-
-TARGET_LINK_LIBRARIES(test 
-ftxui::dom
-gtest
-)
-
-TARGET_LINK_LIBRARIES(chartest
-  gtest
-)
-
-TARGET_LINK_LIBRARIES(attacktest
-  gtest
-)
-
-TARGET_LINK_LIBRARIES(roomTest
-PRIVATE gtest
-PRIVATE gtest_main
-PRIVATE pthread
-)
-
 
 TARGET_LINK_LIBRARIES(trpg
 PRIVATE ftxui::screen
@@ -150,49 +90,26 @@ PRIVATE ftxui::dom
 PRIVATE ftxui::component
 )
 
-# include_directories(
-  #   ${CMAKE_SOURCE_DIR}/test/lib/googletest/include/
-  #   ${CMAKE_SOURCE_DIR}/deps/FTXUI/include/ftxui/
-  # )
-  
-add_executable(runTests
-  tests/test.cpp
-  src/Character.cpp
-  src/Attack.cpp
-  src/Player.cpp
-  src/Duelist.cpp
-  src/Shooter.cpp
-)
-
-add_executable(shooterTest
+add_executable(allTests
+  tests/attacktest.cpp
+  tests/chartest.cpp
+  # tests/combattest.cpp
+  # tests/combatuitest.cpp
+  tests/duelistTest.cpp
+  tests/brawlertest.cpp
+  tests/npctest.cpp
+  tests/roomTest.cpp
   tests/shootertest.cpp
-  src/Attack.cpp
-  src/Shooter.cpp
-  src/Character.cpp
-  src/Player.cpp
+  tests/test.cpp
+  ${SOURCE_FILES}
 )
 
-target_link_libraries(shooterTest
- gtest
- gtest_main
- pthread
-)
 
-target_link_libraries(runTests
-  ftxui::dom
+target_link_libraries(allTests
+  PRIVATE ftxui::screen
+  PRIVATE ftxui::dom
+  PRIVATE ftxui::component
   gtest
   gtest_main
   pthread
-)
-
-TARGET_LINK_LIBRARIES(NPCTests
-  PRIVATE gtest
-  PRIVATE gtest_main
-  PRIVATE pthread
-)
-
-TARGET_LINK_LIBRARIES(duelistTests
-  PRIVATE gtest
-  PRIVATE gtest_main
-  PRIVATE pthread
 )

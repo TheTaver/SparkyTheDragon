@@ -82,4 +82,3 @@ TEST(DuelistTest, UseItem) {
     EXPECT_EQ(p.itemCount(1), 0);
     EXPECT_FALSE(p.useItem(3));
 }
-  

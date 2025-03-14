@@ -101,8 +101,6 @@ const vector<Attack> Character::GetMoves() const {
     return moves;
 }
 
-void Character::AddMove(const Attack& newMove) {
-    if(moves.size() >= 4)
-        throw std::invalid_argument("Max of 4 moves allowed");
+void Character::AddMove(Attack newMove) {
     moves.push_back(newMove);
 }

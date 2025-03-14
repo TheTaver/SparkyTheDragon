@@ -3,11 +3,8 @@
 #include <stdlib.h>
 #include <iostream>
 
-Attack::Attack() : name(""), targetSelf(false), baseAccuracy(0), numUses(0), maxUses(0), 
-damage(0), effectChance(0), effectStat(0), effectAmount(0) {}
-
-Attack::Attack(const std::string& name, bool selfTargeting, int baseAccuracy, int numUses, int maxUses, 
-    int damage, int effectChance, int effectStat, int effectAmount) : name(name), targetSelf(selfTargeting), 
+Attack::Attack(const std::string& name, bool selfTarget, int baseAccuracy, int numUses, int maxUses, 
+    int damage, int effectChance, int effectStat, int effectAmount) : name(name), targetSelf(selfTarget), 
     baseAccuracy(baseAccuracy), numUses(numUses), maxUses(maxUses), damage(damage), effectChance(effectChance),
     effectStat(effectStat), effectAmount(effectAmount) {}
 
