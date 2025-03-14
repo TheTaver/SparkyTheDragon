@@ -21,6 +21,18 @@ endif()
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
 add_subdirectory("_deps/googletest")
 
+set(SOURCE_FILES
+  src/Attack.cpp
+  src/Character.cpp
+  src/CombatController.cpp
+  src/CombatInfoDisplay.cpp
+  src/CombatUI.cpp
+  src/Duelist.cpp
+  src/MenuDisplay.cpp
+  src/NPCReader.cpp
+  src/npc.cpp
+  src/Player.cpp
+  )
 
 include_directories(${CMAKE_SOURCE_DIR}/header)
 
@@ -30,6 +42,8 @@ add_executable(test
     src/Character.cpp
     src/Attack.cpp
     src/Player.cpp
+    src/Shooter.cpp
+    src/Duelist.cpp
 )
 
 add_executable(chartest
@@ -50,6 +64,12 @@ add_executable(NPCTests
   src/npc.cpp
 )
 
+add_executable(roomTest
+    tests/roomTest.cpp
+    src/Room.cpp
+
+)
+
 add_executable(cuitest
     tests/combatuitest.cpp
     src/Character.cpp
@@ -57,19 +77,34 @@ add_executable(cuitest
     src/Player.cpp
     src/CombatInfoDisplay.cpp
     src/CombatUI.cpp
+    src/Duelist.cpp
 )
 
-add_executable(trpg
-    src/main.cpp
-    src/MenuDisplay.cpp
+add_executable(combattest
+    tests/combattest.cpp
     src/Character.cpp
     src/Attack.cpp
     src/Player.cpp
-    src/npc.cpp
     src/CombatInfoDisplay.cpp
     src/CombatUI.cpp
     src/GameController.cpp
     src/Room.cpp
+    src/CombatController.cpp
+    src/NPCReader.cpp
+    src/Duelist.cpp
+)
+
+add_executable(duelistTests
+    tests/duelistTest.cpp
+    src/Duelist.cpp
+    src/Attack.cpp
+    src/Character.cpp
+    src/Player.cpp
+    )
+
+add_executable(trpg
+  src/main.cpp
+  ${SOURCE_FILES}
 )
 
 TARGET_LINK_LIBRARIES(test 
@@ -85,6 +120,13 @@ TARGET_LINK_LIBRARIES(attacktest
   gtest
 )
 
+TARGET_LINK_LIBRARIES(roomTest
+PRIVATE gtest
+PRIVATE gtest_main
+PRIVATE pthread
+)
+
+
 TARGET_LINK_LIBRARIES(trpg
 PRIVATE ftxui::screen
 PRIVATE ftxui::dom
@@ -92,6 +134,12 @@ PRIVATE ftxui::component
 )
 
 TARGET_LINK_LIBRARIES(cuitest
+PRIVATE ftxui::screen
+PRIVATE ftxui::dom
+PRIVATE ftxui::component
+)
+
+TARGET_LINK_LIBRARIES(combattest
 PRIVATE ftxui::screen
 PRIVATE ftxui::dom
 PRIVATE ftxui::component
@@ -107,6 +155,22 @@ add_executable(runTests
   src/Character.cpp
   src/Attack.cpp
   src/Player.cpp
+  src/Duelist.cpp
+  src/Shooter.cpp
+)
+
+add_executable(shooterTest
+  tests/shootertest.cpp
+  src/Attack.cpp
+  src/Shooter.cpp
+  src/Character.cpp
+  src/Player.cpp
+)
+
+target_link_libraries(shooterTest
+ gtest
+ gtest_main
+ pthread
 )
 
 target_link_libraries(runTests
@@ -117,6 +181,12 @@ target_link_libraries(runTests
 )
 
 TARGET_LINK_LIBRARIES(NPCTests
+  PRIVATE gtest
+  PRIVATE gtest_main
+  PRIVATE pthread
+)
+
+TARGET_LINK_LIBRARIES(duelistTests
   PRIVATE gtest
   PRIVATE gtest_main
   PRIVATE pthread

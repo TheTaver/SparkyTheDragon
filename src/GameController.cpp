@@ -1,6 +1,7 @@
 #include "GameController.h"
 
 
+
 void GameController::SaveGame(NPC* enemy, Player*& thePlayer, string position){
     ofstream file(position);
     //everytime a file opens it saves ig, probs will change
@@ -36,7 +37,7 @@ void GameController::EnterRoom(Player* thePlayer, Room room){
     cin >> playerChoice; //this kinda does nothing lol
 };
 
-void GameController::StartGameLoop(NPC* enemy, Player*& thePlayer){
+void GameController::StartGameLoop(NPC* enemy, Player*& thePlayer) {
     MenuDisplay menu;
     string playerName = "";
     string position = "";
@@ -47,15 +48,16 @@ void GameController::StartGameLoop(NPC* enemy, Player*& thePlayer){
         cin >> playerName;
         theInput = menu.DisplayClassSelection();
         if(theInput == "Brawler"){
-            //not yet
+            vector<int> brawlerStats = {20, 2, 1, 4};
+            thePlayer = new Brawler(playerName, "Brawler", 1, brawlerStats);
         } 
         else if (theInput == "Shooter"){
-            //not yet
+            vector<int> shooterStats = {20, 4, 2, 1};
+            thePlayer = new Shooter(playerName, "Shooter", 1, shooterStats);
         } 
         else if (theInput == "Duelist"){
-            //health, power, agility, def
             vector<int> duelistStats = {20, 2, 4, 1};
-            thePlayer = new Duelist(playerName, 1, duelistStats);
+            thePlayer = new Duelist(playerName, "Duelist", 1, duelistStats);
         }
 
         //mane idk

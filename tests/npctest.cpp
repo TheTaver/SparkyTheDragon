@@ -85,6 +85,44 @@ TEST(NPCTest, MultipleLootChecks) {
     EXPECT_EQ(loot[2], 15);
 }
 
+TEST(NPCTest, SetLoot_Valid) {
+    TestNPC npc("NPC", 1, {5, 10, 3, 2}, 50, {1, 2});
+
+    std::vector<int> newLoot = {3, 4, 5};
+    npc.SetLoot(newLoot);
+    
+    EXPECT_EQ(npc.GetLoot(), newLoot);
+}
+
+// **Test for Setting an Empty Loot List**
+TEST(NPCTest, SetLoot_Empty) {
+    TestNPC npc("NPC", 1, {5, 10, 3, 2}, 50, {1, 2});
+
+    std::vector<int> emptyLoot = {};
+    npc.SetLoot(emptyLoot);
+    
+    EXPECT_TRUE(npc.GetLoot().empty());
+}
+
+TEST(NPCTest, SetExpReward_Valid) {
+    TestNPC npc("NPC", 1, {5, 10, 3, 2}, 50, {1, 2});
+
+    EXPECT_EQ(npc.GetExpReward(), 50); // Initial value
+
+    npc.SetExpReward(100);
+    EXPECT_EQ(npc.GetExpReward(), 100);
+
+    npc.SetExpReward(0); // Edge case: setting to zero
+    EXPECT_EQ(npc.GetExpReward(), 0);
+}
+
+// **Test for ExpReward Setter Throwing an Exception on Negative Values**
+TEST(NPCTest, SetExpReward_InvalidNegative) {
+    TestNPC npc("NPC", 1, {5, 10, 3, 2}, 50, {1, 2});
+
+    EXPECT_THROW(npc.SetExpReward(-10), std::runtime_error);
+}
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

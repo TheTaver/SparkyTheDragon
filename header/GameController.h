@@ -5,6 +5,8 @@
 #include "CombatInfoDisplay.h"
 #include "CombatUI.h"
 #include "Duelist.h"
+#include "brawler.h"
+#include "Shooter.h"
 #include "CyberRat.h"
 #include <ftxui/component/screen_interactive.hpp>
 #include <vector>

@@ -5,7 +5,6 @@
 
 Room::Room(const std::string& filename)
 : numOptions(0), hasCombat(false) {
-
     std::ifstream file(filename);
     if(!file.is_open()) {
         throw std::runtime_error("Failed to open room file");
