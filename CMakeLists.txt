@@ -91,6 +91,7 @@ add_executable(allTests
   # tests/combattest.cpp
   # tests/combatuitest.cpp
   tests/duelistTest.cpp
+  tests/brawlertest.cpp
   tests/npctest.cpp
   tests/roomTest.cpp
   tests/shootertest.cpp

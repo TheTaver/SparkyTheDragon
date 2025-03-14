@@ -3,9 +3,6 @@
 #include <stdlib.h>
 #include <iostream>
 
-Attack::Attack() : name(""), description(""), baseAccuracy(0), numUses(0), maxUses(0), 
-damage(0), effectChance(0), effectStat(0), effectAmount(0) {}
-
 Attack::Attack(const std::string& name, const string& desc, int baseAccuracy, int numUses, int maxUses, 
     int damage, int effectChance, int effectStat, int effectAmount) : name(name), description(desc), 
     baseAccuracy(baseAccuracy), numUses(numUses), maxUses(maxUses), damage(damage), effectChance(effectChance),

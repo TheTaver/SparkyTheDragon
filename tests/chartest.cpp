@@ -80,6 +80,17 @@ TEST(CharacterTempStats, OnePosChange) {
     }
 }
 
+TEST(CharacterTempStats, InvalidStat) {
+    std::string name = "Reginald";
+    int level = 1;
+    vector<int> stats;
+    for(int i = 0; i < NUM_STATS; i++) {
+        stats.push_back(i);
+    }
+    Character reggie(name, level, stats);
+    EXPECT_ANY_THROW(reggie.TempChangeStat(4, 10););
+}
+
 TEST(CharacterTempStats, OneNegChange) {
     std::string name = "Reginald";
     int level = 1;
@@ -92,6 +103,7 @@ TEST(CharacterTempStats, OneNegChange) {
 
     
     EXPECT_EQ(reggie.GetStat(2), -8);
+    EXPECT_EQ(reggie.GetTempStats().at(2), -10);
     for(int i = 0; i < NUM_STATS; i++) {
         if(i != 2) {
             EXPECT_EQ(reggie.GetStat(i), stats.at(i));
@@ -195,6 +207,33 @@ TEST(DealDamageTest, NoDefense) {
     EXPECT_EQ(punchingBag.GetCurrHp(), (stats.at(0) - 5));
     punchingBag.DealDamage(10);
     EXPECT_EQ(punchingBag.GetCurrHp(), (stats.at(0) - 15));
+}
+
+TEST(DealDamageTest, DealNegDmg) {
+    vector<int> stats = {20, 0, 0, 0}; // 0% Damage Reduction
+    Character punchingBag("Test Dummy", 1, stats);
+    
+    EXPECT_EQ(punchingBag.GetCurrHp(), stats.at(0));
+    EXPECT_ANY_THROW(punchingBag.DealDamage(-5););
+}
+
+TEST(DealDamageTest, NegTrueDmg) {
+    vector<int> stats = {20, 0, 0, 0}; // 0% Damage Reduction
+    Character punchingBag("Test Dummy", 1, stats);
+    
+    EXPECT_EQ(punchingBag.GetCurrHp(), stats.at(0));
+    punchingBag.DealTrueDamage(5);
+    EXPECT_EQ(punchingBag.GetCurrHp(), stats.at(0)-5);
+    EXPECT_ANY_THROW(punchingBag.HealCharacter(-5););
+    EXPECT_EQ(punchingBag.GetCurrHp(), stats.at(0)-5);
+}
+
+TEST(CharacterClass, NegHealing) {
+    vector<int> stats = {20, 0, 0, 0}; // 0% Damage Reduction
+    Character punchingBag("Test Dummy", 1, stats);
+
+    EXPECT_EQ(punchingBag.GetCurrHp(), stats.at(0));
+    EXPECT_ANY_THROW(punchingBag.DealTrueDamage(-5););
 }
 
 TEST(DealDamageTest, Base20Defense) {
