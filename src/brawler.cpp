@@ -17,18 +17,20 @@ Attack Brawler::GetLvlUpMove(int newLvl) {
 
     switch(newLvl){
     case 1: 
-    return Attack("Punch", false, 95, 20, 20, 5, 0, 0, 0);
+    return Attack("Punch", false, 95, 20, 20, 10, 0, 0, 0);
 
     case 2: 
-    return Attack("Sweep Kick", false, 90, 15, 15, 10, 0, 0, 0);
+    return Attack("Sweep Kick", false, 90, 15, 15, 15, 0, 0, 0);
 
     case 3: 
-    return Attack("Body Slam", false, 85, 10, 10, 15, 80, 3, -4);
+    return Attack("Body Slam", false, 85, 10, 10, 20, 80, 3, -4);
 
     case 4: 
-    return Attack("Ultimate Taijutsu Combo", false, 80, 5, 5, 20, 0, 0, 0);
+    return Attack("Ultimate Taijutsu Combo", false, 80, 5, 5, 25, 0, 0, 0);
 
     default:
     throw std::invalid_argument("Invalid level requested for attack: " + std::to_string(newLvl));
     
+}
+
 }

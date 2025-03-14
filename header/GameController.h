@@ -12,6 +12,7 @@
 #include "RoboNinja.h"
 #include "SecurityGaurdA.h"
 #include "SecurityGaurdB.h"
+#include "RoboBro.h"
 #include "Sparky.h"
 #include <ftxui/component/screen_interactive.hpp>
 #include <vector>

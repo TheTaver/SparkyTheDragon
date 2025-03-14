@@ -7,7 +7,7 @@ class Sparky : public NPC {
     public:
     Sparky(): NPC("Sparky The Dragon", 4, 
         "You bother them! Now they want to kill you because you bothered them! rawr!",
-        {50, 15, 15, 15}, 0, {}) {};
+        {50, 15, 15, 25}, 0, {}) {};
     Attack GetAttack(int randSeed){
         Attack move1 = Attack("Wing Slash", false, 95, 30,30,15,0,0,0);
         Attack move2 = Attack("Thunder Bolt", false, 90,30,30,22,0,0,0);
