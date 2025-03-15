@@ -131,13 +131,14 @@ string GameController::StartGameLoop() {
             return theInput = menu.DisplayVictory();
         }
     }
-    if(theInput == "Continue"){
+    else if(theInput == "Continue"){
         //load from last checkpoint
         if (playerName != ""){
             LoadRoom(position);
         }
     }
     return "Quit";
+
 }
 
 bool GameController::DoCombat(NPC* enemy, Player* thePlayer){
