@@ -134,6 +134,7 @@ The following classes were tested:
   -  Shooter
  - NPC
  - Room
+
 We were unable to use automated testing for the following classes because they implemented utilized graphical user interface (GUI):
  - CombatController
  - CombatInfoDisplay
