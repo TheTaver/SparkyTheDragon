@@ -49,13 +49,11 @@ TEST(DuelistTest, AddExpAndLevelUp) {
     std::vector<int> stats = {20, 2, 4, 1};
     Duelist p("Hero", "Duelist", 1, stats);
 
+    EXPECT_EQ(p.GetLevel(), 1);
     p.addExp(100);
-    EXPECT_TRUE(p.canLevelUp());
-
-    p.levelUp();
     EXPECT_EQ(p.GetLevel(), 2);
     EXPECT_FALSE(p.canLevelUp());
-    EXPECT_EQ(p.GetStat(1), 4);
+    EXPECT_EQ(p.GetStat(2), 8);
 }
 
 // Test Add Item and Item Count
@@ -75,10 +73,18 @@ TEST(DuelistTest, AddItemAndItemCount) {
 TEST(DuelistTest, UseItem) {
     Duelist p;
 
+    p.addItem(0);
     p.addItem(1);
     p.addItem(2);
 
+    EXPECT_TRUE(p.useItem(0));
     EXPECT_TRUE(p.useItem(1));
     EXPECT_EQ(p.itemCount(1), 0);
     EXPECT_FALSE(p.useItem(3));
+}
+
+TEST(DuelistTest, UseInvalidItem) {
+    Duelist p;
+
+    EXPECT_ANY_THROW(p.useItem(4));
 }

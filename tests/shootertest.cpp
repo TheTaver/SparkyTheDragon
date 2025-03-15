@@ -59,3 +59,14 @@ TEST(ShooterTest, ParameterizedConstructor2) {
     EXPECT_EQ(d.GetName(), "Lil Glock");
     EXPECT_EQ(d.GetMoves().size(), 1);
 }
+
+TEST(ShooterTest, AddExpAndLevelUp) {
+    std::vector<int> stats = {20, 4, 2, 1};
+    Shooter p("Hero", "Shooter", 1, stats);
+
+    EXPECT_EQ(p.GetLevel(), 1);
+    p.addExp(100);
+    EXPECT_EQ(p.GetLevel(), 2);
+    EXPECT_FALSE(p.canLevelUp());
+    EXPECT_EQ(p.GetStat(1), 8);
+}

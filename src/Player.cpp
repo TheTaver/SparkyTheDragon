@@ -24,7 +24,7 @@ Player::Player(std::string name, std::string classStr, int level, std::vector<in
 
 // to check if they can level up
 bool Player::canLevelUp() {
-    int requiredExp = static_cast<int>(100 * pow(expMult, lvl - 1)); // checking if they level up
+    int requiredExp = static_cast<int>(100 * pow(expMult, lvl-1)); // checking if they level up
     return exp >= requiredExp; // return true if this is true
 }
 
@@ -33,7 +33,7 @@ void Player::levelUp() {
     while(canLevelUp()) // if this true then it will go on this loop
     {
         // change the required xp to up x1.5 (can be change later you guys want to)
-       int requiredExp = static_cast<int>(100 * pow(expMult, lvl - 1));
+       int requiredExp = static_cast<int>(100 * pow(expMult, lvl-1));
 
        exp -= requiredExp; // Substract the the current xp with the required xp
        lvl++; // level up :)
@@ -64,7 +64,7 @@ void Player::levelUp() {
 // get the xp
 void Player::addExp(int amount) {
     exp += amount;
-    if (canLevelUp() == true){
+    if (canLevelUp()){
         levelUp();
     }
 }
