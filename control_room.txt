@@ -1,0 +1,9 @@
+Control Room
+You enter a room filled with monitors and blinking lights. There’s a locked door.
+What do you want to do?
+2
+Try to unlock the door.
+Search for clues.
+rooms/locked_room.txt
+rooms/machine_floor.txt
+0

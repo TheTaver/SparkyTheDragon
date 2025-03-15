@@ -1,0 +1,9 @@
+Guard Room
+A security guard is patrolling the area.
+What do you want to do?
+2
+Try to sneak past.
+Fight the guard.
+elevator.txt
+combat
+1

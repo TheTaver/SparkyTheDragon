@@ -1,94 +1,73 @@
-#include "../header/RoomDisplay.h"
-#include "../header/Room.h"
-#include "../header/Character.h"
+#include "RoomDisplay.h"
+#include <ftxui/dom/elements.hpp>
 #include <ftxui/component/component.hpp>
 #include <ftxui/component/screen_interactive.hpp>
-#include <ftxui/dom/elements.hpp>
-#include <vector>
-#include <string>
+#include <iostream>
+#include "ButtonMaker.h"
 
 using namespace ftxui;
 
-std::string RoomDisplay::DisplayRoom(Room room, Character player) {
-    std::string playerChoice = "";
-    auto screen = ScreenInteractive::FitComponent();  
+std::string RoomDisplay::DisplayRoom(Room& room, Character& player, int currentHp) {
+    auto screen = ScreenInteractive::TerminalOutput();
+    std::string inputStr = "";
 
-    //  Extract Room Information 
-    std::string description = room.GetDescription();
+    // Use ButtonMaker for health potion and quit buttons
+    Component healPotBtn = ButtonMaker::MakeButton("Health Pot", inputStr, screen);
+    Component quit_game = ButtonMaker::MakeButton("Quit game", inputStr, screen);
+
+    // Room Description Section
+    auto room_description = Renderer([&] {
+        return window(text("Room description"), text(room.GetDescription()));
+    });
+
+    // Info Panel
+    auto info_panel = Renderer([&] {
+        return window(text("Info"), text("Player: " + player.GetName()));
+    });
+
+    // Stats Panel
+    auto stats_panel = Renderer([&] {
+        return window(text("Stats"),
+            vbox({
+                text("HP: " + std::to_string(currentHp) + "/" + std::to_string(player.GetStat(0))),
+                text("Attack: " + std::to_string(player.GetStat(1))),
+                text("Speed: " + std::to_string(player.GetStat(2))),
+                text("Defense: " + std::to_string(player.GetStat(3))),
+            })
+        );
+    });
+
+    // Creating buttons for choices
     std::vector<std::string> options = room.GetOptions();
+    std::vector<Component> choice_buttons;
 
- 
-    auto descriptionBox = vbox({
-        text("Room Description") | bold | center,
-        separator(),
-        text(description) | flex
-    }) | border;
-
-    
-    bool showInfo = false;
-    bool showStats = false;
-
-    auto infoDisplay = Renderer([&] {
-        return showInfo ? vbox(text("Player Info:\n- Level: " + std::to_string(player.GetLevel())) | border)
-                        : vbox();
-    });
-
-    auto statsDisplay = Renderer([&] {
-        return showStats ? vbox(text("Stats:\n- HP: " + std::to_string(player.GetCurrHp())) | border)
-                         : vbox();
-    });
-
-    auto infoButton = Button("Info", [&] {
-        showInfo = !showInfo;  // Toggle visibility
-        screen.PostEvent(Event::Custom);
-    });
-
-    auto statsButton = Button("Stats", [&] {
-        showStats = !showStats;  // Toggle visibility
-        screen.PostEvent(Event::Custom);
-    });
-
-    auto sidePanel = Container::Vertical({
-        infoButton,
-        infoDisplay,
-        statsButton,
-        statsDisplay
-    });
-
-
-    std::vector<Component> choiceButtons;
     for (const auto& option : options) {
-        choiceButtons.push_back(Button(option, [&] {
-            playerChoice = option;
-            screen.PostEvent(Event::Custom); // Update UI without exiting
-        }));
+        choice_buttons.push_back(ButtonMaker::MakeButton(option, inputStr, screen));
     }
 
-    
-    auto healthPotButton = Button("Health Pot", [&] {
-        playerChoice = "Health Pot";
-        screen.PostEvent(Event::Custom);
-    });
+    // Choices Layout
+    auto choices_container = Container::Horizontal({});
+    for (auto& button : choice_buttons) {
+        choices_container->Add(button);
+    }
+    choices_container->Add(healPotBtn);
 
-   
-    auto quitButton = Button("Quit Game", [&] {
-        playerChoice = "Quit";
-        screen.PostEvent(Event::Custom);
-    });
-    
-    auto buttonRow = Container::Horizontal(choiceButtons);
-    buttonRow->Add(healthPotButton);
-    buttonRow->Add(quitButton);
-
-
+    // Main Layout
     auto layout = Container::Vertical({
-        Renderer([&] { return hbox({descriptionBox | flex, sidePanel->Render()}) | border; }),
-        Renderer([&] { return separator(); }),
-        buttonRow
+        room_description,
+        Container::Horizontal({
+            info_panel,
+            stats_panel
+        }),
+        choices_container,
+        quit_game
     });
 
-    screen.Loop(layout);  
+    auto render_layout = Renderer(layout, [&] {
+        return window(text("Room Screen"), layout->Render());
+    });
 
-    return playerChoice;
+    screen.Loop(render_layout);
+
+    return inputStr;  // ✅ Return player's choice instead of continuing execution
 }
-

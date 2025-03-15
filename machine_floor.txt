@@ -1,0 +1,9 @@
+Machine Floor
+You step onto a noisy factory floor, where machines hum and gears grind.
+What do you want to do?
+2
+Investigate the control panel.
+Go back to the basement.
+control_room.txt
+test_room.txt
+0

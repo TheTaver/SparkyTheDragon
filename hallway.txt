@@ -1,0 +1,9 @@
+Hallway
+You step into a long hallway with flickering lights. You hear distant footsteps.
+What do you want to do?
+2
+Follow the sound.
+Enter a nearby room.
+guardroom.txt
+office.txt
+0

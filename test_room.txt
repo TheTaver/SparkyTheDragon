@@ -5,4 +5,7 @@ What do you want to do?
 Search the room for anything useful.
 Head upstairs toward the faint sound of machinery.
 Listen carefully for anything nearby.
-1
+storage_room.txt
+machine_floor.txt
+hallway.txt
+0

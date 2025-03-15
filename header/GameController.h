@@ -1,34 +1,37 @@
-#ifndef GAMECONTROLLER_H
-#define GAMECONTROLLER_H
-
+#ifndef __GAMECONTROLLER_H__
+#define __GAMECONTROLLER_H__
 #include <string>
-#include <iostream>
+#include "MenuDisplay.h"
+#include "CombatInfoDisplay.h"
+#include "CombatUI.h"
+#include "CombatController.h"
+#include "Duelist.h"
+#include "brawler.h"
+#include "Shooter.h"
+#include "CyberRat.h"
+#include "RoboNinja.h"
+#include "SecurityGaurdA.h"
+#include "SecurityGaurdB.h"
+#include "Sparky.h"
+#include <ftxui/component/screen_interactive.hpp>
+#include <vector>
+#include "Player.h"
 #include "Room.h"
-#include "Character.h"
+#include <fstream>
+
+using namespace std;
 
 class GameController {
-    private:
-        std::string position;
-
     public:
-        GameController() : position("start") {}
+    string position;
 
-        void SaveGame() {
-            std::cout << "Saving game...\n";
-        }
-
-        Room LoadRoom(const std::string& position) {
-            std::cout << "Loading room at position: " << position << "\n";
-            return Room(position); 
-        }
-
-        void StartGameLoop() {
-            std::cout << "Starting game loop...\n";
-        }
-
-        void EnterRoom(Character& player, Room& room) {
-            std::cout << "Entering room: " << room.GetDescription() << "\n";
-        }
+    void SaveGame(NPC* enemy, Player*& thePlayer,string position);
+    Room LoadRoom(string position);
+    Player* MakeCharacter(string theInput);
+    string StartGameLoop();
+    void EnterRoom(Player* thePlayer, Room room);
+    bool DoCombat(NPC* enemy, Player* thePlayer);
 };
 
-#endif // GAMECONTROLLER_H
+#endif
+

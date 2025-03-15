@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include "Character.h"
+#include "Attack.h"
 
 class Player : public Character {
     private:
@@ -14,6 +15,7 @@ class Player : public Character {
 
     // Player's inventory
     std::vector<int> inventory;
+    string playerClass;
 
     public:
 
@@ -32,16 +34,19 @@ class Player : public Character {
     // Our helper functions 
     bool canLevelUp();
 
-    void levelUp(std::string stats);
+    void levelUp();
 
     void addExp(int exp);
 
     void addItem(int itemType);
 
-    int itemCount(int itemtype);
+    int itemCount(int itemtype) const;
 
     bool useItem(int itemType);
 
+    virtual Attack GetLvlUpMove(int newLvl) = 0;
+
 };
+
 
 #endif

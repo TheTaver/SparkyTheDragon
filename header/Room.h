@@ -5,23 +5,24 @@
 #include <vector>
 
 class Room {
-    private:
-    std::string description;
+private:
     std::string position;
+    std::string description;
     std::string choice;
     int numOptions;
-    std::vector<std::string> optionText;
     bool hasCombat;
+    std::vector<std::string> optionText;
+    std::vector<std::string> nextRooms;
 
-    public:
+public:
     Room();
-    Room(const std::string& position);
+    Room(const std::string& filename);
 
-    const std::string GetDescription() const;
-    const std::string GetChoice() const;
-    int GetNumOptions() const;
-    const std::vector<std::string> GetOptions() const;
-    bool HasCombat() const;
+    const std::string& GetDescription() const;  
+    const std::vector<std::string>& GetOptions() const;
+    int GetNumOptions() const { return numOptions; }
+    bool HasCombat() const { return hasCombat; }
+    std::string GetNextRoom(int choice) const { return nextRooms[choice]; }
 };
 
 #endif

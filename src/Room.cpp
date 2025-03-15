@@ -1,4 +1,4 @@
-#include "../header/Room.h"
+#include "Room.h"
 #include <fstream>
 #include <iostream>
 #include <stdexcept>
@@ -6,13 +6,11 @@
 Room::Room() 
 : position("Unknown"), description("Empty room"), choice("None"), numOptions(0), hasCombat(false) {}
 
-
 Room::Room(const std::string& filename)
 : numOptions(0), hasCombat(false) {
-    
     std::ifstream file(filename);
-    if(!file.is_open()) {
-        throw std::runtime_error("Failed to open room file");
+    if (!file.is_open()) {
+        throw std::runtime_error("Failed to open room file: " + filename);
     }
 
     if (!std::getline(file, position)) {
@@ -27,19 +25,28 @@ Room::Room(const std::string& filename)
         throw std::runtime_error("Error reading choice");
     }
 
-    // Read number of options
     if (!(file >> numOptions)) {
         throw std::runtime_error("Error reading number of options");
     }
     file.ignore();
 
     optionText.clear();
+    nextRooms.clear();
+
     for (int i = 0; i < numOptions; ++i) {
         std::string option;
         if (!std::getline(file, option)) {
             throw std::runtime_error("Error reading option " + std::to_string(i + 1));
         }
         optionText.push_back(option);
+    }
+
+    for (int i = 0; i < numOptions; ++i) {
+        std::string roomPath;
+        if (!std::getline(file, roomPath)) {
+            throw std::runtime_error("Error reading next room path for choice " + std::to_string(i + 1));
+        }
+        nextRooms.push_back(roomPath);
     }
 
     int combatValue = 0;
@@ -53,25 +60,13 @@ Room::Room(const std::string& filename)
     }
 
     file.close();
-
 }
 
-const std::string Room::GetDescription() const {
+// ✅ Implement missing functions
+const std::string& Room::GetDescription() const {
     return description;
 }
 
-const std::string Room::GetChoice() const {
-    return choice;
-}
-
-int Room::GetNumOptions() const {
-    return numOptions;
-}
-
-const std::vector<std::string> Room::GetOptions() const {
+const std::vector<std::string>& Room::GetOptions() const {
     return optionText;
-}
-
-bool Room::HasCombat() const {
-    return hasCombat;
 }

@@ -1,0 +1,9 @@
+Storage Room
+You find yourself in a dimly lit storage room filled with old crates and broken machinery.
+What do you want to do?
+2
+Check inside the crates.
+Return to the basement.
+secret_passage.txt
+test_room.txt
+0
