@@ -18,14 +18,6 @@ void CombatController::StartCombat(int randSeed) {
         endCombat = DoRound(rand());
     }
     player->ResetAllTemp();
-    // Todo: Fix?
-    if(player->IsDead()) {
-        cout << "rip lmao" << endl;
-    } else if(enemy->IsDead()) {
-        cout << "gj!" << endl;
-    } else {
-        cout << "k bye" << endl;
-    }
 }
 
 void CombatController::UseMove(Character* attacker, Attack& move, Character* opponent, const int roundSeed) {
