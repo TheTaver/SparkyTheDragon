@@ -83,6 +83,9 @@ string GameController::StartGameLoop() {
             delete thePlayer;
             return theInput = menu.DisplayGameOver();
         }
+        else if(quitButtonClicked) {
+            return "Quit";
+        }
         
         NPC* enemy2 = new SecurityGaurdA();
         quitButtonClicked = DoCombat(enemy2, thePlayer);
@@ -91,13 +94,19 @@ string GameController::StartGameLoop() {
             delete thePlayer;
             return theInput = menu.DisplayGameOver();
         }
-        
+        else if(quitButtonClicked) {
+            return "Quit";
+        }
+
         NPC* enemy3 = new SecurityGaurdB();
         quitButtonClicked = DoCombat(enemy3, thePlayer);
         delete enemy3;
         if(thePlayer->IsDead()) {
             delete thePlayer;
             return theInput = menu.DisplayGameOver();
+        }
+        else if(quitButtonClicked) {
+            return "Quit";
         }
         
         NPC* enemy4 = new RoboNinja();
@@ -107,6 +116,9 @@ string GameController::StartGameLoop() {
             delete thePlayer;
             return theInput = menu.DisplayGameOver();
         }
+        else if(quitButtonClicked) {
+            return "Quit";
+        }
 
         NPC* enemy5 = new RoboBro();
         quitButtonClicked = DoCombat(enemy5, thePlayer);
@@ -115,6 +127,9 @@ string GameController::StartGameLoop() {
             delete thePlayer;
             return theInput = menu.DisplayGameOver();
         }
+        else if(quitButtonClicked) {
+            return "Quit";
+        }
         
         NPC* enemy6 = new Sparky();
         quitButtonClicked = DoCombat(enemy6, thePlayer);
@@ -122,6 +137,9 @@ string GameController::StartGameLoop() {
             delete enemy6;
             delete thePlayer;
             return theInput = menu.DisplayGameOver();
+        }
+        else if(quitButtonClicked) {
+            return "Quit";
         }
         
 
