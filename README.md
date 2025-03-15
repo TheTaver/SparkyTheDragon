@@ -125,6 +125,7 @@ $ ./bin/trpg
 ```
  ## Testing
 [googletest](https://github.com/google/googletest.git) was utilized to create test cases.
+
 The following classes were tested:
  - Attack
  - Character
