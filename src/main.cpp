@@ -54,14 +54,10 @@ int main() {
     // }
     string gameInput;
     GameController game;
-    while (gameInput != "Quit" || gameInput != "Returncd" || gameInput != "Quitcuzdead"){
+    while (gameInput != "Quit" && gameInput != "Returncd" && gameInput != "Quitcuzdead"){
         //probs sum diff if loaded game
         gameInput = game.StartGameLoop();
     }
-    //show the menus
-    //load the room
-    //room has combat then enter combat
-    //dadadadadada
     
     return 0;
 }
