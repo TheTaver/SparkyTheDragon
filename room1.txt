@@ -1,8 +1,0 @@
-Factory Basement
-You find yourself in an abandoned factory basement. It's dark and damp.
-What will you do?
-3
-Go forward
-Look around
-Exit
-1

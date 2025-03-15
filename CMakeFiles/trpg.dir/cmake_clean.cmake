@@ -1,0 +1,41 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/trpg.dir/src/Attack.cpp.o"
+  "CMakeFiles/trpg.dir/src/Attack.cpp.o.d"
+  "CMakeFiles/trpg.dir/src/Character.cpp.o"
+  "CMakeFiles/trpg.dir/src/Character.cpp.o.d"
+  "CMakeFiles/trpg.dir/src/CombatController.cpp.o"
+  "CMakeFiles/trpg.dir/src/CombatController.cpp.o.d"
+  "CMakeFiles/trpg.dir/src/CombatInfoDisplay.cpp.o"
+  "CMakeFiles/trpg.dir/src/CombatInfoDisplay.cpp.o.d"
+  "CMakeFiles/trpg.dir/src/CombatUI.cpp.o"
+  "CMakeFiles/trpg.dir/src/CombatUI.cpp.o.d"
+  "CMakeFiles/trpg.dir/src/Duelist.cpp.o"
+  "CMakeFiles/trpg.dir/src/Duelist.cpp.o.d"
+  "CMakeFiles/trpg.dir/src/GameController.cpp.o"
+  "CMakeFiles/trpg.dir/src/GameController.cpp.o.d"
+  "CMakeFiles/trpg.dir/src/MenuDisplay.cpp.o"
+  "CMakeFiles/trpg.dir/src/MenuDisplay.cpp.o.d"
+  "CMakeFiles/trpg.dir/src/NPCReader.cpp.o"
+  "CMakeFiles/trpg.dir/src/NPCReader.cpp.o.d"
+  "CMakeFiles/trpg.dir/src/Player.cpp.o"
+  "CMakeFiles/trpg.dir/src/Player.cpp.o.d"
+  "CMakeFiles/trpg.dir/src/Room.cpp.o"
+  "CMakeFiles/trpg.dir/src/Room.cpp.o.d"
+  "CMakeFiles/trpg.dir/src/RoomDisplay.cpp.o"
+  "CMakeFiles/trpg.dir/src/RoomDisplay.cpp.o.d"
+  "CMakeFiles/trpg.dir/src/Shooter.cpp.o"
+  "CMakeFiles/trpg.dir/src/Shooter.cpp.o.d"
+  "CMakeFiles/trpg.dir/src/brawler.cpp.o"
+  "CMakeFiles/trpg.dir/src/brawler.cpp.o.d"
+  "CMakeFiles/trpg.dir/src/main.cpp.o"
+  "CMakeFiles/trpg.dir/src/main.cpp.o.d"
+  "CMakeFiles/trpg.dir/src/npc.cpp.o"
+  "CMakeFiles/trpg.dir/src/npc.cpp.o.d"
+  "bin/trpg"
+  "bin/trpg.pdb"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/trpg.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

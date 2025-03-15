@@ -1,0 +1,14 @@
+# Target labels
+ ftxui-populate
+# Source files and their labels
+/data/home/csmajs/jnepo005/final-project-cs100projectgroup5-24/_deps/ftxui-subbuild/CMakeFiles/ftxui-populate
+/data/home/csmajs/jnepo005/final-project-cs100projectgroup5-24/_deps/ftxui-subbuild/CMakeFiles/ftxui-populate.rule
+/data/home/csmajs/jnepo005/final-project-cs100projectgroup5-24/_deps/ftxui-subbuild/CMakeFiles/ftxui-populate-complete.rule
+/data/home/csmajs/jnepo005/final-project-cs100projectgroup5-24/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-build.rule
+/data/home/csmajs/jnepo005/final-project-cs100projectgroup5-24/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-configure.rule
+/data/home/csmajs/jnepo005/final-project-cs100projectgroup5-24/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-download.rule
+/data/home/csmajs/jnepo005/final-project-cs100projectgroup5-24/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-install.rule
+/data/home/csmajs/jnepo005/final-project-cs100projectgroup5-24/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-mkdir.rule
+/data/home/csmajs/jnepo005/final-project-cs100projectgroup5-24/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-patch.rule
+/data/home/csmajs/jnepo005/final-project-cs100projectgroup5-24/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-test.rule
+/data/home/csmajs/jnepo005/final-project-cs100projectgroup5-24/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-update.rule

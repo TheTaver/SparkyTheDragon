@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/roomTest.dir/tests/roomTest.cpp.o CMakeFiles/roomTest.dir/src/Room.cpp.o -o bin/roomTest  lib/libgtest.a lib/libgtest_main.a -lpthread lib/libgtest.a -lpthread 

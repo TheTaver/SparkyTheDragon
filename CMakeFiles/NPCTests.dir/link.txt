@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/NPCTests.dir/tests/npctest.cpp.o CMakeFiles/NPCTests.dir/src/Character.cpp.o CMakeFiles/NPCTests.dir/src/Attack.cpp.o CMakeFiles/NPCTests.dir/src/npc.cpp.o -o bin/NPCTests  lib/libgtest.a lib/libgtest_main.a -lpthread lib/libgtest.a -lpthread 

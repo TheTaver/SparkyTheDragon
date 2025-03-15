@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/attacktest.dir/tests/attacktest.cpp.o CMakeFiles/attacktest.dir/src/Character.cpp.o CMakeFiles/attacktest.dir/src/Attack.cpp.o -o bin/attacktest  lib/libgtest.a -lpthread 

@@ -2,6 +2,8 @@
 #include "RoomDisplay.h"
 #include <iostream>
 #include <fstream>
+#include <cstdlib>  
+#include <ctime>
 
 void GameController::SaveGame(NPC* enemy, Player*& thePlayer, std::string position) {
     std::ofstream file(position);
@@ -19,87 +21,74 @@ Room GameController::LoadRoom(std::string position) {
     return room;
 }
 
+
+
 void GameController::EnterRoom(Player* thePlayer, Room currentRoom) {
     RoomDisplay display;
     MenuDisplay menu;
     int currentHp = thePlayer->GetStat(0);
+    bool quitButtonClicked = false;
+    int roomsCleared = 0;  
+    
+    srand(time(0));
 
-    while (true) {  // Keep transitioning rooms until "Quit" is selected
+    while (true) {
+      
         std::string playerChoice = display.DisplayRoom(currentRoom, *thePlayer, currentHp);
 
         if (playerChoice == "Health Pot") {
             std::cout << "Used Health Potion!\n";
+            continue;  // Stay in the same room and then fight an enemy
         } else if (playerChoice == "Quit game") {
             std::cout << "Exiting game...\n";
             exit(0);
-        } else {
-            // Handle combat before transitioning rooms
-            bool quitButtonClicked = false;
-
-            // List of enemies for each room
-            NPC* enemy1 = new CyberRat();
-            quitButtonClicked = DoCombat(enemy1, thePlayer);
-            delete enemy1;
-            if (thePlayer->IsDead()) {
-                delete thePlayer;
-                menu.DisplayGameOver();
-                return;
-            }
-
-            NPC* enemy2 = new SecurityGaurdA();
-            quitButtonClicked = DoCombat(enemy2, thePlayer);
-            delete enemy2;
-            if (thePlayer->IsDead()) {
-                delete thePlayer;
-                menu.DisplayGameOver();
-                return;
-            }
-
-            NPC* enemy3 = new SecurityGaurdB();
-            quitButtonClicked = DoCombat(enemy3, thePlayer);
-            delete enemy3;
-            if (thePlayer->IsDead()) {
-                delete thePlayer;
-                menu.DisplayGameOver();
-                return;
-            }
-
-            NPC* enemy4 = new RoboNinja();
-            quitButtonClicked = DoCombat(enemy4, thePlayer);
-            delete enemy4;
-            if (thePlayer->IsDead()) {
-                delete thePlayer;
-                menu.DisplayGameOver();
-                return;
-            }
-
-            //NPC* enemy5 = new RoboBro();
-           // quitButtonClicked = DoCombat(enemy5, thePlayer);
-            //delete enemy5;
-            //if (thePlayer->IsDead()) {
-              //  delete thePlayer;
-                //menu.DisplayGameOver();
-               // return;
-            //}
-
-            NPC* enemy6 = new Sparky();
-            quitButtonClicked = DoCombat(enemy6, thePlayer);
-            delete enemy6;
-            if (thePlayer->IsDead()) {
-                delete thePlayer;
-                menu.DisplayGameOver();
-                return;
-            }
-
-            // If all enemies are defeated, transition to the next room
+        } else {// ✅ Transition to a new room
             std::vector<std::string> options = currentRoom.GetOptions();
             for (size_t i = 0; i < options.size(); ++i) {
                 if (playerChoice == options[i]) {
-                    std::cout << "Transitioning to: " << currentRoom.GetNextRoom(i) << std::endl;
-                    currentRoom = Room(currentRoom.GetNextRoom(i));  // Load new room file
+                    std::cout << "Moving to: " << currentRoom.GetNextRoom(i) << "...\n";
+                    currentRoom = Room(currentRoom.GetNextRoom(i));
+                    roomsCleared++;  
                     break;
                 }
             }
+        }
+
+        
+        NPC* enemy = nullptr;
+
+      
+        if (roomsCleared >= 5) {
+            enemy = new Sparky();
+            std::cout << "⚡ FINAL BOSS: Sparky appears! ⚡\n";
+        } else {
+            // ✅ Properly randomize different enemy types
+            int enemyType = rand() % 5;  // Random value between 0 and 4
+            switch (enemyType) {
+                case 0: enemy = new CyberRat(); break;
+                case 1: enemy = new SecurityGaurdA(); break;
+                case 2: enemy = new SecurityGaurdB(); break;
+                case 3: enemy = new RoboNinja(); break;
+                //case 4: enemy = new RoboBro(); break;
+            }
+            std::cout << "An enemy appears: " << typeid(*enemy).name() << "!\n";
+        }
+
+        quitButtonClicked = DoCombat(enemy, thePlayer);
+        delete enemy;
+
+        if (thePlayer->IsDead()) {
+            delete thePlayer;
+            menu.DisplayGameOver();
+            return;
+        }
+
+        // ✅ 3. If Sparky was just defeated, end the game
+        if (roomsCleared >= 5) {
+            std::cout << "🎉 You defeated Sparky! The game is complete! 🎉\n";
+            delete thePlayer;
+            menu.DisplayVictory();
+            return;
         }
     }
 }

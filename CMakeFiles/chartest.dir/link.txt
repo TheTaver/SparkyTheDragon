@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/chartest.dir/tests/chartest.cpp.o CMakeFiles/chartest.dir/src/Character.cpp.o CMakeFiles/chartest.dir/src/Attack.cpp.o -o bin/chartest  lib/libgtest.a -lpthread 

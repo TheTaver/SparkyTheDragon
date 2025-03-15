@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/shooterTest.dir/tests/shootertest.cpp.o CMakeFiles/shooterTest.dir/src/Attack.cpp.o CMakeFiles/shooterTest.dir/src/Shooter.cpp.o CMakeFiles/shooterTest.dir/src/Character.cpp.o CMakeFiles/shooterTest.dir/src/Player.cpp.o -o bin/shooterTest  lib/libgtest.a lib/libgtest_main.a -lpthread lib/libgtest.a -lpthread 
