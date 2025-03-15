@@ -51,7 +51,7 @@ Victory screen
 
 
 ## Class Diagram
-![uml diagram SOLID principles](https://github.com/user-attachments/assets/b2fed4d2-309e-4053-b2d5-e68f4a32791f)
+![uml diagram SOLID principles](https://github.com/user-attachments/assets/d7bfc96b-5329-49f5-bdbb-38b77af320ec)
 
 ### Class Descriptions:
 #### View Classes:
