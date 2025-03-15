@@ -124,17 +124,17 @@ From repository directory:
 $ ./bin/trpg
 ```
  ## Testing
->[googletest](https://github.com/google/googletest.git) was utilized to create test cases.
-> The following classes were tested:
->  - Attack
->  - Character
->  - Player (this class was tested through its subclasses)
->   -  Brawler
->   -  Duelist
->   -  Shooter
->  - NPC
->  - Room 
->  We were unable to use automated testing for the following classes because they implemented utilized graphical user interface (GUI):
+[googletest](https://github.com/google/googletest.git) was utilized to create test cases.
+The following classes were tested:
+ - Attack
+ - Character
+ - Player (this class was tested through its subclasses)
+  -  Brawler
+  -  Duelist
+  -  Shooter
+ - NPC
+ - Room
+We were unable to use automated testing for the following classes because they implemented utilized graphical user interface (GUI):
  - CombatController
  - CombatInfoDisplay
  - CombotUI
