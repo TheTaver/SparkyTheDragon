@@ -130,9 +130,9 @@ The following classes were tested:
  - Attack
  - Character
  - Player (this class was tested through its subclasses)
-  -  Brawler
-  -  Duelist
-  -  Shooter
+ 	- Brawler
+  	- Duelist
+  	- Shooter
  - NPC
  - Room
 
