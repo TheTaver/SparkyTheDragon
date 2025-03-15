@@ -30,7 +30,6 @@ set(SOURCE_FILES
   src/CombatUI.cpp
   src/Duelist.cpp
   src/MenuDisplay.cpp
-  src/NPCReader.cpp
   src/npc.cpp
   src/Player.cpp
   src/Room.cpp
@@ -60,7 +59,6 @@ add_executable(combattest
     src/CombatInfoDisplay.cpp
     src/CombatUI.cpp
     src/CombatController.cpp
-    src/NPCReader.cpp
     src/Duelist.cpp
     src/Shooter.cpp
     src/brawler.cpp

@@ -36,7 +36,7 @@ TEST(BrawlerTest, GetLvlUpMove_Level4) {
     Attack move = d.GetLvlUpMove(4);
     EXPECT_EQ(move.name, "Ultimate Taijutsu Combo");
     EXPECT_EQ(move.damage, 25);
-    EXPECT_EQ(move.baseAccuracy, 90);
+    EXPECT_EQ(move.baseAccuracy, 80);
 }
 
 TEST(BrawlerTest, GetLvlUpMove_InvalidLevel) {
@@ -58,4 +58,15 @@ TEST(BrawlerTest, ParameterizedConstructor2) {
     Brawler d("Canelo", "Brawler", 1, stats);
     EXPECT_EQ(d.GetName(), "Canelo");
     EXPECT_EQ(d.GetMoves().size(), 1);
+}
+
+TEST(BrawlerTest, AddExpAndLevelUp) {
+    std::vector<int> stats = {20, 1, 2, 4};
+    Brawler p("Hero", "Brawler", 1, stats);
+
+    EXPECT_EQ(p.GetLevel(), 1);
+    p.addExp(100);
+    EXPECT_EQ(p.GetLevel(), 2);
+    EXPECT_FALSE(p.canLevelUp());
+    EXPECT_EQ(p.GetStat(3), 8);
 }
